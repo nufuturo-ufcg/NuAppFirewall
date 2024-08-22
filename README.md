@@ -9,21 +9,21 @@ Abaixo está a estrutura de pastas do projeto e uma breve descrição de cada um
 ```
 nu-app-firewall/
 │
-├── Resources/
+├── resources/
 │   └── (Arquivos de recursos)
 │
-├── Src/
-│   ├── Main.swift
-│   ├── Controller/
+├── src/
+│   ├── main.swift
+│   ├── controller/
 │   │   ...
 │   │
-│   ├── Logic/
+│   ├── logic/
 │   │   ...
 │   │   
-│   ├── Model/
+│   ├── model/
 │   │   ...
 │   │ 
-│   └── Utils/
+│   └── utils/
 │   │   ...
 │
 └── README.md
