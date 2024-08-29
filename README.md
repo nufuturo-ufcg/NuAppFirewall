@@ -7,26 +7,25 @@ Este projeto segue uma adaptação da arquitetura Diplomat do Nubank, personaliz
 
 Abaixo está a estrutura de pastas do projeto e uma breve descrição de cada uma:
 ```
-nu-app-firewall/
-│
-├── resources/
-│   └── (Arquivos de recursos)
-│
-├── src/
-│   ├── main.swift
-│   ├── controller/
-│   │   ...
-│   │
-│   ├── logic/
-│   │   ...
-│   │   
-│   ├── model/
-│   │   ...
-│   │ 
-│   └── utils/
-│   │   ...
-│
-└── README.md
+nu-app-firewall
+    ├── README.md
+    └── nu-app-firewall
+        ├── nu-app-firewall
+        │   ├── resources
+        │   │   ├── ...
+        │   └── src
+        │       ├── controller
+        │       │   └── ...
+        │       ├── logic
+        │       │   └── ...
+        │       ├── model
+        │       │   └── ...
+        │       └── utils
+        │           └── ...
+        ├── nu-app-firewall.xcodeproj
+        │   ├── ...
+        └── nu-app-firewallTests
+            └── ...
 ```
 
 ## Pré-requisitos
