@@ -1,8 +1,9 @@
 //
-//  Logic.swift
-//  nu-app-firewall
+//  File: Logic.swift
+//  Project: App Firewall (nufuturo.lulu)
+//  Description:
 //
-//  Created by ec2-user on 28/08/2024.
+//  Created by com.nufuturo.lulu
 //
 
 import Foundation
