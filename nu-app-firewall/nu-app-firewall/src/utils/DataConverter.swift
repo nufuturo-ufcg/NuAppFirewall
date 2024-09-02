@@ -1,3 +1,12 @@
+//
+//  File: DataConverter.swift
+//  Project: App Firewall (nufuturo.lulu)
+//  Description: Read and convert data from Property List (plist) 
+//               or JSON type files into a Swift dictionary.
+//
+//  Created by com.nufuturo.lulu
+//
+
 import Foundation
 
 enum FileType {
