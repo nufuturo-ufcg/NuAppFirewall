@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		57011F892C7F92CC0088A25B /* nu_app_firewall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57011F802C7F92CC0088A25B /* nu_app_firewall.framework */; };
+		57011F892C7F92CC0088A25B /* NuAppFirewall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57011F802C7F92CC0088A25B /* NuAppFirewall.framework */; };
 		57011FAB2C7F9A440088A25B /* Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FAA2C7F9A440088A25B /* Logic.swift */; };
 		57011FAE2C7F9A680088A25B /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FAD2C7F9A680088A25B /* Controller.swift */; };
 		57011FB12C7F9A7D0088A25B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FB02C7F9A7D0088A25B /* Model.swift */; };
@@ -31,8 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		57011F802C7F92CC0088A25B /* nu_app_firewall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = nu_app_firewall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		57011F882C7F92CC0088A25B /* nu-app-firewallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nu-app-firewallTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57011F802C7F92CC0088A25B /* NuAppFirewall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NuAppFirewall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		57011F882C7F92CC0088A25B /* NuAppFirewallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NuAppFirewallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57011FAA2C7F9A440088A25B /* Logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logic.swift; sourceTree = "<group>"; };
 		57011FAD2C7F9A680088A25B /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		57011FB02C7F9A7D0088A25B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57011F892C7F92CC0088A25B /* nu_app_firewall.framework in Frameworks */,
+				57011F892C7F92CC0088A25B /* NuAppFirewall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,8 +64,8 @@
 		57011F762C7F92CC0088A25B = {
 			isa = PBXGroup;
 			children = (
-				57011F822C7F92CC0088A25B /* nu-app-firewall */,
-				57011F8C2C7F92CC0088A25B /* nu-app-firewallTests */,
+				57011F822C7F92CC0088A25B /* NuAppFirewall */,
+				57011F8C2C7F92CC0088A25B /* NuAppFirewallTests */,
 				57011F812C7F92CC0088A25B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,80 +73,80 @@
 		57011F812C7F92CC0088A25B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				57011F802C7F92CC0088A25B /* nu_app_firewall.framework */,
-				57011F882C7F92CC0088A25B /* nu-app-firewallTests.xctest */,
+				57011F802C7F92CC0088A25B /* NuAppFirewall.framework */,
+				57011F882C7F92CC0088A25B /* NuAppFirewallTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		57011F822C7F92CC0088A25B /* nu-app-firewall */ = {
+		57011F822C7F92CC0088A25B /* NuAppFirewall */ = {
 			isa = PBXGroup;
 			children = (
-				57011FA42C7F95990088A25B /* resources */,
-				57011F9C2C7F93670088A25B /* src */,
+				57011FA42C7F95990088A25B /* Resources */,
+				57011F9C2C7F93670088A25B /* Src */,
 			);
-			path = "nu-app-firewall";
+			path = NuAppFirewall;
 			sourceTree = "<group>";
 		};
-		57011F8C2C7F92CC0088A25B /* nu-app-firewallTests */ = {
+		57011F8C2C7F92CC0088A25B /* NuAppFirewallTests */ = {
 			isa = PBXGroup;
 			children = (
 				57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */,
 			);
-			path = "nu-app-firewallTests";
+			path = NuAppFirewallTests;
 			sourceTree = "<group>";
 		};
-		57011F9C2C7F93670088A25B /* src */ = {
+		57011F9C2C7F93670088A25B /* Src */ = {
 			isa = PBXGroup;
 			children = (
-				57011FAF2C7F9A6F0088A25B /* model */,
-				57011FAC2C7F9A560088A25B /* controller */,
-				57011FA92C7F9A2F0088A25B /* logic */,
-				57011F9F2C7F94170088A25B /* utils */,
+				57011FAF2C7F9A6F0088A25B /* Model */,
+				57011FAC2C7F9A560088A25B /* Controller */,
+				57011FA92C7F9A2F0088A25B /* Logic */,
+				57011F9F2C7F94170088A25B /* Utils */,
 			);
-			path = src;
+			path = Src;
 			sourceTree = "<group>";
 		};
-		57011F9F2C7F94170088A25B /* utils */ = {
+		57011F9F2C7F94170088A25B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				57011FBD2C7FA64F0088A25B /* DataConverter.swift */,
 			);
-			path = utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
-		57011FA42C7F95990088A25B /* resources */ = {
+		57011FA42C7F95990088A25B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				57011FD22C7FE18B0088A25B /* SampleData.json */,
 				57011FCF2C7FE1840088A25B /* SampleData.plist */,
 			);
-			path = resources;
+			path = Resources;
 			sourceTree = "<group>";
 			usesTabs = 0;
 		};
-		57011FA92C7F9A2F0088A25B /* logic */ = {
+		57011FA92C7F9A2F0088A25B /* Logic */ = {
 			isa = PBXGroup;
 			children = (
 				57011FAA2C7F9A440088A25B /* Logic.swift */,
 			);
-			path = logic;
+			path = Logic;
 			sourceTree = "<group>";
 		};
-		57011FAC2C7F9A560088A25B /* controller */ = {
+		57011FAC2C7F9A560088A25B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				57011FAD2C7F9A680088A25B /* Controller.swift */,
 			);
-			path = controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		57011FAF2C7F9A6F0088A25B /* model */ = {
+		57011FAF2C7F9A6F0088A25B /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				57011FB02C7F9A7D0088A25B /* Model.swift */,
 			);
-			path = model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,9 +162,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		57011F7F2C7F92CC0088A25B /* nu-app-firewall */ = {
+		57011F7F2C7F92CC0088A25B /* NuAppFirewall */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 57011F922C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "nu-app-firewall" */;
+			buildConfigurationList = 57011F922C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewall" */;
 			buildPhases = (
 				57011F7B2C7F92CC0088A25B /* Headers */,
 				57011F7C2C7F92CC0088A25B /* Sources */,
@@ -175,14 +175,14 @@
 			);
 			dependencies = (
 			);
-			name = "nu-app-firewall";
+			name = NuAppFirewall;
 			productName = "nu-app-firewall";
-			productReference = 57011F802C7F92CC0088A25B /* nu_app_firewall.framework */;
+			productReference = 57011F802C7F92CC0088A25B /* NuAppFirewall.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		57011F872C7F92CC0088A25B /* nu-app-firewallTests */ = {
+		57011F872C7F92CC0088A25B /* NuAppFirewallTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 57011F952C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "nu-app-firewallTests" */;
+			buildConfigurationList = 57011F952C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewallTests" */;
 			buildPhases = (
 				57011F842C7F92CC0088A25B /* Sources */,
 				57011F852C7F92CC0088A25B /* Frameworks */,
@@ -193,9 +193,9 @@
 			dependencies = (
 				57011F8B2C7F92CC0088A25B /* PBXTargetDependency */,
 			);
-			name = "nu-app-firewallTests";
+			name = NuAppFirewallTests;
 			productName = "nu-app-firewallTests";
-			productReference = 57011F882C7F92CC0088A25B /* nu-app-firewallTests.xctest */;
+			productReference = 57011F882C7F92CC0088A25B /* NuAppFirewallTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -217,7 +217,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 57011F7A2C7F92CC0088A25B /* Build configuration list for PBXProject "nu-app-firewall" */;
+			buildConfigurationList = 57011F7A2C7F92CC0088A25B /* Build configuration list for PBXProject "NuAppFirewall" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -230,8 +230,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				57011F7F2C7F92CC0088A25B /* nu-app-firewall */,
-				57011F872C7F92CC0088A25B /* nu-app-firewallTests */,
+				57011F7F2C7F92CC0088A25B /* NuAppFirewall */,
+				57011F872C7F92CC0088A25B /* NuAppFirewallTests */,
 			);
 		};
 /* End PBXProject section */
@@ -283,7 +283,7 @@
 /* Begin PBXTargetDependency section */
 		57011F8B2C7F92CC0088A25B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 57011F7F2C7F92CC0088A25B /* nu-app-firewall */;
+			target = 57011F7F2C7F92CC0088A25B /* NuAppFirewall */;
 			targetProxy = 57011F8A2C7F92CC0088A25B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -439,7 +439,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.lulu.nu-app-firewall";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.nuappfirewall.nu-app-firewall";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
@@ -482,7 +482,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.lulu.nu-app-firewall";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.nuappfirewall.nu-app-firewall";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
@@ -506,7 +506,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.lulu.nu-app-firewallTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.nuappfirewall.nu-app-firewallTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -528,7 +528,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.lulu.nu-app-firewallTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.nuappfirewall.nu-app-firewallTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -541,7 +541,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		57011F7A2C7F92CC0088A25B /* Build configuration list for PBXProject "nu-app-firewall" */ = {
+		57011F7A2C7F92CC0088A25B /* Build configuration list for PBXProject "NuAppFirewall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57011F902C7F92CC0088A25B /* Debug */,
@@ -550,7 +550,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		57011F922C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "nu-app-firewall" */ = {
+		57011F922C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57011F932C7F92CC0088A25B /* Debug */,
@@ -559,7 +559,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		57011F952C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "nu-app-firewallTests" */ = {
+		57011F952C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewallTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57011F962C7F92CC0088A25B /* Debug */,

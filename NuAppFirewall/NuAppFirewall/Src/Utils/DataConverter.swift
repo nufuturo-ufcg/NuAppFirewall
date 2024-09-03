@@ -1,10 +1,10 @@
 //
 //  File: DataConverter.swift
-//  Project: App Firewall (nufuturo.lulu)
-//  Description: Read and convert data from Property List (plist) 
+//  Project: App Firewall (nufuturo.nuappfirewall)
+//  Description: Read and convert data from Property List (plist)
 //               or JSON type files into a Swift dictionary.
 //
-//  Created by com.nufuturo.lulu
+//  Created by com.nufuturo.nuappfirewall
 //
 
 import Foundation
