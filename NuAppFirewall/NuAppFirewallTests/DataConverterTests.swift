@@ -1,14 +1,14 @@
 //
 //  File: DataConverterTests.swift
-//  Project: App Firewall (nufuturo.lulu)
+//  Project: App Firewall (nufuturo.nuappfirewall)
 //  Description: Unit test class that uses XCTest to validate
 //               the behavior of the DataConverter class.
 //
-//  Created by com.nufuturo.lulu
+//  Created by com.nufuturo.nuappfirewall
 //
 
 import XCTest
-@testable import nu_app_firewall
+@testable import NuAppFirewall
 
 class DataConverterTests: XCTestCase {
     
