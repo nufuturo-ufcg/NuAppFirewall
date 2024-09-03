@@ -7,26 +7,25 @@ Este projeto segue uma adaptação da arquitetura Diplomat do Nubank, personaliz
 
 Abaixo está a estrutura de pastas do projeto e uma breve descrição de cada uma:
 ```
-nu-app-firewall/
-│
-├── resources/
-│   └── (Arquivos de recursos)
-│
-├── src/
-│   ├── main.swift
-│   ├── controller/
-│   │   ...
-│   │
-│   ├── logic/
-│   │   ...
-│   │   
-│   ├── model/
-│   │   ...
-│   │ 
-│   └── utils/
-│   │   ...
-│
-└── README.md
+nu-app-firewall
+    ├── README.md
+    └── NuAppFirewall
+        ├── NuAppFirewall
+        │   ├── Resources
+        │   │   ├── ...
+        │   └── Src
+        │       ├── Controller
+        │       │   └── ...
+        │       ├── Logic
+        │       │   └── ...
+        │       ├── Model
+        │       │   └── ...
+        │       └── Utils
+        │           └── ...
+        ├── NuAppFirewall.xcodeproj
+        │   ├── ...
+        └── NuAppFirewallTests
+            └── ...
 ```
 
 ## Pré-requisitos
@@ -43,12 +42,12 @@ Clone o repositório:
 
 ```
 git clone https://github.com/seu-usuario/nu-app-firewall.git
-cd nu-app-firewall
+cd NuAppFirewall
 ```
 Abra o projeto no Xcode:
 
 ```
-open nu-app-firewall.xcodeproj
+open NuAppFirewall.xcodeproj
 ```
 
 Compile e execute o projeto no Xcode. Certifique-se de que o esquema esteja configurado para o seu Mac.
