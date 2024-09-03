@@ -9,22 +9,22 @@ Abaixo está a estrutura de pastas do projeto e uma breve descrição de cada um
 ```
 nu-app-firewall
     ├── README.md
-    └── nu-app-firewall
-        ├── nu-app-firewall
-        │   ├── resources
+    └── NuAppFirewall
+        ├── NuAppFirewall
+        │   ├── Resources
         │   │   ├── ...
-        │   └── src
-        │       ├── controller
+        │   └── Src
+        │       ├── Controller
         │       │   └── ...
-        │       ├── logic
+        │       ├── Logic
         │       │   └── ...
-        │       ├── model
+        │       ├── Model
         │       │   └── ...
-        │       └── utils
+        │       └── Utils
         │           └── ...
-        ├── nu-app-firewall.xcodeproj
+        ├── NuAppFirewall.xcodeproj
         │   ├── ...
-        └── nu-app-firewallTests
+        └── NuAppFirewallTests
             └── ...
 ```
 
@@ -42,12 +42,12 @@ Clone o repositório:
 
 ```
 git clone https://github.com/seu-usuario/nu-app-firewall.git
-cd nu-app-firewall
+cd NuAppFirewall
 ```
 Abra o projeto no Xcode:
 
 ```
-open nu-app-firewall.xcodeproj
+open NuAppFirewall.xcodeproj
 ```
 
 Compile e execute o projeto no Xcode. Certifique-se de que o esquema esteja configurado para o seu Mac.
