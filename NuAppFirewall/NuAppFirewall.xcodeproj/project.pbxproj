@@ -21,6 +21,7 @@
 		577571E32C88CB4B005AA2AB /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571E12C88CB4B005AA2AB /* Rule.swift */; };
 		577571E42C88CB4B005AA2AB /* RulesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571E22C88CB4B005AA2AB /* RulesManager.swift */; };
 		577571E62C88CC20005AA2AB /* RulesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571E52C88CC20005AA2AB /* RulesManagerTests.swift */; };
+		577571EB2C8B457C005AA2AB /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571EA2C8B457C005AA2AB /* RuleTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		577571E12C88CB4B005AA2AB /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		577571E22C88CB4B005AA2AB /* RulesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesManager.swift; sourceTree = "<group>"; };
 		577571E52C88CC20005AA2AB /* RulesManagerTests.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = RulesManagerTests.swift; sourceTree = "<group>"; };
+		577571EA2C8B457C005AA2AB /* RuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +99,9 @@
 		57011F8C2C7F92CC0088A25B /* NuAppFirewallTests */ = {
 			isa = PBXGroup;
 			children = (
-				577571E52C88CC20005AA2AB /* RulesManagerTests.swift */,
-				57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */,
+				577571E92C8B4537005AA2AB /* Logic */,
+				577571E82C8B452E005AA2AB /* Utils */,
+				577571E72C8B4522005AA2AB /* Model */,
 			);
 			path = NuAppFirewallTests;
 			sourceTree = "<group>";
@@ -158,6 +161,30 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		577571E72C8B4522005AA2AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				577571EA2C8B457C005AA2AB /* RuleTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		577571E82C8B452E005AA2AB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		577571E92C8B4537005AA2AB /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				577571E52C88CC20005AA2AB /* RulesManagerTests.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -213,7 +240,7 @@
 		57011F772C7F92CC0088A25B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
@@ -285,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				574C1FC02C7FEA6300664186 /* DataConverter.swift in Sources */,
+				577571EB2C8B457C005AA2AB /* RuleTests.swift in Sources */,
 				57011FBC2C7FA55F0088A25B /* DataConverterTests.swift in Sources */,
 				577571E62C88CC20005AA2AB /* RulesManagerTests.swift in Sources */,
 			);
@@ -560,7 +588,7 @@
 				57011F912C7F92CC0088A25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		57011F922C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewall" */ = {
 			isa = XCConfigurationList;
@@ -569,7 +597,7 @@
 				57011F942C7F92CC0088A25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		57011F952C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewallTests" */ = {
 			isa = XCConfigurationList;
@@ -578,7 +606,7 @@
 				57011F972C7F92CC0088A25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

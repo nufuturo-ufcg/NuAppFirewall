@@ -1,5 +1,5 @@
 /*  
-    File: Rule.swift
+    File: RuleManager.swift
     Project: App Firewall (nufuturo.nuappfirewall)
     Description: This class manages a collection of `Rule` objects
         using a dictionary with rule IDs as keys. 
@@ -9,11 +9,19 @@
 
 import Foundation
 
+enum RulesManagerError: Error {
+    case invalidRule
+}
+
 class RulesManager {
     private var rules: [String: Rule] = [:]
     
-    func addRule(_ rule: Rule) {
-        if var existingRule = rules[rule.ruleID] {
+    func addRule(_ rule: Rule?) throws {
+        guard let rule = rule else {
+            throw RulesManagerError.invalidRule
+        }
+        
+        if let existingRule = rules[rule.ruleID] {
             // Update the existing rule's destinations set
             existingRule.destinations.formUnion(rule.destinations)
             rules[rule.ruleID] = existingRule
@@ -31,3 +39,4 @@ class RulesManager {
         return rules[ruleID]
     }
 }
+
