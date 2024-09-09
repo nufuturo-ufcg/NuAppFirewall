@@ -15,8 +15,14 @@ class Rule {
     var appLocation: String
     var destinations: Set<String>
     var direction: String
+
     
-    init(ruleID: String, action: String, appLocation: String, destinations: Set<String>, direction: String) {
+    init?(ruleID: String, action: String, appLocation: String, destinations: Set<String>, direction: String) {
+        
+        guard !destinations.isEmpty else {
+            return nil
+        }
+        
         self.ruleID = ruleID
         self.action = action
         self.appLocation = appLocation
@@ -29,9 +35,8 @@ class Rule {
         ruleID: \(ruleID)
         Action: \(action)
         Application Location: \(appLocation)
-        Destinations: \(destinations.joined(separator: ", "))
+        Destinations: \(destinations.sorted().joined(separator: ", "))
         Direction: \(direction)
         """
     }
-
 }
