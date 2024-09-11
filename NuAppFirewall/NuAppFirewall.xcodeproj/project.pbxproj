@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		57011F892C7F92CC0088A25B /* NuAppFirewall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57011F802C7F92CC0088A25B /* NuAppFirewall.framework */; };
-		57011FAB2C7F9A440088A25B /* Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FAA2C7F9A440088A25B /* Logic.swift */; };
 		57011FAE2C7F9A680088A25B /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FAD2C7F9A680088A25B /* Controller.swift */; };
-		57011FB12C7F9A7D0088A25B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FB02C7F9A7D0088A25B /* Model.swift */; };
 		57011FBC2C7FA55F0088A25B /* DataConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */; };
 		57011FBE2C7FA64F0088A25B /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FBD2C7FA64F0088A25B /* DataConverter.swift */; };
 		57011FDE2C7FE84C0088A25B /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57011FD22C7FE18B0088A25B /* SampleData.json */; };
@@ -18,6 +16,10 @@
 		57011FE02C7FE8510088A25B /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57011FCF2C7FE1840088A25B /* SampleData.plist */; };
 		57011FE12C7FE8510088A25B /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57011FCF2C7FE1840088A25B /* SampleData.plist */; };
 		574C1FC02C7FEA6300664186 /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FBD2C7FA64F0088A25B /* DataConverter.swift */; };
+		577571E32C88CB4B005AA2AB /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571E12C88CB4B005AA2AB /* Rule.swift */; };
+		577571E42C88CB4B005AA2AB /* RulesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571E22C88CB4B005AA2AB /* RulesManager.swift */; };
+		577571E62C88CC20005AA2AB /* RulesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571E52C88CC20005AA2AB /* RulesManagerTests.swift */; };
+		577571EB2C8B457C005AA2AB /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571EA2C8B457C005AA2AB /* RuleTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,13 +35,15 @@
 /* Begin PBXFileReference section */
 		57011F802C7F92CC0088A25B /* NuAppFirewall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NuAppFirewall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57011F882C7F92CC0088A25B /* NuAppFirewallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NuAppFirewallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		57011FAA2C7F9A440088A25B /* Logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logic.swift; sourceTree = "<group>"; };
 		57011FAD2C7F9A680088A25B /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		57011FB02C7F9A7D0088A25B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverterTests.swift; sourceTree = "<group>"; };
 		57011FBD2C7FA64F0088A25B /* DataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverter.swift; sourceTree = "<group>"; };
 		57011FCF2C7FE1840088A25B /* SampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = SampleData.plist; sourceTree = "<group>"; };
 		57011FD22C7FE18B0088A25B /* SampleData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleData.json; sourceTree = "<group>"; };
+		577571E12C88CB4B005AA2AB /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		577571E22C88CB4B005AA2AB /* RulesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesManager.swift; sourceTree = "<group>"; };
+		577571E52C88CC20005AA2AB /* RulesManagerTests.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = RulesManagerTests.swift; sourceTree = "<group>"; };
+		577571EA2C8B457C005AA2AB /* RuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +95,9 @@
 		57011F8C2C7F92CC0088A25B /* NuAppFirewallTests */ = {
 			isa = PBXGroup;
 			children = (
-				57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */,
+				577571E92C8B4537005AA2AB /* Logic */,
+				577571E82C8B452E005AA2AB /* Utils */,
+				577571E72C8B4522005AA2AB /* Model */,
 			);
 			path = NuAppFirewallTests;
 			sourceTree = "<group>";
@@ -128,7 +134,7 @@
 		57011FA92C7F9A2F0088A25B /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				57011FAA2C7F9A440088A25B /* Logic.swift */,
+				577571E22C88CB4B005AA2AB /* RulesManager.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -144,9 +150,33 @@
 		57011FAF2C7F9A6F0088A25B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				57011FB02C7F9A7D0088A25B /* Model.swift */,
+				577571E12C88CB4B005AA2AB /* Rule.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		577571E72C8B4522005AA2AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				577571EA2C8B457C005AA2AB /* RuleTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		577571E82C8B452E005AA2AB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		577571E92C8B4537005AA2AB /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				577571E52C88CC20005AA2AB /* RulesManagerTests.swift */,
+			);
+			path = Logic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,7 +234,7 @@
 		57011F772C7F92CC0088A25B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
@@ -262,9 +292,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57011FB12C7F9A7D0088A25B /* Model.swift in Sources */,
+				577571E42C88CB4B005AA2AB /* RulesManager.swift in Sources */,
+				577571E32C88CB4B005AA2AB /* Rule.swift in Sources */,
 				57011FBE2C7FA64F0088A25B /* DataConverter.swift in Sources */,
-				57011FAB2C7F9A440088A25B /* Logic.swift in Sources */,
 				57011FAE2C7F9A680088A25B /* Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,7 +304,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				574C1FC02C7FEA6300664186 /* DataConverter.swift in Sources */,
+				577571EB2C8B457C005AA2AB /* RuleTests.swift in Sources */,
 				57011FBC2C7FA55F0088A25B /* DataConverterTests.swift in Sources */,
+				577571E62C88CC20005AA2AB /* RulesManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +580,7 @@
 				57011F912C7F92CC0088A25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		57011F922C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewall" */ = {
 			isa = XCConfigurationList;
@@ -557,7 +589,7 @@
 				57011F942C7F92CC0088A25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		57011F952C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewallTests" */ = {
 			isa = XCConfigurationList;
@@ -566,7 +598,7 @@
 				57011F972C7F92CC0088A25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
