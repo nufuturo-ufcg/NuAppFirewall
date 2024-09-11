@@ -13,7 +13,7 @@ import XCTest
 class RulesManagerTests: XCTestCase {
 
     var manager: RulesManager!
-    var initialDestinations: Set<String>!
+    var initialEndpoints: Set<String>!
 
     override func setUp() {
         super.setUp()
@@ -23,20 +23,20 @@ class RulesManagerTests: XCTestCase {
             ruleID: "/Applications/Test.app",
             action: "allow",
             appLocation: "/Applications/Test.app",
-            destinations: ["192.168.1.1"],
+            endpoints: ["192.168.1.1"],
             direction: "outgoing"
         )
 
         // Ensuring no nil values are passed to `addRule`
         XCTAssertNoThrow(try manager.addRule(rule1))
 
-        initialDestinations = ["192.168.1.1", "192.168.1.2"]
+        initialEndpoints = ["192.168.1.1", "192.168.1.2"]
 
         let rule2 = Rule(
             ruleID: "/Applications/Test2.app",
             action: "allow",
             appLocation: "/Applications/Test2.app",
-            destinations: initialDestinations,
+            endpoints: initialEndpoints,
             direction: "outgoing"
         )
 
@@ -53,27 +53,27 @@ class RulesManagerTests: XCTestCase {
         let ruleID = "/Applications/MyApp"
         let action = "allow"
         let appLocation = "/Applications/MyApp"
-        let destinations: Set<String> = ["192.168.1.1", "192.168.1.2"]
+        let endpoints: Set<String> = ["192.168.1.1", "192.168.1.2"]
         let direction = "outbound"
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, destinations: destinations, direction: direction)
+        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
 
-        XCTAssertNotNil(rule, "The rule must be created with non-empty destinations.")
+        XCTAssertNotNil(rule, "The rule must be created with non-empty endpoints.")
         XCTAssertEqual(rule?.ruleID, ruleID, "The ruleID must be initialized correctly.")
         XCTAssertEqual(rule?.action, action, "The action must be initialized correctly.")
         XCTAssertEqual(rule?.appLocation, appLocation, "The application location must be initialized correctly.")
-        XCTAssertEqual(rule?.destinations, destinations, "Destinations must be initialized correctly.")
+        XCTAssertEqual(rule?.endpoints, endpoints, "Endpoints must be initialized correctly.")
         XCTAssertEqual(rule?.direction, direction, "The direction must be initialized correctly.")
     }
 
     // Test case: Add a rule
     func testAddRule() {
-        let destinations: Set = ["e673.dsce9.akamaiedge.net", "23.41.188.23"]
+        let endpoints: Set = ["e673.dsce9.akamaiedge.net", "23.41.188.23"]
 
         let rule3 = Rule(
             ruleID: "/Library/Apple/System/Library/CoreServices/SafariSupport.bundle/Contents/MacOS/PasswordBreachAgent",
             action: "allow",
             appLocation: "/Library/Apple/System/Library/CoreServices/SafariSupport.bundle/Contents/MacOS/PasswordBreachAgent",
-            destinations: destinations,
+            endpoints: endpoints,
             direction: "outgoing"
         )
 
@@ -86,13 +86,13 @@ class RulesManagerTests: XCTestCase {
 
     // Test case: Add another rule with different attributes
     func testAddAnotherRule() {
-        let destinations: Set = ["142.251.16.94", "sync.intentiq.com", "208.80.154.224"]
+        let endpoints: Set = ["142.251.16.94", "sync.intentiq.com", "208.80.154.224"]
 
         let rule2 = Rule(
             ruleID: "/System/Volumes/Preboot/Cryptexes/App/System/Library/StagedFrameworks/Safari/SafariShared.framework/Versions/A/XPCServices/com.apple.Safari.SearchHelper.xpc/Contents/MacOS/com.apple.Safari.SearchHelper",
             action: "allow",
             appLocation: "/System/Volumes/Preboot/Cryptexes/App/System/Library/StagedFrameworks/Safari/SafariShared.framework/Versions/A/XPCServices/com.apple.Safari.SearchHelper.xpc/Contents/MacOS/com.apple.Safari.SearchHelper",
-            destinations: destinations,
+            endpoints: endpoints,
             direction: "outgoing"
         )
 
@@ -134,13 +134,13 @@ class RulesManagerTests: XCTestCase {
 
     // Test case: Add a rule with the same ruleID and validate destinations update
     func testAddRuleWithSameIDUpdatesDestinations() {
-        let newDestinations: Set = ["192.168.1.3"]
+        let newEndpoints: Set = ["192.168.1.3"]
 
         let updatedRule = Rule(
             ruleID: "/Applications/Test2.app",
             action: "allow",
             appLocation: "/Applications/Test2.app",
-            destinations: newDestinations,
+            endpoints: newEndpoints,
             direction: "outgoing"
         )
 
@@ -148,7 +148,7 @@ class RulesManagerTests: XCTestCase {
 
         let fetchedRule = manager.getRule(byID: "/Applications/Test2.app")
         XCTAssertNotNil(fetchedRule, "The rule must be retrieved.")
-        XCTAssertEqual(fetchedRule?.destinations, initialDestinations.union(newDestinations), "Destinations must be updated to include the new entries.")
+        XCTAssertEqual(fetchedRule?.endpoints, initialEndpoints.union(newEndpoints), "Destinations must be updated to include the new entries.")
     }
 
     // Test case: Attempt to add a rule with nil value or invalid rule

@@ -25,16 +25,16 @@ class RuleTests: XCTestCase {
         let ruleID = "/Applications/SampleApp.app"
         let action = "allow"
         let appLocation = "/Applications/SampleApp.app"
-        let destinations: Set<String> = ["192.168.1.1", "192.168.1.2"]
+        let endpoints: Set<String> = ["192.168.1.1", "192.168.1.2"]
         let direction = "outgoing"
         
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, destinations: destinations, direction: direction)
+        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
         
         XCTAssertNotNil(rule)
         XCTAssertEqual(rule?.ruleID, ruleID)
         XCTAssertEqual(rule?.action, action)
         XCTAssertEqual(rule?.appLocation, appLocation)
-        XCTAssertEqual(rule?.destinations, destinations)
+        XCTAssertEqual(rule?.endpoints, endpoints)
         XCTAssertEqual(rule?.direction, direction)
     }
     
@@ -43,9 +43,9 @@ class RuleTests: XCTestCase {
         let ruleID = "/Applications/BlockedApp.app"
         let action = "allow"
         let appLocation = "/Applications/BlockedApp.app"
-        let destinations: Set<String> = ["10.0.0.0", "10.0.0.1"]
+        let endpoints: Set<String> = ["10.0.0.0", "10.0.0.1"]
         let direction = "outgoing"
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, destinations: destinations, direction: direction)
+        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
         
         let description = rule?.description()
         
@@ -64,10 +64,10 @@ class RuleTests: XCTestCase {
         let ruleID = "/Applications/SampleApp.app"
         let action = "allow"
         let appLocation = "/Applications/SampleApp.app"
-        let destinations: Set<String> = []
+        let endpoints: Set<String> = []
         let direction = "outgoing"
         
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, destinations: destinations, direction: direction)
+        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
         
         XCTAssertNil(rule)
     }
@@ -77,13 +77,13 @@ class RuleTests: XCTestCase {
         let ruleID = "67890"
         let action = "allow"
         let appLocation = "/Applications/AnotherApp.app"
-        let destinations: Set<String> = ["8.8.8.8"]
+        let endpoints: Set<String> = ["8.8.8.8"]
         let direction = "outgoing"
         
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, destinations: destinations, direction: direction)
+        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
         
         XCTAssertNotNil(rule)
-        XCTAssertEqual(rule?.destinations, destinations)
+        XCTAssertEqual(rule?.endpoints, endpoints)
     }
     
     // Test the equals method (Equatable implementation)
@@ -92,14 +92,14 @@ class RuleTests: XCTestCase {
         let ruleID = "/Applications/TestApp.app"
         let action = "allow"
         let appLocation = "/Applications/TestApp.app"
-        let destinations: Set<String> = ["192.168.1.1"]
+        let endpoints: Set<String> = ["192.168.1.1"]
         let direction = "outgoing"
         
-        let rule1 = Rule(ruleID: ruleID, action: action, appLocation: appLocation, destinations: destinations, direction: direction)
+        let rule1 = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
         
-        let rule2 = Rule(ruleID: ruleID, action: action, appLocation: appLocation, destinations: destinations, direction: direction)
+        let rule2 = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
         
-        let rule3 = Rule(ruleID: "/Applications/DifferentApp.app", action: action, appLocation: "/Applications/DifferentApp.app", destinations: ["10.0.0.1"], direction: direction)
+        let rule3 = Rule(ruleID: "/Applications/DifferentApp.app", action: action, appLocation: "/Applications/DifferentApp.app", endpoints: ["10.0.0.1"], direction: direction)
         
         // Ensure rule1 and rule2 are equal
         XCTAssertEqual(rule1, rule2, "Rules with the same properties should be considered equal")
