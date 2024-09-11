@@ -23,7 +23,7 @@ class RulesManager {
         
         if let existingRule = rules[rule.ruleID] {
             // Update the existing rule's destinations set
-            existingRule.destinations.formUnion(rule.destinations)
+            existingRule.endpoints.formUnion(rule.endpoints)
             rules[rule.ruleID] = existingRule
         } else {
             // Add the new rule if it does not exist

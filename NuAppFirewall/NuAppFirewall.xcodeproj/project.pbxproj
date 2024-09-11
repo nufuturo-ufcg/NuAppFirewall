@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		57011F892C7F92CC0088A25B /* NuAppFirewall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57011F802C7F92CC0088A25B /* NuAppFirewall.framework */; };
-		57011FAB2C7F9A440088A25B /* Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FAA2C7F9A440088A25B /* Logic.swift */; };
 		57011FAE2C7F9A680088A25B /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FAD2C7F9A680088A25B /* Controller.swift */; };
-		57011FB12C7F9A7D0088A25B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FB02C7F9A7D0088A25B /* Model.swift */; };
 		57011FBC2C7FA55F0088A25B /* DataConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */; };
 		57011FBE2C7FA64F0088A25B /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FBD2C7FA64F0088A25B /* DataConverter.swift */; };
 		57011FDE2C7FE84C0088A25B /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57011FD22C7FE18B0088A25B /* SampleData.json */; };
@@ -37,9 +35,7 @@
 /* Begin PBXFileReference section */
 		57011F802C7F92CC0088A25B /* NuAppFirewall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NuAppFirewall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57011F882C7F92CC0088A25B /* NuAppFirewallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NuAppFirewallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		57011FAA2C7F9A440088A25B /* Logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logic.swift; sourceTree = "<group>"; };
 		57011FAD2C7F9A680088A25B /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		57011FB02C7F9A7D0088A25B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverterTests.swift; sourceTree = "<group>"; };
 		57011FBD2C7FA64F0088A25B /* DataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverter.swift; sourceTree = "<group>"; };
 		57011FCF2C7FE1840088A25B /* SampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = SampleData.plist; sourceTree = "<group>"; };
@@ -139,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				577571E22C88CB4B005AA2AB /* RulesManager.swift */,
-				57011FAA2C7F9A440088A25B /* Logic.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -155,7 +150,6 @@
 		57011FAF2C7F9A6F0088A25B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				57011FB02C7F9A7D0088A25B /* Model.swift */,
 				577571E12C88CB4B005AA2AB /* Rule.swift */,
 			);
 			path = Model;
@@ -298,11 +292,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57011FB12C7F9A7D0088A25B /* Model.swift in Sources */,
 				577571E42C88CB4B005AA2AB /* RulesManager.swift in Sources */,
 				577571E32C88CB4B005AA2AB /* Rule.swift in Sources */,
 				57011FBE2C7FA64F0088A25B /* DataConverter.swift in Sources */,
-				57011FAB2C7F9A440088A25B /* Logic.swift in Sources */,
 				57011FAE2C7F9A680088A25B /* Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
