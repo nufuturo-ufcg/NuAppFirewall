@@ -1,4 +1,4 @@
-/*  
+/*
     File: RulesManagerTests.swift
     Project: App Firewall (nufuturo.nuappfirewall)
     Description: Unit test class that uses XCTest to validate
