@@ -1,8 +1,8 @@
-/*  
+/*
     File: RuleManager.swift
     Project: App Firewall (nufuturo.nuappfirewall)
     Description: This class manages a collection of `Rule` objects
-        using a dictionary with rule IDs as keys. 
+        using a dictionary with rule IDs as keys.
 
     Created by com.nufuturo.nuappfirewall
 */

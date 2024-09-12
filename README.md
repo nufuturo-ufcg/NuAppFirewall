@@ -35,7 +35,7 @@ nu-app-firewall
 
 ## Pré-requisitos
 
-- macOS 10.15 ou superior
+- macOS 14.5 ou superior
 - Xcode 12.0 ou superior
 - Swift 5.0 ou superior
 
@@ -45,7 +45,7 @@ Clone o repositório:
 
 ```
 git clone https://github.com/seu-usuario/nu-app-firewall.git
-cd NuAppFirewall
+cd nu-app-firewall/NuAppFirewall
 ```
 
 Abra o projeto no Xcode:
@@ -55,7 +55,25 @@ open NuAppFirewall.xcodeproj
 ```
 
 Compile e execute o projeto no Xcode. Certifique-se de que o esquema esteja configurado para o seu Mac.
+```
+Product > run
+```
 
+Certifique-se de que o Build foi realizado com sucesso. 
+
+Abra o Terminal entre na raiz do projeto:
+
+```bash
+cd nu-app-firewall/NuAppFirewall
+```
+
+Dê permissão e execute o arquivo:
+
+```bash
+chmod +x build_and_run.sh
+./build_and_run.sh
+```
+    
 ## Como Rodar os Testes
 
 Para rodar os testes do projeto, siga as instruções abaixo:
@@ -63,6 +81,7 @@ Para rodar os testes do projeto, siga as instruções abaixo:
 ### Usando o Xcode
 
 1. Abra o projeto no Xcode:
+
     ```bash
     open NuAppFirewall.xcodeproj
     ```
