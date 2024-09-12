@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		57484BC92C927EF100A6689D /* ExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57484BC82C927EF100A6689D /* ExtensionManager.swift */; };
 		57484BD62C9287C900A6689D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57484BD52C9287C900A6689D /* AppDelegate.swift */; };
-		57AFE7352C92767D00DE8FEE /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57AFE7342C92767D00DE8FEE /* SampleData.json */; };
-		57AFE7372C9277C200DE8FEE /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57AFE7362C9277C200DE8FEE /* SampleData.plist */; };
+		57875CE32C938947000B09F1 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE22C938947000B09F1 /* Rule.swift */; };
+		57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE42C938966000B09F1 /* ExtensionManager.swift */; };
+		57875CE72C93898A000B09F1 /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE62C93898A000B09F1 /* SampleData.json */; };
+		57875CE92C9389BA000B09F1 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE82C9389BA000B09F1 /* info.plist */; };
+		57875CEC2C9389DE000B09F1 /* DataConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CEB2C9389DE000B09F1 /* DataConverterTests.swift */; };
+		57875CEE2C9389EB000B09F1 /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CED2C9389EB000B09F1 /* RuleTests.swift */; };
+		57875CF02C938AC9000B09F1 /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CEF2C938AC9000B09F1 /* SampleData.plist */; };
 		57AFE7412C9278B000DE8FEE /* RulesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7402C9278B000DE8FEE /* RulesManager.swift */; };
-		57AFE7432C9278DF00DE8FEE /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7422C9278DF00DE8FEE /* Rule.swift */; };
 		57AFE7452C92791500DE8FEE /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7442C92791500DE8FEE /* DataConverter.swift */; };
 		57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */; };
-		57AFE74B2C927A5500DE8FEE /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE74A2C927A5500DE8FEE /* RuleTests.swift */; };
-		57AFE74E2C927A8600DE8FEE /* DataConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE74D2C927A8600DE8FEE /* DataConverterTests.swift */; };
-		57BFB8522C928C1300D01DB1 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57BFB8512C928C1300D01DB1 /* info.plist */; };
 		57E812F12C93395000FF61DE /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5709B35E2C928F0500931F26 /* NetworkExtension.framework */; };
 		57E812F42C93395000FF61DE /* FilterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E812F32C93395000FF61DE /* FilterDataProvider.swift */; };
 		57E812F62C93395000FF61DE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E812F52C93395000FF61DE /* main.swift */; };
@@ -105,20 +105,20 @@
 /* Begin PBXFileReference section */
 		5709B35E2C928F0500931F26 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		57484BC72C927E4300A6689D /* NuAppFirewallDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewallDebug.entitlements; sourceTree = "<group>"; };
-		57484BC82C927EF100A6689D /* ExtensionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionManager.swift; sourceTree = "<group>"; };
-		57484BCC2C927F6200A6689D /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = app.entitlements; path = Src/app.entitlements; sourceTree = "<group>"; };
 		57484BD52C9287C900A6689D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		57875CE22C938947000B09F1 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rule.swift; path = Model/Rule.swift; sourceTree = "<group>"; };
+		57875CE42C938966000B09F1 /* ExtensionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionManager.swift; path = Controller/ExtensionManager.swift; sourceTree = "<group>"; };
+		57875CE62C93898A000B09F1 /* SampleData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SampleData.json; path = Resources/SampleData.json; sourceTree = "<group>"; };
+		57875CE82C9389BA000B09F1 /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = info.plist; path = Resources/info.plist; sourceTree = "<group>"; };
+		57875CEA2C9389CC000B09F1 /* app.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = app.entitlements; path = Resources/app.entitlements; sourceTree = "<group>"; };
+		57875CEB2C9389DE000B09F1 /* DataConverterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataConverterTests.swift; path = Utils/DataConverterTests.swift; sourceTree = "<group>"; };
+		57875CED2C9389EB000B09F1 /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RuleTests.swift; path = Model/RuleTests.swift; sourceTree = "<group>"; };
+		57875CEF2C938AC9000B09F1 /* SampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = SampleData.plist; path = Resources/SampleData.plist; sourceTree = "<group>"; };
 		57AFE7042C92751F00DE8FEE /* NuAppFirewall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NuAppFirewall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AFE7162C92752100DE8FEE /* NuAppFirewallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NuAppFirewallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		57AFE7342C92767D00DE8FEE /* SampleData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleData.json; sourceTree = "<group>"; };
-		57AFE7362C9277C200DE8FEE /* SampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = SampleData.plist; path = "../../../Downloads/nu-app-firewall/NuAppFirewall/NuAppFirewall/Resources/SampleData.plist"; sourceTree = "<group>"; };
 		57AFE7402C9278B000DE8FEE /* RulesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesManager.swift; sourceTree = "<group>"; };
-		57AFE7422C9278DF00DE8FEE /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		57AFE7442C92791500DE8FEE /* DataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverter.swift; sourceTree = "<group>"; };
 		57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesManagerTests.swift; sourceTree = "<group>"; };
-		57AFE74A2C927A5500DE8FEE /* RuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
-		57AFE74D2C927A8600DE8FEE /* DataConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverterTests.swift; sourceTree = "<group>"; };
-		57BFB8512C928C1300D01DB1 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = info.plist; path = Src/info.plist; sourceTree = "<group>"; };
 		57E812F02C93395000FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension */ = {isa = PBXFileReference; explicitFileType = "wrapper.system-extension"; includeInIndex = 0; path = com.nufuturo.nuappfirewall.extension.systemextension; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E812F32C93395000FF61DE /* FilterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDataProvider.swift; sourceTree = "<group>"; };
 		57E812F52C93395000FF61DE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -207,10 +207,10 @@
 		57AFE7332C92764900DE8FEE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				57484BCC2C927F6200A6689D /* app.entitlements */,
-				57BFB8512C928C1300D01DB1 /* info.plist */,
-				57AFE7362C9277C200DE8FEE /* SampleData.plist */,
-				57AFE7342C92767D00DE8FEE /* SampleData.json */,
+				57875CEF2C938AC9000B09F1 /* SampleData.plist */,
+				57875CEA2C9389CC000B09F1 /* app.entitlements */,
+				57875CE82C9389BA000B09F1 /* info.plist */,
+				57875CE62C93898A000B09F1 /* SampleData.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -229,7 +229,7 @@
 		57AFE73A2C92782700DE8FEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				57484BC82C927EF100A6689D /* ExtensionManager.swift */,
+				57875CE42C938966000B09F1 /* ExtensionManager.swift */,
 				57484BD52C9287C900A6689D /* AppDelegate.swift */,
 			);
 			name = Controller;
@@ -246,7 +246,7 @@
 		57AFE73C2C92783D00DE8FEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				57AFE7422C9278DF00DE8FEE /* Rule.swift */,
+				57875CE22C938947000B09F1 /* Rule.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -270,7 +270,7 @@
 		57AFE7492C927A3D00DE8FEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				57AFE74A2C927A5500DE8FEE /* RuleTests.swift */,
+				57875CED2C9389EB000B09F1 /* RuleTests.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -278,7 +278,7 @@
 		57AFE74C2C927A6B00DE8FEE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				57AFE74D2C927A8600DE8FEE /* DataConverterTests.swift */,
+				57875CEB2C9389DE000B09F1 /* DataConverterTests.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -403,9 +403,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57BFB8522C928C1300D01DB1 /* info.plist in Resources */,
-				57AFE7372C9277C200DE8FEE /* SampleData.plist in Resources */,
-				57AFE7352C92767D00DE8FEE /* SampleData.json in Resources */,
+				57875CF02C938AC9000B09F1 /* SampleData.plist in Resources */,
+				57875CE92C9389BA000B09F1 /* info.plist in Resources */,
+				57875CE72C93898A000B09F1 /* SampleData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,10 +432,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				57484BD62C9287C900A6689D /* AppDelegate.swift in Sources */,
-				57AFE7432C9278DF00DE8FEE /* Rule.swift in Sources */,
+				57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */,
+				57875CE32C938947000B09F1 /* Rule.swift in Sources */,
 				57AFE7452C92791500DE8FEE /* DataConverter.swift in Sources */,
 				57AFE7412C9278B000DE8FEE /* RulesManager.swift in Sources */,
-				57484BC92C927EF100A6689D /* ExtensionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,8 +443,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57AFE74E2C927A8600DE8FEE /* DataConverterTests.swift in Sources */,
-				57AFE74B2C927A5500DE8FEE /* RuleTests.swift in Sources */,
+				57875CEC2C9389DE000B09F1 /* DataConverterTests.swift in Sources */,
+				57875CEE2C9389EB000B09F1 /* RuleTests.swift in Sources */,
 				57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
