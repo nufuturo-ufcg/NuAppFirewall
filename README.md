@@ -45,7 +45,7 @@ Clone o repositório:
 
 ```
 git clone https://github.com/seu-usuario/nu-app-firewall.git
-cd nu-app-firewall/NuAppFirewall
+cd nu-app-firewall
 ```
 
 Abra o projeto no Xcode:
