@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		57484BD62C9287C900A6689D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57484BD52C9287C900A6689D /* AppDelegate.swift */; };
+		570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CD4562C98BCA1001257CC /* AppDelegate.swift */; };
 		57875CE32C938947000B09F1 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE22C938947000B09F1 /* Rule.swift */; };
 		57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE42C938966000B09F1 /* ExtensionManager.swift */; };
 		57875CE72C93898A000B09F1 /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE62C93898A000B09F1 /* SampleData.json */; };
@@ -104,8 +104,8 @@
 
 /* Begin PBXFileReference section */
 		5709B35E2C928F0500931F26 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		570CD4562C98BCA1001257CC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Controller/AppDelegate.swift; sourceTree = "<group>"; };
 		57484BC72C927E4300A6689D /* NuAppFirewallDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewallDebug.entitlements; sourceTree = "<group>"; };
-		57484BD52C9287C900A6689D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57875CE22C938947000B09F1 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rule.swift; path = Model/Rule.swift; sourceTree = "<group>"; };
 		57875CE42C938966000B09F1 /* ExtensionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionManager.swift; path = Controller/ExtensionManager.swift; sourceTree = "<group>"; };
 		57875CE62C93898A000B09F1 /* SampleData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SampleData.json; path = Resources/SampleData.json; sourceTree = "<group>"; };
@@ -218,6 +218,7 @@
 		57AFE7392C92780F00DE8FEE /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				570CD4562C98BCA1001257CC /* AppDelegate.swift */,
 				57AFE73D2C92784A00DE8FEE /* Utils */,
 				57AFE73C2C92783D00DE8FEE /* Model */,
 				57AFE73B2C92783400DE8FEE /* Logic */,
@@ -230,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				57875CE42C938966000B09F1 /* ExtensionManager.swift */,
-				57484BD52C9287C900A6689D /* AppDelegate.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -431,10 +431,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57484BD62C9287C900A6689D /* AppDelegate.swift in Sources */,
 				57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */,
 				57875CE32C938947000B09F1 /* Rule.swift in Sources */,
 				57AFE7452C92791500DE8FEE /* DataConverter.swift in Sources */,
+				570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */,
 				57AFE7412C9278B000DE8FEE /* RulesManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,14 +7,11 @@
 
 import Foundation
 import NetworkExtension
-import OSLog
 
 class FilterDataProvider : NEFilterDataProvider {
     
-    let logger = Logger(subsystem: "com.nufuturo.nuappfirewall", category: "extension");
-    
     override func startFilter(completionHandler: @escaping ((any Error)?) -> Void) {
-        print("starting filter")
+        filterlogger.log("starting filter")
         
 //        let protocol = NENetworkRule
         let networkRule = NENetworkRule(remoteNetwork: nil, remotePrefix: 0, localNetwork: nil, localPrefix: 0, protocol: .any, direction: NETrafficDirection.any)
@@ -35,9 +32,16 @@ class FilterDataProvider : NEFilterDataProvider {
     }
     
     override func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
-        print("logando nova conexão")
+        filterlogger.log("logando nova conexão")
         
-        logger.info("logando evento: \(flow)");
-        return NEFilterNewFlowVerdict.allow();
+        filterlogger.log("logando evento: \(flow)");
+        
+        if let socketFlow = flow as? NEFilterSocketFlow,
+            let remoteEndpoint = socketFlow.remoteEndpoint as? NWHostEndpoint {
+            let host = remoteEndpoint.hostname
+            filterlogger.log("host do evento: \(host)")
+        }
+            
+            return NEFilterNewFlowVerdict.allow();
     }
 }
