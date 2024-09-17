@@ -1,10 +1,3 @@
-//
-//  FilterControlProvider.swift
-//  extension
-//
-//  Created by Winicius Allan on 22/08/24.
-//
-
 import Foundation
 import NetworkExtension
 
