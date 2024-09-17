@@ -1,7 +1,7 @@
-/*  
+/*
     File: Rule.swift
     Project: App Firewall (nufuturo.nuappfirewall)
-    Description: This class defines a `Rule` object with properties 
+    Description: This class defines a `Rule` object with properties
         to represent a set of criteria or conditions.
 
     Created by com.nufuturo.nuappfirewall
