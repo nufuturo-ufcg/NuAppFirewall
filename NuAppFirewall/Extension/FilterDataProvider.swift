@@ -8,12 +8,11 @@
 import Foundation
 import NetworkExtension
 
-class FilterDataProvider : NEFilterDataProvider {
+public class FilterDataProvider : NEFilterDataProvider {
     
-    override func startFilter(completionHandler: @escaping ((any Error)?) -> Void) {
+    public override func startFilter(completionHandler: @escaping ((any Error)?) -> Void) {
         filterlogger.log("starting filter")
         
-//        let protocol = NENetworkRule
         let networkRule = NENetworkRule(remoteNetwork: nil, remotePrefix: 0, localNetwork: nil, localPrefix: 0, protocol: .any, direction: NETrafficDirection.any)
     
         let filterRule = NEFilterRule(networkRule: networkRule, action: .filterData)
@@ -21,25 +20,33 @@ class FilterDataProvider : NEFilterDataProvider {
         
         apply(filterSettings) { error in
             if let error = error {
-                print("error when applying filter settings", error.localizedDescription)
+                filterlogger.log("error when applying filter settings")
                 return
             }
             
-            print("filter settings applied")
+            filterlogger.log("filter settings applied")
         }
         
         completionHandler(nil)
     }
     
-    override func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
-        filterlogger.log("logando nova conexão")
+    public override func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
+        filterlogger.log("new network flow")
         
-        filterlogger.log("logando evento: \(flow)");
+        filterlogger.log("new flow: \(flow)");
         
         if let socketFlow = flow as? NEFilterSocketFlow,
-            let remoteEndpoint = socketFlow.remoteEndpoint as? NWHostEndpoint {
+           let remoteEndpoint = socketFlow.remoteEndpoint as? NWHostEndpoint {
             let host = remoteEndpoint.hostname
-            filterlogger.log("host do evento: \(host)")
+            filterlogger.log("hostname: \(host)")
+            
+            if let url = flow.url?.absoluteString {
+                filterlogger.log("url: \(url)")
+                if url.contains("youtube.com") {
+                    filterlogger.log("accessed youtube, blocking flow")
+                    return .drop()
+                }
+            }
         }
             
             return NEFilterNewFlowVerdict.allow();
