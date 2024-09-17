@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  app
-//
-//  Created by Winicius Allan on 23/08/24.
-//
-
 import SwiftUI
 import NetworkExtension
 
@@ -25,9 +18,7 @@ class Main {
         }
         
         print("sysext is active and this is main thread")
-//        await startSysExtension(args: args)
-        
-//        RunLoop.current.run()
+
         sleep(2000)
     }
     

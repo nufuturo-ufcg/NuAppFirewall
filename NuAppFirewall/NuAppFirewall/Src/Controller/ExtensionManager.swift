@@ -1,10 +1,3 @@
-//
-//  Extension.swift
-//  app
-//
-//  Created by Winicius Allan on 23/08/24.
-//
-
 import Foundation
 import SystemExtensions
 import NetworkExtension
@@ -68,32 +61,7 @@ class ExtensionManager : NSObject, OSSystemExtensionRequestDelegate {
             }
         }
     }
-    
-//    func startNetworkExtension() {
-//        print("starting network extension")
-//        let config = NEFilterProviderConfiguration()
-//
-//        print("loading preferences")
-//        NEFilterManager.shared().loadFromPreferences { error in
-//            if let error = error {
-//                print("error when loading preferences", error)
-//            }
-//        }
-//
-//        config.filterPackets = true
-//        config.filterSockets = true
-//        NEFilterManager.shared().providerConfiguration = config
-//
-//        NEFilterManager.shared().isEnabled = true
-//
-//        print("saving to preferences")
-//        NEFilterManager.shared().saveToPreferences {
-//            error in
-//            if let error = error {
-//                print("error when saving to preferences", error)
-//            }
-//        }
-//    }
+
     
     func activateSysExtension() async -> Bool {
         print("calling activation request")
@@ -111,16 +79,6 @@ class ExtensionManager : NSObject, OSSystemExtensionRequestDelegate {
     
     private var systemExtensionActivationCallback: ((Bool) -> Void)?
     
-    //    func activateSysEx() async -> Bool {
-//        print("calling activation request")
-//
-//        return await withCheckedContinuation { continuation in
-//
-//        }
-//        let activationRequest = OSSystemExtensionRequest.activationRequest(forExtensionWithIdentifier: identifier, queue: .main)
-//        activationRequest.delegate = self
-//        OSSystemExtensionManager.shared.submitRequest(activationRequest)
-//    }
     
     func deactivateSysEx() {
         print("calling activation request")
