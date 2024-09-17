@@ -7,247 +7,378 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		57011F892C7F92CC0088A25B /* NuAppFirewall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57011F802C7F92CC0088A25B /* NuAppFirewall.framework */; };
-		57011FAE2C7F9A680088A25B /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FAD2C7F9A680088A25B /* Controller.swift */; };
-		57011FBC2C7FA55F0088A25B /* DataConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */; };
-		57011FBE2C7FA64F0088A25B /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FBD2C7FA64F0088A25B /* DataConverter.swift */; };
-		57011FDE2C7FE84C0088A25B /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57011FD22C7FE18B0088A25B /* SampleData.json */; };
-		57011FDF2C7FE84D0088A25B /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57011FD22C7FE18B0088A25B /* SampleData.json */; };
-		57011FE02C7FE8510088A25B /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57011FCF2C7FE1840088A25B /* SampleData.plist */; };
-		57011FE12C7FE8510088A25B /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57011FCF2C7FE1840088A25B /* SampleData.plist */; };
-		574C1FC02C7FEA6300664186 /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57011FBD2C7FA64F0088A25B /* DataConverter.swift */; };
-		577571E32C88CB4B005AA2AB /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571E12C88CB4B005AA2AB /* Rule.swift */; };
-		577571E42C88CB4B005AA2AB /* RulesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571E22C88CB4B005AA2AB /* RulesManager.swift */; };
-		577571E62C88CC20005AA2AB /* RulesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571E52C88CC20005AA2AB /* RulesManagerTests.swift */; };
-		577571EB2C8B457C005AA2AB /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577571EA2C8B457C005AA2AB /* RuleTests.swift */; };
+		570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CD4562C98BCA1001257CC /* AppDelegate.swift */; };
+		57875CE32C938947000B09F1 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE22C938947000B09F1 /* Rule.swift */; };
+		57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE42C938966000B09F1 /* ExtensionManager.swift */; };
+		57875CE72C93898A000B09F1 /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE62C93898A000B09F1 /* SampleData.json */; };
+		57875CE92C9389BA000B09F1 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE82C9389BA000B09F1 /* info.plist */; };
+		57875CEC2C9389DE000B09F1 /* DataConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CEB2C9389DE000B09F1 /* DataConverterTests.swift */; };
+		57875CEE2C9389EB000B09F1 /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CED2C9389EB000B09F1 /* RuleTests.swift */; };
+		57875CF02C938AC9000B09F1 /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CEF2C938AC9000B09F1 /* SampleData.plist */; };
+		57AFE7412C9278B000DE8FEE /* RulesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7402C9278B000DE8FEE /* RulesManager.swift */; };
+		57AFE7452C92791500DE8FEE /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7442C92791500DE8FEE /* DataConverter.swift */; };
+		57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */; };
+		57E812F12C93395000FF61DE /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5709B35E2C928F0500931F26 /* NetworkExtension.framework */; };
+		57E812F42C93395000FF61DE /* FilterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E812F32C93395000FF61DE /* FilterDataProvider.swift */; };
+		57E812F62C93395000FF61DE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E812F52C93395000FF61DE /* main.swift */; };
+		57E812FB2C93395100FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 57E812F02C93395000FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		57E813042C933B2600FF61DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57E813032C933B2600FF61DE /* Info.plist */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		571846232C9361A100EBAEE1 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+		571846242C9361CD00EBAEE1 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+		571846252C9361CF00EBAEE1 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
-		57011F8A2C7F92CC0088A25B /* PBXContainerItemProxy */ = {
+		57AFE7172C92752100DE8FEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 57011F772C7F92CC0088A25B /* Project object */;
+			containerPortal = 57AFE6FC2C92751F00DE8FEE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 57011F7F2C7F92CC0088A25B;
-			remoteInfo = "nu-app-firewall";
+			remoteGlobalIDString = 57AFE7032C92751F00DE8FEE;
+			remoteInfo = NuAppFirewall;
+		};
+		57E812F92C93395100FF61DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57AFE6FC2C92751F00DE8FEE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57E812EF2C93395000FF61DE;
+			remoteInfo = Extension;
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5709B3522C928DAF00931F26 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5709B36D2C928F0500931F26 /* Embed System Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(SYSTEM_EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+				57E812FB2C93395100FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension in Embed System Extensions */,
+			);
+			name = "Embed System Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		57011F802C7F92CC0088A25B /* NuAppFirewall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NuAppFirewall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		57011F882C7F92CC0088A25B /* NuAppFirewallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NuAppFirewallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		57011FAD2C7F9A680088A25B /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverterTests.swift; sourceTree = "<group>"; };
-		57011FBD2C7FA64F0088A25B /* DataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverter.swift; sourceTree = "<group>"; };
-		57011FCF2C7FE1840088A25B /* SampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = SampleData.plist; sourceTree = "<group>"; };
-		57011FD22C7FE18B0088A25B /* SampleData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleData.json; sourceTree = "<group>"; };
-		577571E12C88CB4B005AA2AB /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
-		577571E22C88CB4B005AA2AB /* RulesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesManager.swift; sourceTree = "<group>"; };
-		577571E52C88CC20005AA2AB /* RulesManagerTests.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = RulesManagerTests.swift; sourceTree = "<group>"; };
-		577571EA2C8B457C005AA2AB /* RuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
+		5709B35E2C928F0500931F26 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		570CD4562C98BCA1001257CC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Controller/AppDelegate.swift; sourceTree = "<group>"; };
+		57484BC72C927E4300A6689D /* NuAppFirewallDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewallDebug.entitlements; sourceTree = "<group>"; };
+		57875CE22C938947000B09F1 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rule.swift; path = Model/Rule.swift; sourceTree = "<group>"; };
+		57875CE42C938966000B09F1 /* ExtensionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionManager.swift; path = Controller/ExtensionManager.swift; sourceTree = "<group>"; };
+		57875CE62C93898A000B09F1 /* SampleData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SampleData.json; path = Resources/SampleData.json; sourceTree = "<group>"; };
+		57875CE82C9389BA000B09F1 /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = info.plist; path = Resources/info.plist; sourceTree = "<group>"; };
+		57875CEA2C9389CC000B09F1 /* app.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = app.entitlements; path = Resources/app.entitlements; sourceTree = "<group>"; };
+		57875CEB2C9389DE000B09F1 /* DataConverterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataConverterTests.swift; path = Utils/DataConverterTests.swift; sourceTree = "<group>"; };
+		57875CED2C9389EB000B09F1 /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RuleTests.swift; path = Model/RuleTests.swift; sourceTree = "<group>"; };
+		57875CEF2C938AC9000B09F1 /* SampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = SampleData.plist; path = Resources/SampleData.plist; sourceTree = "<group>"; };
+		57AFE7042C92751F00DE8FEE /* NuAppFirewall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NuAppFirewall.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		57AFE7162C92752100DE8FEE /* NuAppFirewallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NuAppFirewallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		57AFE7402C9278B000DE8FEE /* RulesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesManager.swift; sourceTree = "<group>"; };
+		57AFE7442C92791500DE8FEE /* DataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverter.swift; sourceTree = "<group>"; };
+		57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesManagerTests.swift; sourceTree = "<group>"; };
+		57E812F02C93395000FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension */ = {isa = PBXFileReference; explicitFileType = "wrapper.system-extension"; includeInIndex = 0; path = com.nufuturo.nuappfirewall.extension.systemextension; sourceTree = BUILT_PRODUCTS_DIR; };
+		57E812F32C93395000FF61DE /* FilterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDataProvider.swift; sourceTree = "<group>"; };
+		57E812F52C93395000FF61DE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		57E812FF2C93396100FF61DE /* ExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExtensionDebug.entitlements; sourceTree = "<group>"; };
+		57E813002C933A1B00FF61DE /* extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = extension.entitlements; sourceTree = "<group>"; };
+		57E813032C933B2600FF61DE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57F068AE2C93430500EF16F7 /* build_and_run.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_and_run.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		57011F7D2C7F92CC0088A25B /* Frameworks */ = {
+		57AFE7012C92751F00DE8FEE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		57011F852C7F92CC0088A25B /* Frameworks */ = {
+		57AFE7132C92752100DE8FEE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57011F892C7F92CC0088A25B /* NuAppFirewall.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57E812ED2C93395000FF61DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57E812F12C93395000FF61DE /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		57011F762C7F92CC0088A25B = {
+		5709B35D2C928F0500931F26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				57011F822C7F92CC0088A25B /* NuAppFirewall */,
-				57011F8C2C7F92CC0088A25B /* NuAppFirewallTests */,
-				57011F812C7F92CC0088A25B /* Products */,
+				5709B35E2C928F0500931F26 /* NetworkExtension.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		57AFE6FB2C92751F00DE8FEE = {
+			isa = PBXGroup;
+			children = (
+				57F068AE2C93430500EF16F7 /* build_and_run.sh */,
+				57AFE7062C92751F00DE8FEE /* NuAppFirewall */,
+				57AFE7192C92752100DE8FEE /* NuAppFirewallTests */,
+				57E812F22C93395000FF61DE /* Extension */,
+				5709B35D2C928F0500931F26 /* Frameworks */,
+				57AFE7052C92751F00DE8FEE /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		57011F812C7F92CC0088A25B /* Products */ = {
+		57AFE7052C92751F00DE8FEE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				57011F802C7F92CC0088A25B /* NuAppFirewall.framework */,
-				57011F882C7F92CC0088A25B /* NuAppFirewallTests.xctest */,
+				57AFE7042C92751F00DE8FEE /* NuAppFirewall.app */,
+				57AFE7162C92752100DE8FEE /* NuAppFirewallTests.xctest */,
+				57E812F02C93395000FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		57011F822C7F92CC0088A25B /* NuAppFirewall */ = {
+		57AFE7062C92751F00DE8FEE /* NuAppFirewall */ = {
 			isa = PBXGroup;
 			children = (
-				57011FA42C7F95990088A25B /* Resources */,
-				57011F9C2C7F93670088A25B /* Src */,
+				57484BC72C927E4300A6689D /* NuAppFirewallDebug.entitlements */,
+				57AFE7392C92780F00DE8FEE /* Src */,
+				57AFE7332C92764900DE8FEE /* Resources */,
 			);
 			path = NuAppFirewall;
 			sourceTree = "<group>";
 		};
-		57011F8C2C7F92CC0088A25B /* NuAppFirewallTests */ = {
+		57AFE7192C92752100DE8FEE /* NuAppFirewallTests */ = {
 			isa = PBXGroup;
 			children = (
-				577571E92C8B4537005AA2AB /* Logic */,
-				577571E82C8B452E005AA2AB /* Utils */,
-				577571E72C8B4522005AA2AB /* Model */,
+				57AFE74C2C927A6B00DE8FEE /* Utils */,
+				57AFE7492C927A3D00DE8FEE /* Model */,
+				57AFE7462C92793D00DE8FEE /* Logic */,
 			);
 			path = NuAppFirewallTests;
 			sourceTree = "<group>";
 		};
-		57011F9C2C7F93670088A25B /* Src */ = {
+		57AFE7332C92764900DE8FEE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				57011FAF2C7F9A6F0088A25B /* Model */,
-				57011FAC2C7F9A560088A25B /* Controller */,
-				57011FA92C7F9A2F0088A25B /* Logic */,
-				57011F9F2C7F94170088A25B /* Utils */,
+				57875CEF2C938AC9000B09F1 /* SampleData.plist */,
+				57875CEA2C9389CC000B09F1 /* app.entitlements */,
+				57875CE82C9389BA000B09F1 /* info.plist */,
+				57875CE62C93898A000B09F1 /* SampleData.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		57AFE7392C92780F00DE8FEE /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				570CD4562C98BCA1001257CC /* AppDelegate.swift */,
+				57AFE73D2C92784A00DE8FEE /* Utils */,
+				57AFE73C2C92783D00DE8FEE /* Model */,
+				57AFE73B2C92783400DE8FEE /* Logic */,
+				57AFE73A2C92782700DE8FEE /* Controller */,
 			);
 			path = Src;
 			sourceTree = "<group>";
 		};
-		57011F9F2C7F94170088A25B /* Utils */ = {
+		57AFE73A2C92782700DE8FEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				57011FBD2C7FA64F0088A25B /* DataConverter.swift */,
+				57875CE42C938966000B09F1 /* ExtensionManager.swift */,
 			);
-			path = Utils;
+			name = Controller;
 			sourceTree = "<group>";
 		};
-		57011FA42C7F95990088A25B /* Resources */ = {
+		57AFE73B2C92783400DE8FEE /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				57011FD22C7FE18B0088A25B /* SampleData.json */,
-				57011FCF2C7FE1840088A25B /* SampleData.plist */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-			usesTabs = 0;
-		};
-		57011FA92C7F9A2F0088A25B /* Logic */ = {
-			isa = PBXGroup;
-			children = (
-				577571E22C88CB4B005AA2AB /* RulesManager.swift */,
+				57AFE7402C9278B000DE8FEE /* RulesManager.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
 		};
-		57011FAC2C7F9A560088A25B /* Controller */ = {
+		57AFE73C2C92783D00DE8FEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				57011FAD2C7F9A680088A25B /* Controller.swift */,
+				57875CE22C938947000B09F1 /* Rule.swift */,
 			);
-			path = Controller;
+			name = Model;
 			sourceTree = "<group>";
 		};
-		57011FAF2C7F9A6F0088A25B /* Model */ = {
+		57AFE73D2C92784A00DE8FEE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				577571E12C88CB4B005AA2AB /* Rule.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		577571E72C8B4522005AA2AB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				577571EA2C8B457C005AA2AB /* RuleTests.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		577571E82C8B452E005AA2AB /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				57011FBB2C7FA55F0088A25B /* DataConverterTests.swift */,
+				57AFE7442C92791500DE8FEE /* DataConverter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		577571E92C8B4537005AA2AB /* Logic */ = {
+		57AFE7462C92793D00DE8FEE /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				577571E52C88CC20005AA2AB /* RulesManagerTests.swift */,
+				57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */,
 			);
 			path = Logic;
+			sourceTree = "<group>";
+		};
+		57AFE7492C927A3D00DE8FEE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				57875CED2C9389EB000B09F1 /* RuleTests.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		57AFE74C2C927A6B00DE8FEE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				57875CEB2C9389DE000B09F1 /* DataConverterTests.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		57E812F22C93395000FF61DE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				57E813032C933B2600FF61DE /* Info.plist */,
+				57E812FF2C93396100FF61DE /* ExtensionDebug.entitlements */,
+				57E812F32C93395000FF61DE /* FilterDataProvider.swift */,
+				57E812F52C93395000FF61DE /* main.swift */,
+				57E813002C933A1B00FF61DE /* extension.entitlements */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		57011F7B2C7F92CC0088A25B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		57011F7F2C7F92CC0088A25B /* NuAppFirewall */ = {
+		57AFE7032C92751F00DE8FEE /* NuAppFirewall */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 57011F922C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewall" */;
+			buildConfigurationList = 57AFE72A2C92752100DE8FEE /* Build configuration list for PBXNativeTarget "NuAppFirewall" */;
 			buildPhases = (
-				57011F7B2C7F92CC0088A25B /* Headers */,
-				57011F7C2C7F92CC0088A25B /* Sources */,
-				57011F7D2C7F92CC0088A25B /* Frameworks */,
-				57011F7E2C7F92CC0088A25B /* Resources */,
+				57AFE7002C92751F00DE8FEE /* Sources */,
+				57AFE7012C92751F00DE8FEE /* Frameworks */,
+				57AFE7022C92751F00DE8FEE /* Resources */,
+				5709B3522C928DAF00931F26 /* Embed Frameworks */,
+				5709B36D2C928F0500931F26 /* Embed System Extensions */,
 			);
 			buildRules = (
+				571846252C9361CF00EBAEE1 /* PBXBuildRule */,
+				571846242C9361CD00EBAEE1 /* PBXBuildRule */,
+				571846232C9361A100EBAEE1 /* PBXBuildRule */,
 			);
 			dependencies = (
+				57E812FA2C93395100FF61DE /* PBXTargetDependency */,
 			);
 			name = NuAppFirewall;
-			productName = "nu-app-firewall";
-			productReference = 57011F802C7F92CC0088A25B /* NuAppFirewall.framework */;
-			productType = "com.apple.product-type.framework";
+			productName = NuAppFirewall;
+			productReference = 57AFE7042C92751F00DE8FEE /* NuAppFirewall.app */;
+			productType = "com.apple.product-type.application";
 		};
-		57011F872C7F92CC0088A25B /* NuAppFirewallTests */ = {
+		57AFE7152C92752100DE8FEE /* NuAppFirewallTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 57011F952C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewallTests" */;
+			buildConfigurationList = 57AFE72D2C92752100DE8FEE /* Build configuration list for PBXNativeTarget "NuAppFirewallTests" */;
 			buildPhases = (
-				57011F842C7F92CC0088A25B /* Sources */,
-				57011F852C7F92CC0088A25B /* Frameworks */,
-				57011F862C7F92CC0088A25B /* Resources */,
+				57AFE7122C92752100DE8FEE /* Sources */,
+				57AFE7132C92752100DE8FEE /* Frameworks */,
+				57AFE7142C92752100DE8FEE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				57011F8B2C7F92CC0088A25B /* PBXTargetDependency */,
+				57AFE7182C92752100DE8FEE /* PBXTargetDependency */,
 			);
 			name = NuAppFirewallTests;
-			productName = "nu-app-firewallTests";
-			productReference = 57011F882C7F92CC0088A25B /* NuAppFirewallTests.xctest */;
+			productName = NuAppFirewallTests;
+			productReference = 57AFE7162C92752100DE8FEE /* NuAppFirewallTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		57E812EF2C93395000FF61DE /* Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57E812FC2C93395100FF61DE /* Build configuration list for PBXNativeTarget "Extension" */;
+			buildPhases = (
+				57E812EC2C93395000FF61DE /* Sources */,
+				57E812ED2C93395000FF61DE /* Frameworks */,
+				57E812EE2C93395000FF61DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Extension;
+			productName = Extension;
+			productReference = 57E812F02C93395000FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension */;
+			productType = "com.apple.product-type.system-extension";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		57011F772C7F92CC0088A25B /* Project object */ = {
+		57AFE6FC2C92751F00DE8FEE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = YES;
+				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					57011F7F2C7F92CC0088A25B = {
+					57AFE7032C92751F00DE8FEE = {
 						CreatedOnToolsVersion = 15.4;
-						LastSwiftMigration = 1540;
 					};
-					57011F872C7F92CC0088A25B = {
+					57AFE7152C92752100DE8FEE = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 57AFE7032C92751F00DE8FEE;
+					};
+					57E812EF2C93395000FF61DE = {
 						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
-			buildConfigurationList = 57011F7A2C7F92CC0088A25B /* Build configuration list for PBXProject "NuAppFirewall" */;
+			buildConfigurationList = 57AFE6FF2C92751F00DE8FEE /* Build configuration list for PBXProject "NuAppFirewall" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -255,73 +386,95 @@
 				en,
 				Base,
 			);
-			mainGroup = 57011F762C7F92CC0088A25B;
-			productRefGroup = 57011F812C7F92CC0088A25B /* Products */;
+			mainGroup = 57AFE6FB2C92751F00DE8FEE;
+			productRefGroup = 57AFE7052C92751F00DE8FEE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				57011F7F2C7F92CC0088A25B /* NuAppFirewall */,
-				57011F872C7F92CC0088A25B /* NuAppFirewallTests */,
+				57AFE7032C92751F00DE8FEE /* NuAppFirewall */,
+				57AFE7152C92752100DE8FEE /* NuAppFirewallTests */,
+				57E812EF2C93395000FF61DE /* Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		57011F7E2C7F92CC0088A25B /* Resources */ = {
+		57AFE7022C92751F00DE8FEE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57011FE02C7FE8510088A25B /* SampleData.plist in Resources */,
-				57011FDE2C7FE84C0088A25B /* SampleData.json in Resources */,
+				57875CF02C938AC9000B09F1 /* SampleData.plist in Resources */,
+				57875CE92C9389BA000B09F1 /* info.plist in Resources */,
+				57875CE72C93898A000B09F1 /* SampleData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		57011F862C7F92CC0088A25B /* Resources */ = {
+		57AFE7142C92752100DE8FEE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57011FE12C7FE8510088A25B /* SampleData.plist in Resources */,
-				57011FDF2C7FE84D0088A25B /* SampleData.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57E812EE2C93395000FF61DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57E813042C933B2600FF61DE /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		57011F7C2C7F92CC0088A25B /* Sources */ = {
+		57AFE7002C92751F00DE8FEE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				577571E42C88CB4B005AA2AB /* RulesManager.swift in Sources */,
-				577571E32C88CB4B005AA2AB /* Rule.swift in Sources */,
-				57011FBE2C7FA64F0088A25B /* DataConverter.swift in Sources */,
-				57011FAE2C7F9A680088A25B /* Controller.swift in Sources */,
+				57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */,
+				57875CE32C938947000B09F1 /* Rule.swift in Sources */,
+				57AFE7452C92791500DE8FEE /* DataConverter.swift in Sources */,
+				570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */,
+				57AFE7412C9278B000DE8FEE /* RulesManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		57011F842C7F92CC0088A25B /* Sources */ = {
+		57AFE7122C92752100DE8FEE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				574C1FC02C7FEA6300664186 /* DataConverter.swift in Sources */,
-				577571EB2C8B457C005AA2AB /* RuleTests.swift in Sources */,
-				57011FBC2C7FA55F0088A25B /* DataConverterTests.swift in Sources */,
-				577571E62C88CC20005AA2AB /* RulesManagerTests.swift in Sources */,
+				57875CEC2C9389DE000B09F1 /* DataConverterTests.swift in Sources */,
+				57875CEE2C9389EB000B09F1 /* RuleTests.swift in Sources */,
+				57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57E812EC2C93395000FF61DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57E812F62C93395000FF61DE /* main.swift in Sources */,
+				57E812F42C93395000FF61DE /* FilterDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		57011F8B2C7F92CC0088A25B /* PBXTargetDependency */ = {
+		57AFE7182C92752100DE8FEE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 57011F7F2C7F92CC0088A25B /* NuAppFirewall */;
-			targetProxy = 57011F8A2C7F92CC0088A25B /* PBXContainerItemProxy */;
+			target = 57AFE7032C92751F00DE8FEE /* NuAppFirewall */;
+			targetProxy = 57AFE7172C92752100DE8FEE /* PBXContainerItemProxy */;
+		};
+		57E812FA2C93395100FF61DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 57E812EF2C93395000FF61DE /* Extension */;
+			targetProxy = 57E812F92C93395100FF61DE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		57011F902C7F92CC0088A25B /* Debug */ = {
+		57AFE7282C92752100DE8FEE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -355,7 +508,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -374,18 +526,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				m = "";
 			};
 			name = Debug;
 		};
-		57011F912C7F92CC0088A25B /* Release */ = {
+		57AFE7292C92752100DE8FEE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -419,7 +572,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -432,175 +584,235 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				VALIDATE_PRODUCT = YES;
+				m = "";
 			};
 			name = Release;
 		};
-		57011F932C7F92CC0088A25B /* Debug */ = {
+		57AFE72B2C92752100DE8FEE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ENABLE_MODULES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NuAppFirewall/NuAppFirewallDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"NuAppFirewall/Preview Content\"";
 				DEVELOPMENT_TEAM = 27XB45N6Y5;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.nuappfirewall.nu-app-firewall";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = auto;
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				NEW_SETTING = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nufuturo.nuappfirewall.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				m = "";
 			};
 			name = Debug;
 		};
-		57011F942C7F92CC0088A25B /* Release */ = {
+		57AFE72C2C92752100DE8FEE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ENABLE_MODULES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"NuAppFirewall/Preview Content\"";
 				DEVELOPMENT_TEAM = 27XB45N6Y5;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.nuappfirewall.nu-app-firewall";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = auto;
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				NEW_SETTING = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nufuturo.NuAppFirewall;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				m = "";
 			};
 			name = Release;
 		};
-		57011F962C7F92CC0088A25B /* Debug */ = {
+		57AFE72E2C92752100DE8FEE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 27XB45N6Y5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.nuappfirewall.nu-app-firewallTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nufuturo.NuAppFirewallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NuAppFirewall.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NuAppFirewall";
 			};
 			name = Debug;
 		};
-		57011F972C7F92CC0088A25B /* Release */ = {
+		57AFE72F2C92752100DE8FEE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 27XB45N6Y5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nufuturo.nuappfirewall.nu-app-firewallTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nufuturo.NuAppFirewallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NuAppFirewall.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NuAppFirewall";
+			};
+			name = Release;
+		};
+		57E812FD2C93395100FF61DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Extension/ExtensionDebug.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 27XB45N6Y5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Extension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Extension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSystemExtensionUsageDescription = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nufuturo.nuappfirewall.extension;
+				PRODUCT_NAME = "$(inherited)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		57E812FE2C93395100FF61DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 27XB45N6Y5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Extension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Extension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSystemExtensionUsageDescription = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nufuturo.NuAppFirewall.Extension;
+				PRODUCT_NAME = "$(inherited)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		57011F7A2C7F92CC0088A25B /* Build configuration list for PBXProject "NuAppFirewall" */ = {
+		57AFE6FF2C92751F00DE8FEE /* Build configuration list for PBXProject "NuAppFirewall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				57011F902C7F92CC0088A25B /* Debug */,
-				57011F912C7F92CC0088A25B /* Release */,
+				57AFE7282C92752100DE8FEE /* Debug */,
+				57AFE7292C92752100DE8FEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		57011F922C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewall" */ = {
+		57AFE72A2C92752100DE8FEE /* Build configuration list for PBXNativeTarget "NuAppFirewall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				57011F932C7F92CC0088A25B /* Debug */,
-				57011F942C7F92CC0088A25B /* Release */,
+				57AFE72B2C92752100DE8FEE /* Debug */,
+				57AFE72C2C92752100DE8FEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		57011F952C7F92CC0088A25B /* Build configuration list for PBXNativeTarget "NuAppFirewallTests" */ = {
+		57AFE72D2C92752100DE8FEE /* Build configuration list for PBXNativeTarget "NuAppFirewallTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				57011F962C7F92CC0088A25B /* Debug */,
-				57011F972C7F92CC0088A25B /* Release */,
+				57AFE72E2C92752100DE8FEE /* Debug */,
+				57AFE72F2C92752100DE8FEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
+		};
+		57E812FC2C93395100FF61DE /* Build configuration list for PBXNativeTarget "Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57E812FD2C93395100FF61DE /* Debug */,
+				57E812FE2C93395100FF61DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 57011F772C7F92CC0088A25B /* Project object */;
+	rootObject = 57AFE6FC2C92751F00DE8FEE /* Project object */;
 }

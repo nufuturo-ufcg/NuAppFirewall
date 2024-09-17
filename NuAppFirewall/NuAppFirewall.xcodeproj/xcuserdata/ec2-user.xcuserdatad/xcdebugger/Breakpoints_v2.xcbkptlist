@@ -1,23 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "3E176AE0-3A4A-404F-A5FD-54DDFDF35CA8"
+   uuid = "714BE341-44CC-4B8D-BC20-26E2AAD0E495"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A9F8BAA5-48F5-40B0-8CBB-674C2FADBB35"
-            shouldBeEnabled = "No"
+            uuid = "3D1DDB20-5464-471C-BCF1-62AE75371C47"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "nu-app-firewall/src/utils/DataConverter.swift"
+            filePath = "NuAppFirewallTests/NuAppFirewallTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
             endingLineNumber = "23"
-            landmarkName = "readData(from:ofType:)"
+            landmarkName = "testExample()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "264CB58D-EBF5-42B7-9490-6367C090CCC0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NuAppFirewall/Src/Logic/RulesManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "addRule(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "264CB58D-EBF5-42B7-9490-6367C090CCC0 - 3f06563b92577d55"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NuAppFirewall.RulesManager.addRule(Swift.Optional&lt;NuAppFirewall.Rule&gt;) throws -&gt; ()"
+                  moduleName = "NuAppFirewall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ec2-user/Documents/nu-app-firewall/NuAppFirewall/NuAppFirewall/Src/Logic/RulesManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24">
+               </Location>
+               <Location
+                  uuid = "264CB58D-EBF5-42B7-9490-6367C090CCC0 - 3f06563b92577d55"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NuAppFirewall.RulesManager.addRule(Swift.Optional&lt;NuAppFirewall.Rule&gt;) throws -&gt; ()"
+                  moduleName = "NuAppFirewall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ec2-user/Documents/nu-app-firewall/NuAppFirewall/NuAppFirewall/Src/Logic/RulesManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
