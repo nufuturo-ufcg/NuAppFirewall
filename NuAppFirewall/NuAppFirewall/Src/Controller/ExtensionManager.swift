@@ -4,8 +4,6 @@ import NetworkExtension
 
 class ExtensionManager : NSObject, OSSystemExtensionRequestDelegate {
     
-    override init() {}
-    
     var reply: Bool?
     let identifier = "com.nufuturo.nuappfirewall.extension"
     
