@@ -7,14 +7,15 @@ class Main {
     static func main() async {
         print("sending request")
         
+        let manager = ExtensionManager()
         let args = CommandLine.arguments
         let action = args[1]
         
         if (action == "activate") {
-            await ExtensionManager.manager.toggleSystemExtension()
+            await manager.toggleSystemExtension()
         }
         if (action == "deactivate") {
-            ExtensionManager.manager.deactivateSysEx()
+            manager.deactivateSysEx()
         }
         
         print("sysext is active and this is main thread")
