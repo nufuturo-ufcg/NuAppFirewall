@@ -18,6 +18,10 @@
 		57AFE7412C9278B000DE8FEE /* RulesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7402C9278B000DE8FEE /* RulesManager.swift */; };
 		57AFE7452C92791500DE8FEE /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7442C92791500DE8FEE /* DataConverter.swift */; };
 		57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */; };
+		57CB584E2CA32D4E004D4D8D /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584D2CA32D4E004D4D8D /* LogManager.swift */; };
+		57CB58502CA33634004D4D8D /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584F2CA33634004D4D8D /* LogEntry.swift */; };
+		57CB58512CA33DD5004D4D8D /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584D2CA32D4E004D4D8D /* LogManager.swift */; };
+		57CB58522CA359D8004D4D8D /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584F2CA33634004D4D8D /* LogEntry.swift */; };
 		57E812F12C93395000FF61DE /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5709B35E2C928F0500931F26 /* NetworkExtension.framework */; };
 		57E812F42C93395000FF61DE /* FilterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E812F32C93395000FF61DE /* FilterDataProvider.swift */; };
 		57E812F62C93395000FF61DE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E812F52C93395000FF61DE /* main.swift */; };
@@ -119,6 +123,8 @@
 		57AFE7402C9278B000DE8FEE /* RulesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesManager.swift; sourceTree = "<group>"; };
 		57AFE7442C92791500DE8FEE /* DataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverter.swift; sourceTree = "<group>"; };
 		57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesManagerTests.swift; sourceTree = "<group>"; };
+		57CB584D2CA32D4E004D4D8D /* LogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
+		57CB584F2CA33634004D4D8D /* LogEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEntry.swift; sourceTree = "<group>"; };
 		57E812F02C93395000FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension */ = {isa = PBXFileReference; explicitFileType = "wrapper.system-extension"; includeInIndex = 0; path = com.nufuturo.nuappfirewall.extension.systemextension; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E812F32C93395000FF61DE /* FilterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDataProvider.swift; sourceTree = "<group>"; };
 		57E812F52C93395000FF61DE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -218,6 +224,7 @@
 		57AFE7392C92780F00DE8FEE /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				57CB584C2CA32B38004D4D8D /* Logging */,
 				570CD4562C98BCA1001257CC /* AppDelegate.swift */,
 				57AFE73D2C92784A00DE8FEE /* Utils */,
 				57AFE73C2C92783D00DE8FEE /* Model */,
@@ -281,6 +288,15 @@
 				57875CEB2C9389DE000B09F1 /* DataConverterTests.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		57CB584C2CA32B38004D4D8D /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				57CB584D2CA32D4E004D4D8D /* LogManager.swift */,
+				57CB584F2CA33634004D4D8D /* LogEntry.swift */,
+			);
+			path = Logging;
 			sourceTree = "<group>";
 		};
 		57E812F22C93395000FF61DE /* Extension */ = {
@@ -432,6 +448,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */,
+				57CB584E2CA32D4E004D4D8D /* LogManager.swift in Sources */,
+				57CB58502CA33634004D4D8D /* LogEntry.swift in Sources */,
 				57875CE32C938947000B09F1 /* Rule.swift in Sources */,
 				57AFE7452C92791500DE8FEE /* DataConverter.swift in Sources */,
 				570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */,
@@ -453,6 +471,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57CB58512CA33DD5004D4D8D /* LogManager.swift in Sources */,
+				57CB58522CA359D8004D4D8D /* LogEntry.swift in Sources */,
 				57E812F62C93395000FF61DE /* main.swift in Sources */,
 				57E812F42C93395000FF61DE /* FilterDataProvider.swift in Sources */,
 			);

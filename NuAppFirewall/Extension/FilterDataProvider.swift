@@ -4,7 +4,7 @@ import NetworkExtension
 public class FilterDataProvider : NEFilterDataProvider {
     
     public override func startFilter(completionHandler: @escaping ((any Error)?) -> Void) {
-        filterlogger.log("starting filter")
+        LogManager.shared.log("starting filter")
         
         let networkRule = NENetworkRule(remoteNetwork: nil, remotePrefix: 0, localNetwork: nil, localPrefix: 0, protocol: .any, direction: NETrafficDirection.any)
     
@@ -13,30 +13,36 @@ public class FilterDataProvider : NEFilterDataProvider {
         
         apply(filterSettings) { error in
             if let error = error {
-                filterlogger.log("error when applying filter settings")
+                LogManager.shared.logError(error: error)
                 return
             }
             
-            filterlogger.log("filter settings applied")
+            LogManager.shared.log("filter settings applied")
         }
         
         completionHandler(nil)
     }
     
     public override func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
-        filterlogger.log("new network flow")
+        LogManager.shared.log("new network flow")
         
-        filterlogger.log("new flow: \(flow)");
+        LogManager.shared.log("new flow: \(flow)");
         
+        let flowID = flow.identifier.uuidString
+        let process = "implementar"
+        let endpoint = "implementar"
+        
+        LogManager.shared.logNewFLow(category: "connection", flowID: flowID, process: process, endpoint: endpoint)
+                
         if let socketFlow = flow as? NEFilterSocketFlow,
            let remoteEndpoint = socketFlow.remoteEndpoint as? NWHostEndpoint {
             let host = remoteEndpoint.hostname
-            filterlogger.log("hostname: \(host)")
+            LogManager.shared.log("hostname: \(host)")
             
             if let url = flow.url?.absoluteString {
-                filterlogger.log("url: \(url)")
+                LogManager.shared.log("url: \(url)")
                 if url.contains("youtube.com") {
-                    filterlogger.log("accessed youtube, blocking flow")
+                    LogManager.shared.log("accessed youtube, blocking flow")
                     return .drop()
                 }
             }
