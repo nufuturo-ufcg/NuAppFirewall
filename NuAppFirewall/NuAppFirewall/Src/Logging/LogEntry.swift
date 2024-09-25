@@ -25,5 +25,5 @@ public class LogEntry {
     public func getRepresentation() -> String {
         return "CATEGORY=\(category), FLOW_ID=\(flowID), PROCESS=\(process), ENDPOINT=\(endpoint)"
     }
-    
+
 }

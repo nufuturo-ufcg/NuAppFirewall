@@ -20,7 +20,7 @@ public class LogManager {
         logger.log("\(message)")
     }
     
-    public func log(_ message: String, _ type: OSLogType) {
+    public func log(message: String, type: OSLogType) {
         logger.log(level: type, "\(message)")
     }
     
@@ -28,9 +28,13 @@ public class LogManager {
         logger.error("Error: \(error.localizedDescription)")
     }
     
-    public func logNewFLow(category: String, flowID: String, process: String, endpoint: String) {
-        let logFlow = LogEntry(category: category, flowID: flowID, process: process, endpoint: endpoint);
-        logger.log("\(logFlow.getRepresentation())")
+    public func logNewFlow(category: String, flowID: String, process: String, endpoint: String) {
+        
+        let logEntry = LogEntry(category: category, flowID: flowID, process: process, endpoint: endpoint);
+        
+        print(logEntry.getRepresentation())
+        
+        logger.info("\(logEntry.getRepresentation())")
     }
     
 }

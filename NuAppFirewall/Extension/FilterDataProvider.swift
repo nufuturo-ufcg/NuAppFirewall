@@ -27,17 +27,16 @@ public class FilterDataProvider : NEFilterDataProvider {
         LogManager.shared.log("new network flow")
         
         LogManager.shared.log("new flow: \(flow)");
-        
-        let flowID = flow.identifier.uuidString
-        let process = "implementar"
-        let endpoint = "implementar"
-        
-        LogManager.shared.logNewFLow(category: "connection", flowID: flowID, process: process, endpoint: endpoint)
                 
         if let socketFlow = flow as? NEFilterSocketFlow,
            let remoteEndpoint = socketFlow.remoteEndpoint as? NWHostEndpoint {
             let host = remoteEndpoint.hostname
             LogManager.shared.log("hostname: \(host)")
+            
+            let process = String(describing: socketFlow.sourceProcessAuditToken)
+            let flowID = String(describing: socketFlow.identifier)
+            
+            LogManager.shared.logNewFlow(category: "connection", flowID: flowID, process: process, endpoint: String(describing: remoteEndpoint))
             
             if let url = flow.url?.absoluteString {
                 LogManager.shared.log("url: \(url)")
