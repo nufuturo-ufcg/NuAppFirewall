@@ -12,7 +12,3 @@ sudo cp -r NuAppFirewall.app /Applications
 # Mover para o diretório Applications e executar o app
 cd /Applications
 ./NuAppFirewall.app/Contents/MacOS/NuAppFirewall activate
-
-cd /Users/ec2-user/Library/Developer/Xcode/DerivedData/
-
-rm -rf NuAppFirewall-*

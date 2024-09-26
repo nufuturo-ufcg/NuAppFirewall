@@ -7,23 +7,43 @@
 */
 
 import Foundation
+import Security
 
 public class LogEntry {
     
     let category: String
-    let flowID: String
+    let flowID: UUID
     let process: String
     let endpoint: String
     
-    init(category: String, flowID: String, process: String, endpoint: String) {
+    init(category: String, flowID: UUID, auditToken: audit_token_t?, endpoint: String) {
         self.category = category
         self.flowID = flowID
-        self.process = process
+        self.process = LogEntry.getProcessPath(from: auditToken)
         self.endpoint = endpoint
     }
     
-    public func getRepresentation() -> String {
+    private static func getProcessPath(from auditToken: audit_token_t?) -> String {
+        guard let auditToken = auditToken else {
+            return "Unknown"
+        }
+        
+        let pid = pid_t(auditToken.val.0)
+        
+        return getProcessPathFromPID(pid: pid)
+    }
+    
+    private static func getProcessPathFromPID(pid: pid_t) -> String {
+        var buffer = [CChar](repeating: 0, count: Int(MAXPATHLEN))
+        let result = proc_pidpath(pid, &buffer, UInt32(buffer.count))
+        if result > 0 {
+            return String(cString: buffer)
+        } else {
+            return "Unknown"
+        }
+    }
+    
+    public func formatLog() -> String {
         return "CATEGORY=\(category), FLOW_ID=\(flowID), PROCESS=\(process), ENDPOINT=\(endpoint)"
     }
-
 }
