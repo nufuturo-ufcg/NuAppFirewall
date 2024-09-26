@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CD4562C98BCA1001257CC /* AppDelegate.swift */; };
+		5714B7E42CA5CD2F0022A8FF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5709B35E2C928F0500931F26 /* NetworkExtension.framework */; };
 		57875CE32C938947000B09F1 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE22C938947000B09F1 /* Rule.swift */; };
 		57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE42C938966000B09F1 /* ExtensionManager.swift */; };
 		57875CE72C93898A000B09F1 /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE62C93898A000B09F1 /* SampleData.json */; };
@@ -22,7 +23,6 @@
 		57CB58502CA33634004D4D8D /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584F2CA33634004D4D8D /* LogEntry.swift */; };
 		57CB58512CA33DD5004D4D8D /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584D2CA32D4E004D4D8D /* LogManager.swift */; };
 		57CB58522CA359D8004D4D8D /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584F2CA33634004D4D8D /* LogEntry.swift */; };
-		57E812F12C93395000FF61DE /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5709B35E2C928F0500931F26 /* NetworkExtension.framework */; };
 		57E812F42C93395000FF61DE /* FilterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E812F32C93395000FF61DE /* FilterDataProvider.swift */; };
 		57E812F62C93395000FF61DE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E812F52C93395000FF61DE /* main.swift */; };
 		57E812FB2C93395100FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 57E812F02C93395000FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -153,7 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57E812F12C93395000FF61DE /* NetworkExtension.framework in Frameworks */,
+				5714B7E42CA5CD2F0022A8FF /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

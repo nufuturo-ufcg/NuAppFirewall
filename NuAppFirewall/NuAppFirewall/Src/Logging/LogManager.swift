@@ -16,25 +16,18 @@ public class LogManager {
     
     let logger = Logger(subsystem: "com.nufuturo.nuappfirewall.extension", category: "networking");
     
-    public func log(_ message: String) {
-        logger.log("\(message)")
+    public func log(_ message: String, level: OSLogType = .default) {
+        logger.log(level: level, "\(message)")
     }
     
-    public func log(message: String, type: OSLogType) {
-        logger.log(level: type, "\(message)")
-    }
-    
-    public func logError(error: Error) {
+    public func logError(_ error: Error) {
         logger.error("Error: \(error.localizedDescription)")
     }
     
-    public func logNewFlow(category: String, flowID: String, process: String, endpoint: String) {
+    public func logNewFlow(category: String, flowID: UUID, auditToken: audit_token_t, endpoint: String, level: OSLogType = .default) {
         
-        let logEntry = LogEntry(category: category, flowID: flowID, process: process, endpoint: endpoint);
+        let logEntry = LogEntry(category: category, flowID: flowID, auditToken: auditToken, endpoint: endpoint);
         
-        print(logEntry.getRepresentation())
-        
-        logger.info("\(logEntry.getRepresentation())")
+        logger.log(level: level, "\(logEntry.formatLog())")
     }
-    
 }
