@@ -12,7 +12,7 @@ import os
 
 public class LogManager {
     
-    public static let shared = LogManager()
+    public static let logManager = LogManager()
     
     let logger = Logger(subsystem: "com.nufuturo.nuappfirewall.extension", category: "networking");
     

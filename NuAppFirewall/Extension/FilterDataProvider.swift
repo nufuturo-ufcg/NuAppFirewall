@@ -4,7 +4,7 @@ import NetworkExtension
 public class FilterDataProvider : NEFilterDataProvider {
     
     public override func startFilter(completionHandler: @escaping ((any Error)?) -> Void) {
-        LogManager.shared.log("starting filter")
+        LogManager.logManager.log("starting filter")
         
         let networkRule = NENetworkRule(remoteNetwork: nil, remotePrefix: 0, localNetwork: nil, localPrefix: 0, protocol: .any, direction: NETrafficDirection.any)
         
@@ -13,25 +13,25 @@ public class FilterDataProvider : NEFilterDataProvider {
         
         apply(filterSettings) { error in
             if let error = error {
-                LogManager.shared.logError(error)
+                LogManager.logManager.logError(error)
                 return
             }
             
-            LogManager.shared.log("filter settings applied")
+            LogManager.logManager.log("filter settings applied")
         }
         
         completionHandler(nil)
     }
     
     public override func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
-        LogManager.shared.log("new network flow")
+        LogManager.logManager.log("new network flow")
         
         let (flowID, endpoint, url, auditToken) = extractLogInfo(from: flow)
         
-        LogManager.shared.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url)
+        LogManager.logManager.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url)
             
         if url.contains("youtube.com") {
-            LogManager.shared.log("accessed youtube, blocking flow")
+            LogManager.logManager.log("accessed youtube, blocking flow")
             return .drop()
         }
         

@@ -3,7 +3,7 @@ import NetworkExtension
 import OSLog
 
 autoreleasepool {
-    LogManager.shared.log("System extension mode was called")
+    LogManager.logManager.log("System extension mode was called")
     NEProvider.startSystemExtensionMode()
 }
 
