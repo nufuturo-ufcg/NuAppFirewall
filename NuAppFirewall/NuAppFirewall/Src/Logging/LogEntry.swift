@@ -7,43 +7,48 @@
 */
 
 import Foundation
-import Security
+import Darwin
 
 public class LogEntry {
     
     let category: String
     let flowID: UUID
-    let process: String
     let endpoint: String
+    let token: audit_token_t
+    let url: String
+    var process: String
     
-    init(category: String, flowID: UUID, auditToken: audit_token_t?, endpoint: String) {
+    init(category: String, flowID: UUID, auditToken: audit_token_t?, endpoint: String, url: String) {
         self.category = category
         self.flowID = flowID
-        self.process = LogEntry.getProcessPath(from: auditToken)
+        self.token = auditToken!
         self.endpoint = endpoint
-    }
-    
-    private static func getProcessPath(from auditToken: audit_token_t?) -> String {
-        guard let auditToken = auditToken else {
-            return "Unknown"
+        self.url = url
+        self.process = "unknown"
+        
+        let pid = pidFromAuditToken(self.token)
+        if let processPath = pathForProcess(with: pid) {
+            self.process = processPath
         }
-        
-        let pid = pid_t(auditToken.val.0)
-        
-        return getProcessPathFromPID(pid: pid)
     }
-    
-    private static func getProcessPathFromPID(pid: pid_t) -> String {
-        var buffer = [CChar](repeating: 0, count: Int(MAXPATHLEN))
-        let result = proc_pidpath(pid, &buffer, UInt32(buffer.count))
+
+    func pidFromAuditToken(_ auditToken: audit_token_t) -> pid_t {
+        return pid_t(auditToken.val.5)
+    }
+
+    func pathForProcess(with pid: pid_t) -> String? {
+        let bufferSize = Int(MAXPATHLEN)
+        var buffer = [CChar](repeating: 0, count: bufferSize)
+        let result = proc_pidpath(pid, &buffer, UInt32(bufferSize))
+        
         if result > 0 {
             return String(cString: buffer)
         } else {
-            return "Unknown"
+            return nil
         }
     }
     
     public func formatLog() -> String {
-        return "CATEGORY=\(category), FLOW_ID=\(flowID), PROCESS=\(process), ENDPOINT=\(endpoint)"
+        return "CATEGORY=\(category), FLOW_ID=\(flowID), URL=\(url), PROCESS=\(process), ENDPOINT=\(endpoint)"
     }
 }
