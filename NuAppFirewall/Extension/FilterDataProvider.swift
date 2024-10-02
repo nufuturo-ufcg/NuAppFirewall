@@ -26,25 +26,22 @@ public class FilterDataProvider : NEFilterDataProvider {
     public override func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
         LogManager.shared.log("new network flow")
         
-        let (flowID, endpoint, auditToken) = extractLogInfo(from: flow)
+        let (flowID, endpoint, url, auditToken) = extractLogInfo(from: flow)
         
-        LogManager.shared.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint)
-        
-        if let url = flow.url?.absoluteString {
-            LogManager.shared.log("url: \(url)")
-            if url.contains("youtube.com") {
-                LogManager.shared.log("accessed youtube, blocking flow")
-                return .drop()
-            }
+        LogManager.shared.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url)
+            
+        if url.contains("youtube.com") {
+            LogManager.shared.log("accessed youtube, blocking flow")
+            return .drop()
         }
         
         return NEFilterNewFlowVerdict.allow();
     }
     
-    private func extractLogInfo(from flow: NEFilterFlow) -> (UUID, String, audit_token_t) {
+    private func extractLogInfo(from flow: NEFilterFlow) -> (UUID, String, String, audit_token_t) {
         let flowID = flow.identifier
         
-        var endpoint = "Unknown"
+        var endpoint = "unknown"
         var auditToken = audit_token_t()
         
         if let socketFlow = flow as? NEFilterSocketFlow {
@@ -60,6 +57,8 @@ public class FilterDataProvider : NEFilterDataProvider {
             }
         }
         
-        return (flowID, endpoint, auditToken)
+        let url = flow.url?.absoluteString ?? "unknown"
+        
+        return (flowID, endpoint, url, auditToken)
     }
 }
