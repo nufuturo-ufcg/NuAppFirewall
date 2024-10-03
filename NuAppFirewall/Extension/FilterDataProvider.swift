@@ -5,6 +5,7 @@ public class FilterDataProvider : NEFilterDataProvider {
     
     public override func startFilter(completionHandler: @escaping ((any Error)?) -> Void) {
         LogManager.logManager.log("starting filter")
+        LogManager.logManager.log("starting filter", level: .debug, functionName: #function)
         
         let networkRule = NENetworkRule(remoteNetwork: nil, remotePrefix: 0, localNetwork: nil, localPrefix: 0, protocol: .any, direction: NETrafficDirection.any)
         
@@ -18,13 +19,14 @@ public class FilterDataProvider : NEFilterDataProvider {
             }
             
             LogManager.logManager.log("filter settings applied")
+            LogManager.logManager.log("filter settings applied", level: .debug, functionName: #function)
         }
         
         completionHandler(nil)
     }
     
     public override func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
-        LogManager.logManager.log("new network flow")
+        LogManager.logManager.log("handling new flow", level: .debug, functionName: #function)
         
         let (flowID, endpoint, url, auditToken) = extractLogInfo(from: flow)
         
@@ -39,6 +41,8 @@ public class FilterDataProvider : NEFilterDataProvider {
     }
     
     private func extractLogInfo(from flow: NEFilterFlow) -> (UUID, String, String, audit_token_t) {
+        LogManager.logManager.log("extracting log info", level: .debug, functionName: #function)
+        
         let flowID = flow.identifier
         
         var endpoint = "unknown"
@@ -51,7 +55,6 @@ public class FilterDataProvider : NEFilterDataProvider {
             if let data = socketFlow.sourceAppAuditToken {
                 auditToken = data.withUnsafeBytes { ptr -> audit_token_t in 
                     guard let baseAdress = ptr.baseAddress else {return auditToken}
-                    
                     return baseAdress.load(as: audit_token_t.self)}
                 }
             }

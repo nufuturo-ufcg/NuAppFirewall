@@ -17,7 +17,7 @@ public class LogEntry {
     let token: audit_token_t
     let url: String
     var process: String
-    
+        
     init(category: String, flowID: UUID, auditToken: audit_token_t?, endpoint: String, url: String) {
         self.category = category
         self.flowID = flowID
@@ -25,18 +25,19 @@ public class LogEntry {
         self.endpoint = endpoint
         self.url = url
         self.process = "unknown"
-        
+            
         let pid = pidFromAuditToken(self.token)
-        if let processPath = pathForProcess(with: pid) {
-            self.process = processPath
-        }
+        self.process = pathForProcess(with: pid)!
     }
 
     func pidFromAuditToken(_ auditToken: audit_token_t) -> pid_t {
+        LogManager.logManager.log("getting pid from audit token", level: .debug, functionName: #function)
         return pid_t(auditToken.val.5)
     }
 
     func pathForProcess(with pid: pid_t) -> String? {
+        LogManager.logManager.log("getting path for process", level: .debug, functionName: #function)
+        
         let bufferSize = Int(MAXPATHLEN)
         var buffer = [CChar](repeating: 0, count: bufferSize)
         let result = proc_pidpath(pid, &buffer, UInt32(bufferSize))
@@ -44,11 +45,12 @@ public class LogEntry {
         if result > 0 {
             return String(cString: buffer)
         } else {
-            return nil
+            return "unknown"
         }
     }
     
     public func formatLog() -> String {
+        LogManager.logManager.log("formatting log", level: .debug, functionName: #function)
         return "CATEGORY=\(category), FLOW_ID=\(flowID), URL=\(url), PROCESS=\(process), ENDPOINT=\(endpoint)"
     }
 }
