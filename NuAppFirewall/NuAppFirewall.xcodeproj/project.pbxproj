@@ -14,6 +14,9 @@
 		570550972CB47407008252E2 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570550962CB47407008252E2 /* FlowManager.swift */; };
 		570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CD4562C98BCA1001257CC /* AppDelegate.swift */; };
 		5714B7E42CA5CD2F0022A8FF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5709B35E2C928F0500931F26 /* NetworkExtension.framework */; };
+		5754EE3D2CB5CCC700507EA3 /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570550422CB47199008252E2 /* DataConverter.swift */; };
+		5754EE3E2CB5CCCF00507EA3 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE22C938947000B09F1 /* Rule.swift */; };
+		5754EE3F2CB5CCD700507EA3 /* RulesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7402C9278B000DE8FEE /* RulesManager.swift */; };
 		57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE42C938966000B09F1 /* ExtensionManager.swift */; };
 		57875CE72C93898A000B09F1 /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE62C93898A000B09F1 /* SampleData.json */; };
 		57875CE92C9389BA000B09F1 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE82C9389BA000B09F1 /* info.plist */; };
@@ -462,6 +465,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5754EE3D2CB5CCC700507EA3 /* DataConverter.swift in Sources */,
+				5754EE3F2CB5CCD700507EA3 /* RulesManager.swift in Sources */,
+				5754EE3E2CB5CCCF00507EA3 /* Rule.swift in Sources */,
 				57875CEC2C9389DE000B09F1 /* DataConverterTests.swift in Sources */,
 				57875CEE2C9389EB000B09F1 /* RuleTests.swift in Sources */,
 				57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */,
