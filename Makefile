@@ -1,7 +1,7 @@
 # Define variáveis para os diretórios e o nome do aplicativo
 APP_NAME = NuAppFirewall
 APP_DIR = /Applications
-PROJECT_DIR = /Users/ec2-user/NuApp/nu-app-firewall/NuAppFirewall
+PROJECT_DIR = ./NuAppFirewall
 BUILD_DIR = /Users/ec2-user/Library/Developer/Xcode/DerivedData/$(APP_NAME)-*/Build/Products/Debug
 
 .PHONY: all clean build install removeApp run
