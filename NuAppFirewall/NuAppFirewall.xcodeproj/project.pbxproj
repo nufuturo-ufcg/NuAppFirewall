@@ -135,7 +135,6 @@
 		57E812FF2C93396100FF61DE /* ExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExtensionDebug.entitlements; sourceTree = "<group>"; };
 		57E813002C933A1B00FF61DE /* extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = extension.entitlements; sourceTree = "<group>"; };
 		57E813032C933B2600FF61DE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		57F068AE2C93430500EF16F7 /* build_and_run.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_and_run.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +182,6 @@
 		57AFE6FB2C92751F00DE8FEE = {
 			isa = PBXGroup;
 			children = (
-				57F068AE2C93430500EF16F7 /* build_and_run.sh */,
 				57AFE7062C92751F00DE8FEE /* NuAppFirewall */,
 				57AFE7192C92752100DE8FEE /* NuAppFirewallTests */,
 				57E812F22C93395000FF61DE /* Extension */,
