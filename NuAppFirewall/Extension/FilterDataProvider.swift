@@ -3,6 +3,8 @@ import NetworkExtension
 
 public class FilterDataProvider : NEFilterDataProvider {
     
+    let facade = NuAppFacade()
+    
     public override func startFilter(completionHandler: @escaping ((any Error)?) -> Void) {
         LogManager.logManager.log("starting filter")
         LogManager.logManager.log("starting filter", level: .debug, functionName: #function)
@@ -31,13 +33,9 @@ public class FilterDataProvider : NEFilterDataProvider {
         let (flowID, endpoint, url, auditToken) = extractLogInfo(from: flow)
         
         LogManager.logManager.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url)
-            
-        if url.contains("youtube.com") {
-            LogManager.logManager.log("accessed youtube, blocking flow")
-            return .drop()
-        }
+          
+        return facade.handleNewFlow(flow)
         
-        return NEFilterNewFlowVerdict.allow();
     }
     
     private func extractLogInfo(from flow: NEFilterFlow) -> (UUID, String, String, audit_token_t) {
