@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5705508F2CB4733A008252E2 /* RulesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7402C9278B000DE8FEE /* RulesManager.swift */; };
+		570550902CB4734C008252E2 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE22C938947000B09F1 /* Rule.swift */; };
+		570550912CB47352008252E2 /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570550422CB47199008252E2 /* DataConverter.swift */; };
+		570550942CB4739F008252E2 /* NuAppFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570550922CB4739F008252E2 /* NuAppFacade.swift */; };
+		570550972CB47407008252E2 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570550962CB47407008252E2 /* FlowManager.swift */; };
 		570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CD4562C98BCA1001257CC /* AppDelegate.swift */; };
 		5714B7E42CA5CD2F0022A8FF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5709B35E2C928F0500931F26 /* NetworkExtension.framework */; };
-		57875CE32C938947000B09F1 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE22C938947000B09F1 /* Rule.swift */; };
 		57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE42C938966000B09F1 /* ExtensionManager.swift */; };
 		57875CE72C93898A000B09F1 /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE62C93898A000B09F1 /* SampleData.json */; };
 		57875CE92C9389BA000B09F1 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE82C9389BA000B09F1 /* info.plist */; };
 		57875CEC2C9389DE000B09F1 /* DataConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CEB2C9389DE000B09F1 /* DataConverterTests.swift */; };
 		57875CEE2C9389EB000B09F1 /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CED2C9389EB000B09F1 /* RuleTests.swift */; };
 		57875CF02C938AC9000B09F1 /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CEF2C938AC9000B09F1 /* SampleData.plist */; };
-		57AFE7412C9278B000DE8FEE /* RulesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7402C9278B000DE8FEE /* RulesManager.swift */; };
-		57AFE7452C92791500DE8FEE /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7442C92791500DE8FEE /* DataConverter.swift */; };
 		57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */; };
 		57CB584E2CA32D4E004D4D8D /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584D2CA32D4E004D4D8D /* LogManager.swift */; };
 		57CB58502CA33634004D4D8D /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584F2CA33634004D4D8D /* LogEntry.swift */; };
@@ -107,6 +109,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		570550422CB47199008252E2 /* DataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverter.swift; sourceTree = "<group>"; };
+		570550922CB4739F008252E2 /* NuAppFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuAppFacade.swift; sourceTree = "<group>"; };
+		570550962CB47407008252E2 /* FlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManager.swift; sourceTree = "<group>"; };
 		5709B35E2C928F0500931F26 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		570CD4562C98BCA1001257CC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Controller/AppDelegate.swift; sourceTree = "<group>"; };
 		57484BC72C927E4300A6689D /* NuAppFirewallDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewallDebug.entitlements; sourceTree = "<group>"; };
@@ -121,7 +126,6 @@
 		57AFE7042C92751F00DE8FEE /* NuAppFirewall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NuAppFirewall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AFE7162C92752100DE8FEE /* NuAppFirewallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NuAppFirewallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AFE7402C9278B000DE8FEE /* RulesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesManager.swift; sourceTree = "<group>"; };
-		57AFE7442C92791500DE8FEE /* DataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverter.swift; sourceTree = "<group>"; };
 		57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesManagerTests.swift; sourceTree = "<group>"; };
 		57CB584D2CA32D4E004D4D8D /* LogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
 		57CB584F2CA33634004D4D8D /* LogEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEntry.swift; sourceTree = "<group>"; };
@@ -160,6 +164,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570550432CB47199008252E2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				570550422CB47199008252E2 /* DataConverter.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		5709B35D2C928F0500931F26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,7 +238,7 @@
 			children = (
 				57CB584C2CA32B38004D4D8D /* Logging */,
 				570CD4562C98BCA1001257CC /* AppDelegate.swift */,
-				57AFE73D2C92784A00DE8FEE /* Utils */,
+				570550432CB47199008252E2 /* Utils */,
 				57AFE73C2C92783D00DE8FEE /* Model */,
 				57AFE73B2C92783400DE8FEE /* Logic */,
 				57AFE73A2C92782700DE8FEE /* Controller */,
@@ -238,6 +250,8 @@
 			isa = PBXGroup;
 			children = (
 				57875CE42C938966000B09F1 /* ExtensionManager.swift */,
+				570550922CB4739F008252E2 /* NuAppFacade.swift */,
+				570550962CB47407008252E2 /* FlowManager.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -256,14 +270,6 @@
 				57875CE22C938947000B09F1 /* Rule.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		57AFE73D2C92784A00DE8FEE /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				57AFE7442C92791500DE8FEE /* DataConverter.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		57AFE7462C92793D00DE8FEE /* Logic */ = {
@@ -379,7 +385,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					57AFE7032C92751F00DE8FEE = {
@@ -450,10 +456,7 @@
 				57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */,
 				57CB584E2CA32D4E004D4D8D /* LogManager.swift in Sources */,
 				57CB58502CA33634004D4D8D /* LogEntry.swift in Sources */,
-				57875CE32C938947000B09F1 /* Rule.swift in Sources */,
-				57AFE7452C92791500DE8FEE /* DataConverter.swift in Sources */,
 				570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */,
-				57AFE7412C9278B000DE8FEE /* RulesManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,8 +475,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				57CB58512CA33DD5004D4D8D /* LogManager.swift in Sources */,
+				570550912CB47352008252E2 /* DataConverter.swift in Sources */,
+				5705508F2CB4733A008252E2 /* RulesManager.swift in Sources */,
 				57CB58522CA359D8004D4D8D /* LogEntry.swift in Sources */,
+				570550942CB4739F008252E2 /* NuAppFacade.swift in Sources */,
+				570550902CB4734C008252E2 /* Rule.swift in Sources */,
 				57E812F62C93395000FF61DE /* main.swift in Sources */,
+				570550972CB47407008252E2 /* FlowManager.swift in Sources */,
 				57E812F42C93395000FF61DE /* FilterDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,7 +626,6 @@
 		57AFE72B2C92752100DE8FEE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NuAppFirewall/NuAppFirewallDebug.entitlements;
@@ -656,7 +663,6 @@
 		57AFE72C2C92752100DE8FEE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -692,7 +698,6 @@
 		57AFE72E2C92752100DE8FEE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -715,7 +720,6 @@
 		57AFE72F2C92752100DE8FEE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
