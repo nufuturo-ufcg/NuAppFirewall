@@ -36,12 +36,6 @@ public class FilterDataProvider : NEFilterDataProvider {
           
         return facade.handleNewFlow(flow)
         
-       // if url.contains("youtube.com") {
-           // LogManager.logManager.log("accessed youtube, blocking flow")
-//return .drop()
-        //}
-        
-        //return NEFilterNewFlowVerdict.allow();
     }
     
     private func extractLogInfo(from flow: NEFilterFlow) -> (UUID, String, String, audit_token_t) {
