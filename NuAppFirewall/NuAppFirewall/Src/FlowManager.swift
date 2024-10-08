@@ -12,7 +12,6 @@ import NetworkExtension
 public class FlowManager {
     
     func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
-        LogManager.logManager.log("entrando no flow manager para lidar com o flow")
         
         let url = flow.url?.absoluteString ?? "unknown"
         

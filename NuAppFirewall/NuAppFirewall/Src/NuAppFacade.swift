@@ -14,7 +14,6 @@ public class NuAppFacade {
     let flowManager = FlowManager()
     
     func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
-        print("entrando no app facade para lidar com o flow")
         return flowManager.handleNewFlow(flow);
     }
 }
