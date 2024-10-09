@@ -1,26 +1,29 @@
-import SwiftUI
-import NetworkExtension
+import AppKit
 
 @main
-class Main {
-    
-    static func main() async {
-        print("sending request")
-        
-        let manager = ExtensionManager()
-        let args = CommandLine.arguments
-        let action = args[1]
-        
-        if (action == "activate") {
-            await manager.toggleSystemExtension()
-        }
-        if (action == "deactivate") {
-            manager.deactivateSysEx()
-        }
-        
-        print("sysext is active and this is main thread")
+class MainApp: NSObject, NSApplicationDelegate {
 
-        sleep(2000)
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        print("sending request")
+
+        let isTesting = NSClassFromString("XCTestCase") != nil
+        if isTesting {
+            print("Executando em modo de teste")
+            return
+        }
+
+        let manager = ExtensionManager()
+        Task {
+            await manager.toggleSystemExtension()
+            print("sysext is active and this is main thread")
+            NSApp.terminate(nil)
+        }
     }
-    
+
+    static func main() {
+        let app = NSApplication.shared
+        let delegate = MainApp()
+        app.delegate = delegate
+        app.run()
+    }
 }

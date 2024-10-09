@@ -237,8 +237,9 @@
 		57AFE7392C92780F00DE8FEE /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				570550962CB47407008252E2 /* FlowManager.swift */,
+				570550922CB4739F008252E2 /* NuAppFacade.swift */,
 				57CB584C2CA32B38004D4D8D /* Logging */,
-				570CD4562C98BCA1001257CC /* AppDelegate.swift */,
 				570550432CB47199008252E2 /* Utils */,
 				57AFE73C2C92783D00DE8FEE /* Model */,
 				57AFE73B2C92783400DE8FEE /* Logic */,
@@ -250,9 +251,8 @@
 		57AFE73A2C92782700DE8FEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				570CD4562C98BCA1001257CC /* AppDelegate.swift */,
 				57875CE42C938966000B09F1 /* ExtensionManager.swift */,
-				570550922CB4739F008252E2 /* NuAppFacade.swift */,
-				570550962CB47407008252E2 /* FlowManager.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
