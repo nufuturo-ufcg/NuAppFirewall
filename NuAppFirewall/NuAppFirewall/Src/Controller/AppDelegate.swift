@@ -16,7 +16,10 @@ class MainApp: NSObject, NSApplicationDelegate {
         Task {
             await manager.toggleSystemExtension()
             print("sysext is active and this is main thread")
-            NSApp.terminate(nil)
+
+            DispatchQueue.main.async {
+                NSApp.terminate(nil)
+            }
         }
     }
 
@@ -27,3 +30,4 @@ class MainApp: NSObject, NSApplicationDelegate {
         app.run()
     }
 }
+
