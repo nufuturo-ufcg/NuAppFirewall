@@ -5,10 +5,10 @@ class MainApp: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         print("sending request")
-
+        
         let isTesting = NSClassFromString("XCTestCase") != nil
         if isTesting {
-            print("Executando em modo de teste")
+            print("running in test mode")
             return
         }
 
