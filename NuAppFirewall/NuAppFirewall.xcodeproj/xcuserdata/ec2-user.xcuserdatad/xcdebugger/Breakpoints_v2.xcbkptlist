@@ -24,7 +24,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "264CB58D-EBF5-42B7-9490-6367C090CCC0"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NuAppFirewall/Src/Logic/RulesManager.swift"
@@ -34,36 +34,6 @@
             endingLineNumber = "22"
             landmarkName = "addRule(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "264CB58D-EBF5-42B7-9490-6367C090CCC0 - 3f06563b92577d55"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NuAppFirewall.RulesManager.addRule(Swift.Optional&lt;NuAppFirewall.Rule&gt;) throws -&gt; ()"
-                  moduleName = "NuAppFirewall"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ec2-user/Documents/nu-app-firewall/NuAppFirewall/NuAppFirewall/Src/Logic/RulesManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24">
-               </Location>
-               <Location
-                  uuid = "264CB58D-EBF5-42B7-9490-6367C090CCC0 - 3f06563b92577d55"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NuAppFirewall.RulesManager.addRule(Swift.Optional&lt;NuAppFirewall.Rule&gt;) throws -&gt; ()"
-                  moduleName = "NuAppFirewall"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ec2-user/Documents/nu-app-firewall/NuAppFirewall/NuAppFirewall/Src/Logic/RulesManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
