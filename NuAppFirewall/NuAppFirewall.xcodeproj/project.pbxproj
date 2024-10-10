@@ -13,7 +13,12 @@
 		570550942CB4739F008252E2 /* NuAppFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570550922CB4739F008252E2 /* NuAppFacade.swift */; };
 		570550972CB47407008252E2 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570550962CB47407008252E2 /* FlowManager.swift */; };
 		570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CD4562C98BCA1001257CC /* AppDelegate.swift */; };
+		570F09D02CB7FB55002B7996 /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CEF2C938AC9000B09F1 /* SampleData.plist */; };
+		570F09D12CB7FBF0002B7996 /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE62C93898A000B09F1 /* SampleData.json */; };
 		5714B7E42CA5CD2F0022A8FF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5709B35E2C928F0500931F26 /* NetworkExtension.framework */; };
+		5754EE3D2CB5CCC700507EA3 /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570550422CB47199008252E2 /* DataConverter.swift */; };
+		5754EE3E2CB5CCCF00507EA3 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE22C938947000B09F1 /* Rule.swift */; };
+		5754EE3F2CB5CCD700507EA3 /* RulesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7402C9278B000DE8FEE /* RulesManager.swift */; };
 		57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE42C938966000B09F1 /* ExtensionManager.swift */; };
 		57875CE72C93898A000B09F1 /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE62C93898A000B09F1 /* SampleData.json */; };
 		57875CE92C9389BA000B09F1 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE82C9389BA000B09F1 /* info.plist */; };
@@ -234,8 +239,9 @@
 		57AFE7392C92780F00DE8FEE /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				570550962CB47407008252E2 /* FlowManager.swift */,
+				570550922CB4739F008252E2 /* NuAppFacade.swift */,
 				57CB584C2CA32B38004D4D8D /* Logging */,
-				570CD4562C98BCA1001257CC /* AppDelegate.swift */,
 				570550432CB47199008252E2 /* Utils */,
 				57AFE73C2C92783D00DE8FEE /* Model */,
 				57AFE73B2C92783400DE8FEE /* Logic */,
@@ -247,9 +253,8 @@
 		57AFE73A2C92782700DE8FEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				570CD4562C98BCA1001257CC /* AppDelegate.swift */,
 				57875CE42C938966000B09F1 /* ExtensionManager.swift */,
-				570550922CB4739F008252E2 /* NuAppFacade.swift */,
-				570550962CB47407008252E2 /* FlowManager.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -433,6 +438,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				570F09D02CB7FB55002B7996 /* SampleData.plist in Resources */,
+				570F09D12CB7FBF0002B7996 /* SampleData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +469,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5754EE3D2CB5CCC700507EA3 /* DataConverter.swift in Sources */,
+				5754EE3F2CB5CCD700507EA3 /* RulesManager.swift in Sources */,
+				5754EE3E2CB5CCCF00507EA3 /* Rule.swift in Sources */,
 				57875CEC2C9389DE000B09F1 /* DataConverterTests.swift in Sources */,
 				57875CEE2C9389EB000B09F1 /* RuleTests.swift in Sources */,
 				57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */,
