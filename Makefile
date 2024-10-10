@@ -9,6 +9,10 @@ BUILD_DIR = /Users/ec2-user/Library/Developer/Xcode/DerivedData/$(APP_NAME)-*/Bu
 # Define a regra padrão
 all: run
 
+# Roda os testes
+test:
+	xcodebuild test -project $(PROJECT_DIR)/$(APP_NAME).xcodeproj -scheme $(APP_NAME) -destination 'platform=macOS'   
+
 # Limpar o build do projeto
 clean:
 	xcodebuild clean -project $(PROJECT_DIR)/$(APP_NAME).xcodeproj -scheme $(APP_NAME)
