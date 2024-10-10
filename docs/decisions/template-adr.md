@@ -1,20 +1,20 @@
 # Título
 
-# Contexto
+## Contexto
 Por que e para que estamos tomando essa decisão?
 
-# Decisão
+## Decisão
 Detalhes sobre a decisão. Se preciso, inclua exemplos que reforçem o porquê, além de figuras e diagramas que possam explicar melhor.
 
-# Alternativas consideradas
+## Alternativas consideradas
 Quais as alternativas que consideramos antes de decidir? por que descartamos?
 
-# Consequências
+## Consequências
 
-## Positivas
+### Positivas
 
 * 
 
-## Negativas
+### Negativas
 
 * 
