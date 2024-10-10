@@ -60,6 +60,14 @@ make run
 ```
 
 Dê a permissão que será solicitada.
+
+## Outros Comandos do Makefile
+
+Para visualizar outros comandos disponíveis no Makefile use o seguinte comando na raiz do projeto:
+
+```
+make help
+```
     
 ## Como Rodar os Testes
 
