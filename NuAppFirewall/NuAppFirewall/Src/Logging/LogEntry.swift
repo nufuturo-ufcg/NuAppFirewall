@@ -16,14 +16,16 @@ public class LogEntry {
     let endpoint: String
     let token: audit_token_t
     let url: String
+    let verdict: String
     var process: String
         
-    init(category: String, flowID: UUID, auditToken: audit_token_t?, endpoint: String, url: String) {
+    init(category: String, flowID: UUID, auditToken: audit_token_t?, endpoint: String, url: String, verdict: String) {
         self.category = category
         self.flowID = flowID
         self.token = auditToken!
         self.endpoint = endpoint
         self.url = url
+        self.verdict = verdict
         self.process = "unknown"
             
         let pid = pidFromAuditToken(self.token)
@@ -51,6 +53,6 @@ public class LogEntry {
     
     public func formatLog() -> String {
         LogManager.logManager.log("formatting log", level: .debug, functionName: #function)
-        return "CATEGORY=\(category), FLOW_ID=\(flowID), URL=\(url), PROCESS=\(process), ENDPOINT=\(endpoint)"
+        return "CATEGORY=\(category), FLOW_ID=\(flowID), URL=\(url), PROCESS=\(process), ENDPOINT=\(endpoint), VERDICT=\(verdict)"
     }
 }
