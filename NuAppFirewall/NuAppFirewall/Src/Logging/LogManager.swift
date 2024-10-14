@@ -29,8 +29,8 @@ public class LogManager {
         logger.error("Error: \(error.localizedDescription, privacy: .public)")
     }
     
-    public func logNewFlow(category: String, flowID: UUID, auditToken: audit_token_t, endpoint: String, url: String, level: OSLogType = .info) {
-        let logEntry = LogEntry(category: category, flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url);
+    public func logNewFlow(category: String, flowID: UUID, auditToken: audit_token_t, endpoint: String, url: String, verdict: String, level: OSLogType = .info) {
+        let logEntry = LogEntry(category: category, flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url, verdict: verdict);
         logger.log(level: level, "\(logEntry.formatLog(), privacy: .public)")
     }
     
