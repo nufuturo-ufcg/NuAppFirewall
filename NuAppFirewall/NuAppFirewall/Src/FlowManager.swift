@@ -20,8 +20,6 @@ public class FlowManager {
         if url.contains("youtube.com") {
             LogManager.logManager.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url, verdict: "blocked")
             
-            LogManager.logManager.log("accessed youtube, blocking flow")
-            
             return .drop()
         }
         
