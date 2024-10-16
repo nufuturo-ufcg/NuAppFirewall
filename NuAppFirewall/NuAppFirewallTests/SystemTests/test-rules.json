@@ -1,0 +1,40 @@
+{
+      "example_rules": [
+        {
+            "key": "rule1",
+            "action": "allow",
+            "path": "/path/to/process",
+            "endpoints": [
+		"linkedin.com",
+		"www-mail.icloud-sandbox.com",
+		"csxd.contentsquare.net", 
+                "track1.aniview.com",
+                "api.schemaapp.com",
+		"weather-data.apple.com",
+		"www.argoshub.com",
+		"analytics.twitter.com",
+                "www.google.com",
+		"www.apple.com",
+		"e.dlx.addthis.com",
+                "pixel.rubiconproject.com",
+                "login.okta.com",
+		"tm.jsuol.com.br",
+                "onetag-sys.com", 
+		"p34-buy.itunes.apple.com", 
+                "universal-activity-service.itunes.apple.com",
+                "bcbolt446c5271-a.akamaihd.net",
+                "musicstatus.itunes.apple.com", 
+            ],
+            "direction": "outbound"
+        },
+        {
+            "key": "rule2",
+            "action": "block",
+            "path": "/path/to/another/process",
+            "endpoints": [ 
+                "www.youtube.com",
+            ],
+            "direction": "outbound"
+        }
+    ]
+}
