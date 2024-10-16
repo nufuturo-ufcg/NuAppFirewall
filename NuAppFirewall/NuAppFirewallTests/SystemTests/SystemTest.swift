@@ -20,9 +20,7 @@ struct ProcessData: Codable {
     let direction: String
 }
 
-func loadURLs() -> [(String, String)] {
-    let filePath = "./test-rules.json"
-    
+func loadURLs(from filePath: String) -> [(String, String)] { 
     guard let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) else {
         print("Erro ao ler o arquivo \(filePath)")
         return []
@@ -77,7 +75,7 @@ func fetchVerdictFromSyslog(for url: String) -> String {
         }
         sleep(1)
     }
-    return "allow"  // Valor padrão se não encontrar nada nos logs
+    return "allow" 
 }
 
 private func extractSearchTerm(from url: String) -> String {
@@ -108,7 +106,7 @@ private func checkLog(_ searchTerm: String) -> String? {
 }
 
 func processURLs(maxConcurrentConnections: Int = 16, timeout: TimeInterval = 3) {
-    let urls = loadURLs()
+    let urls = loadURLs(from: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "./controlled-rules.json")
     if urls.isEmpty { return print("Nenhuma URL para processar.") }
 
     print("Processando \(urls.count) URLs...")
