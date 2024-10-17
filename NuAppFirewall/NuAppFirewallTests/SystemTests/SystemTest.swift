@@ -3,6 +3,7 @@ import Foundation
 enum ANSIColor: String {
     case red = "\u{001B}[0;31m"
     case green = "\u{001B}[0;32m"
+    case yellow = "\u{001B}[0;33m"
     case reset = "\u{001B}[0;0m"
 }
 
@@ -10,6 +11,7 @@ struct URLReport: Codable {
     let url: String
     let expectedVerdict: String
     let actualVerdict: String
+    let logFound: Bool
 }
 
 struct ProcessData: Codable {
@@ -17,10 +19,10 @@ struct ProcessData: Codable {
     let action: String
     let path: String
     let endpoints: [String]
-    let direction: String
+    let domains: [String]
 }
 
-func loadURLs(from filePath: String) -> [(String, String)] { 
+func loadURLs(from filePath: String) -> [(String, String)] {
     guard let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) else {
         print("Erro ao ler o arquivo \(filePath)")
         return []
@@ -28,12 +30,12 @@ func loadURLs(from filePath: String) -> [(String, String)] {
     
     let decoder = JSONDecoder()
     do {
-        let rules = try decoder.decode([String: [ProcessData]].self, from: data)
+        let rules = try decoder.decode([String: ProcessData].self, from: data)
         let ipRegex = #"^(https?://)?(\d{1,3}\.){3}\d{1,3}($|/)"#
         
-        let urls = rules.values.flatMap { $0.flatMap { process in
+        let urls = rules.values.flatMap { process in
             process.endpoints.map { ("https://\($0)", process.action) }
-        }}.filter { url, _ in
+        }.filter { url, _ in
             !url.matches(regex: ipRegex)
         }
         return urls
@@ -51,7 +53,7 @@ extension String {
 
 func fetchURL(_ url: String, expectedVerdict: String, timeout: TimeInterval, completion: @escaping (URLReport) -> Void) {
     guard let urlObj = URL(string: url) else {
-        completion(URLReport(url: url, expectedVerdict: expectedVerdict, actualVerdict: "blocked"))
+        completion(URLReport(url: url, expectedVerdict: expectedVerdict, actualVerdict: "blocked", logFound: false))
         return
     }
 
@@ -61,21 +63,28 @@ func fetchURL(_ url: String, expectedVerdict: String, timeout: TimeInterval, com
 
     let task = session.dataTask(with: urlObj) { _, _, _ in
         let actualVerdict = fetchVerdictFromSyslog(for: url)
-        completion(URLReport(url: url, expectedVerdict: expectedVerdict, actualVerdict: actualVerdict))
+        let logFound = actualVerdict != "not found"
+        completion(URLReport(url: url, expectedVerdict: expectedVerdict, actualVerdict: actualVerdict, logFound: logFound))
     }
     task.resume()
 }
 
 func fetchVerdictFromSyslog(for url: String) -> String {
     let searchTerm = extractSearchTerm(from: url)
+    let attemptCount = 5
+    let delayBetweenAttempts: UInt32 = 2 
 
-    for _ in 1...5 {
+    for attempt in 1...attemptCount {
         if let verdict = checkLog(searchTerm) {
             return verdict
         }
-        sleep(1)
+        
+        if attempt < attemptCount {
+            sleep(delayBetweenAttempts)
+        }
     }
-    return "allow" 
+    
+    return "not found"
 }
 
 private func extractSearchTerm(from url: String) -> String {
@@ -84,7 +93,7 @@ private func extractSearchTerm(from url: String) -> String {
 
 private func checkLog(_ searchTerm: String) -> String? {
     let logCommand = """
-    log show --predicate 'eventMessage CONTAINS "\(searchTerm)" AND subsystem == "com.nufuturo.nuappfirewall.extension"' --info --last 2m
+    log show --predicate 'eventMessage CONTAINS "\(searchTerm)" AND subsystem == "com.nufuturo.nuappfirewall.extension"' --info --last 1m
     """
 
     let process = Process()
@@ -122,10 +131,8 @@ func processURLs(maxConcurrentConnections: Int = 16, timeout: TimeInterval = 3) 
 
         DispatchQueue.global().async {
             fetchURL(url, expectedVerdict: expectedVerdict, timeout: timeout) { report in
-                if report.expectedVerdict != report.actualVerdict {
-                    DispatchQueue.global().sync {
-                        reports.append(report)
-                    }
+                DispatchQueue.global().sync {
+                    reports.append(report)
                 }
 
                 let progress = progressCounter.increment()
@@ -170,17 +177,30 @@ func updateProgressBar(current: Int, total: Int) {
 }
 
 func printReport(_ reports: [URLReport]) {
-    if reports.isEmpty {
+    let notFoundReports = reports.filter { !$0.logFound }
+    let discrepancyReports = reports.filter { $0.expectedVerdict != $0.actualVerdict && $0.logFound }
+
+    if notFoundReports.isEmpty && discrepancyReports.isEmpty {
         print("\(ANSIColor.green.rawValue)Test succeeded: Nenhuma discrepância encontrada.\(ANSIColor.reset.rawValue)")
     } else {
-        print("\(ANSIColor.red.rawValue)Test failed: Discrepâncias encontradas (\(reports.count)).\(ANSIColor.reset.rawValue)")
-        reports.forEach { report in
-            print("""
-                URL: \(report.url)
-                Esperado: \(report.expectedVerdict)
-                Resultado: \(report.actualVerdict)
-                """)
+        if !notFoundReports.isEmpty {
+            print("\(ANSIColor.yellow.rawValue)Alerta: Logs não encontrados para \(notFoundReports.count) URLs:\(ANSIColor.reset.rawValue)")
+            notFoundReports.forEach { report in
+                print("URL: \(report.url)")
+            }
             print(String(repeating: "-", count: 50))
+        }
+        
+        if !discrepancyReports.isEmpty {
+            print("\(ANSIColor.red.rawValue)Test failed: Discrepâncias encontradas (\(discrepancyReports.count)).\(ANSIColor.reset.rawValue)")
+            discrepancyReports.forEach { report in
+                print("""
+                    URL: \(report.url)
+                    Esperado: \(report.expectedVerdict)
+                    Resultado: \(report.actualVerdict)
+                    """)
+                print(String(repeating: "-", count: 50))
+            }
         }
     }
 }
