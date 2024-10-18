@@ -18,12 +18,12 @@ public class FlowManager {
         let (flowID, endpoint, url, auditToken) = extractLogInfo(from: flow)
         
         if url.contains("youtube.com") {
-            LogManager.logManager.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url, verdict: "blocked")
+            LogManager.logManager.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url, verdict: "block")
             
             return .drop()
         }
         
-        LogManager.logManager.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url, verdict: "allowed")
+        LogManager.logManager.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url, verdict: "allow")
         
         return NEFilterNewFlowVerdict.allow();
     }

@@ -43,13 +43,13 @@ nu-app-firewall
 
 Clone o repositório:
 
-```
+```bash
 git clone https://github.com/seu-usuario/nu-app-firewall.git
 ```
 
 Entre no diretório do projeto:
 
-```
+```bash
 cd nu-app-firewall 
 ```
 
@@ -69,25 +69,13 @@ Para visualizar outros comandos disponíveis no Makefile use o seguinte comando 
 make help
 ```
     
-## Como Rodar os Testes
+## Como Rodar os Testes de sistema
 
-Para rodar os testes do projeto, siga as instruções abaixo:
-
-### Usando o Xcode
-
-1. Abra o projeto no Xcode:
-
-    ```bash
-    open NuAppFirewall.xcodeproj
-    ```
-
-2. Selecione o esquema `NuAppFirewallTests` no topo da janela.
-
-3. No menu superior, vá em **Product** > **Test** (ou utilize o atalho `Cmd + U`) para rodar todos os testes.
+Para rodar os testes de sistema, siga as instruções abaixo:
 
 ### Via Linha de Comando
 
-Você também pode rodar os testes diretamente via linha de comando utilizando o `xcodebuild`. Aqui estão os passos:
+Você pode rodar os testes diretamente via linha de comando. Aqui estão os passos:
 
 1. Abra o terminal e navegue até o diretório do projeto:
     ```bash
@@ -95,13 +83,9 @@ Você também pode rodar os testes diretamente via linha de comando utilizando o
     ```
 
 2. Execute o comando para rodar os testes:
-    ```bash
-    xcodebuild test -scheme NuAppFirewallTests -destination 'platform=macOS' -allowProvisioningUpdates
     ```
-
-   Onde:
-   - `-scheme NuAppFirewallTests`: Define o esquema do projeto relacionado aos testes.
-   - `-destination 'platform=macOS'`: Especifica o destino de execução dos testes.
+    make systemTest
+    ```
 
 Os resultados dos testes serão exibidos no terminal.
 

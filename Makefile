@@ -3,11 +3,18 @@ APP_NAME = NuAppFirewall
 APP_DIR = /Applications
 PROJECT_DIR = ./NuAppFirewall
 BUILD_DIR = /Users/ec2-user/Library/Developer/Xcode/DerivedData/$(APP_NAME)-*/Build/Products/Debug
+SYSTEM_TEST_DIR = ./NuAppFirewall/NuAppFirewallTests/SystemTests
+SYSTEM_TEST_FILE = SystemTest.swift
+TEST_RULES_FILE = controlled-rules.json
 
-.PHONY: all clean build install removeApp run help
+.PHONY: all clean build install removeApp run help test systemTests
 
 # Define a regra padrão
 all: run
+
+# Roda os testes do sistema
+systemTest:
+	swift $(SYSTEM_TEST_DIR)/$(SYSTEM_TEST_FILE) $(SYSTEM_TEST_DIR)/$(TEST_RULES_FILE)
 
 # Roda os testes
 test:
@@ -41,6 +48,7 @@ help:
 	@echo "Available commands:"
 	@echo "  all          - Cleans, builds, installs, and activates the app (default)"
 	@echo "  test         - Runs project tests"
+	@echo "  systemTest   - Runs system tests using SystemTest.swift with the rules from controlled-rules.json"
 	@echo "  clean        - Cleans the project build"
 	@echo "  removeApp    - Removes the app from the Applications folder"
 	@echo "  build        - Builds the project"
@@ -48,4 +56,3 @@ help:
 	@echo "  activate     - Activates the app extension"
 	@echo "  run          - Removes, cleans, builds, installs, and activates the app"
 	@echo "  help         - Displays this help message"
-
