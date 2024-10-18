@@ -1,5 +1,5 @@
 /*
-    File: LogEntry.swift
+    File: LogManager.swift
     Project: App Firewall (nufuturo.nuappfirewall)
     Description: LogManager is a class that manages log entries in a network content filter. It allows adding new entries and displaying existing ones, helping track and analyze network activities efficiently.
  
@@ -29,9 +29,9 @@ public class LogManager {
         logger.error("Error: \(error.localizedDescription, privacy: .public)")
     }
     
-    public func logNewFlow(category: String, flowID: UUID, auditToken: audit_token_t, endpoint: String, url: String, verdict: String, level: OSLogType = .info) {
-        let logEntry = LogEntry(category: category, flowID: flowID, auditToken: auditToken, endpoint: endpoint, url: url, verdict: verdict);
-        logger.log(level: level, "\(logEntry.formatLog(), privacy: .public)")
+    public func logNewFlow(category: String, flowID: UUID, auditToken: audit_token_t, endpoint: String, mode: String, url: String, verdict: String, process: String, ruleID: String, level: OSLogType = .info) {
+        let message = "\"CATEGORY=\(category), FLOW_ID=\(flowID), URL=\(url), PROCESS=\(process), ENDPOINT=\(endpoint), MODE=\(mode), RULE_ID=\(ruleID), VERDICT=\(verdict)"
+        logger.log(level: level, "\(message, privacy: .public)")
     }
     
     private func getCurrentTimestamp() -> String {
