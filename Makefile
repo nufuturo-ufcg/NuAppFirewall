@@ -48,6 +48,7 @@ help:
 	@echo "Available commands:"
 	@echo "  all          - Cleans, builds, installs, and activates the app (default)"
 	@echo "  test         - Runs project tests"
+	@echo "  systemTest   - Runs system tests using SystemTest.swift with the rules from controlled-rules.json"
 	@echo "  clean        - Cleans the project build"
 	@echo "  removeApp    - Removes the app from the Applications folder"
 	@echo "  build        - Builds the project"
@@ -55,4 +56,3 @@ help:
 	@echo "  activate     - Activates the app extension"
 	@echo "  run          - Removes, cleans, builds, installs, and activates the app"
 	@echo "  help         - Displays this help message"
-

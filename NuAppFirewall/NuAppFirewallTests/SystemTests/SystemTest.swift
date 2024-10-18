@@ -27,12 +27,12 @@ func loadURLs(from filePath: String) -> [(String, String)] {
         print("Erro ao ler o arquivo \(filePath)")
         return []
     }
-    
+
     let decoder = JSONDecoder()
     do {
         let rules = try decoder.decode([String: ProcessData].self, from: data)
         let ipRegex = #"^(https?://)?(\d{1,3}\.){3}\d{1,3}($|/)"#
-        
+
         let urls = rules.values.flatMap { process in
             process.endpoints.map { ("https://\($0)", process.action) }
         }.filter { url, _ in
@@ -53,7 +53,7 @@ extension String {
 
 func fetchURL(_ url: String, expectedVerdict: String, timeout: TimeInterval, completion: @escaping (URLReport) -> Void) {
     guard let urlObj = URL(string: url) else {
-        completion(URLReport(url: url, expectedVerdict: expectedVerdict, actualVerdict: "blocked", logFound: false))
+        completion(URLReport(url: url, expectedVerdict: expectedVerdict, actualVerdict: "block", logFound: false))
         return
     }
 
@@ -72,18 +72,18 @@ func fetchURL(_ url: String, expectedVerdict: String, timeout: TimeInterval, com
 func fetchVerdictFromSyslog(for url: String) -> String {
     let searchTerm = extractSearchTerm(from: url)
     let attemptCount = 5
-    let delayBetweenAttempts: UInt32 = 2 
+    let delayBetweenAttempts: UInt32 = 2
 
     for attempt in 1...attemptCount {
         if let verdict = checkLog(searchTerm) {
             return verdict
         }
-        
+
         if attempt < attemptCount {
             sleep(delayBetweenAttempts)
         }
     }
-    
+
     return "not found"
 }
 
@@ -114,12 +114,30 @@ private func checkLog(_ searchTerm: String) -> String? {
     return nil
 }
 
-func processURLs(maxConcurrentConnections: Int = 16, timeout: TimeInterval = 3) {
+func reprocessURLs(_ reports: [URLReport], timeout: TimeInterval, completion: @escaping ([URLReport]) -> Void) {
+    let group = DispatchGroup()
+    var reprocessedReports: [URLReport] = []
+
+    for report in reports where !report.logFound {
+        group.enter()
+        fetchURL(report.url, expectedVerdict: report.expectedVerdict, timeout: timeout) { newReport in
+            reprocessedReports.append(newReport)
+            group.leave()
+        }
+        usleep(200_000)
+    }
+
+    group.notify(queue: .main) {
+        completion(reprocessedReports)
+    }
+}
+
+func processURLs(maxConcurrentConnections: Int = 16, timeout: TimeInterval = 2) {
     let urls = loadURLs(from: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "./controlled-rules.json")
     if urls.isEmpty { return print("Nenhuma URL para processar.") }
 
     print("Processando \(urls.count) URLs...")
-    
+
     let group = DispatchGroup()
     let semaphore = DispatchSemaphore(value: maxConcurrentConnections)
     var reports: [URLReport] = []
@@ -141,14 +159,22 @@ func processURLs(maxConcurrentConnections: Int = 16, timeout: TimeInterval = 3) 
                 semaphore.signal()
                 group.leave()
             }
-            usleep(150_000)
+            usleep(200_000)
         }
     }
 
     group.notify(queue: .main) {
-        print("\nConcluído.")
-        printReport(reports)
-        exit(EXIT_SUCCESS)
+        let notFoundReports = reports.filter { !$0.logFound }
+
+        reprocessURLs(notFoundReports, timeout: timeout) { reprocessedReports in
+            let finalReports = reports.map { report in
+                reprocessedReports.first(where: { $0.url == report.url }) ?? report
+            }
+
+            print("\nConcluído.")
+            printReport(finalReports)
+            exit(EXIT_SUCCESS)
+        }
     }
 }
 
@@ -159,7 +185,7 @@ class AtomicCounter {
     var value: Int { queue.sync { _value } }
 
     func increment() -> Int {
-        queue.sync { 
+        queue.sync {
             _value += 1
             return _value
         }
@@ -190,7 +216,7 @@ func printReport(_ reports: [URLReport]) {
             }
             print(String(repeating: "-", count: 50))
         }
-        
+
         if !discrepancyReports.isEmpty {
             print("\(ANSIColor.red.rawValue)Test failed: Discrepâncias encontradas (\(discrepancyReports.count)).\(ANSIColor.reset.rawValue)")
             discrepancyReports.forEach { report in
@@ -207,4 +233,3 @@ func printReport(_ reports: [URLReport]) {
 
 processURLs()
 RunLoop.main.run()
-
