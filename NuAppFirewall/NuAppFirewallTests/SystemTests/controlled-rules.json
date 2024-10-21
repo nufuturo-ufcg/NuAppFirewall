@@ -26,7 +26,6 @@
             "www.twitter.com",
             "www.reddit.com",
             "www.stackoverflow.com",
-            "www.wikipedia.org",
             "www.github.com",
             "www.microsoft.com",
             "www.spotify.com",
@@ -57,7 +56,6 @@
             "facebook.com",
             "reddit.com",
             "stackoverflow.com",
-            "wikipedia.org",
             "github.com",
             "microsoft.com",
             "spotify.com",
@@ -75,10 +73,12 @@
         "action": "block",
         "path": "/path/to/another/process",
         "endpoints": [
-            "www.youtube.com"
+            "www.youtube.com",
+	    "www.wikipedia.org"
         ],
         "domains": [
-            "youtube.com"
+            "youtube.com",
+	    "wikipedia.org"
         ]
     }
 }

@@ -22,7 +22,7 @@ class RulesManager {
         let rule1 = Rule(
             ruleID: "1", //mock-id
             action: "0",
-            appLocation: "/System/Volumes/Preboot/Cryptexes/Incoming/OS/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.Networking.xpc/Contents/MacOS/com.apple.WebKit.Networking",
+            appLocation: "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend",
             endpoints: ["wikipedia.org", "youtube.com"],
             direction: "*"
         )
