@@ -17,3 +17,4 @@ public class NuAppFacade {
         return flowManager.handleNewFlow(flow);
     }
 }
+
