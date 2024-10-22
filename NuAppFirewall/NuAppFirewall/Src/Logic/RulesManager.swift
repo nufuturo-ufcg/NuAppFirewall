@@ -21,7 +21,7 @@ class RulesManager {
         //place-holder
         let rule1 = Rule(
             ruleID: "1", //mock-id
-            action: "0",
+            action: "block",
             appLocation: "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend",
             endpoints: ["wikipedia.org", "youtube.com"],
             direction: "*"

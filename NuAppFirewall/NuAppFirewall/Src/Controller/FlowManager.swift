@@ -21,24 +21,19 @@ public class FlowManager {
         
         let pid = pidFromAuditToken(auditToken)
         
-        var path: String = "unknown"
-        
-        if let processPath = pathForProcess(with: pid) {
-            path = processPath
-        }
+        let path: String = pathForProcess(with: pid)
         
         if path != "unknown" {
             let appRules = rulesManager.getRules(byApp: path);
             
             for rule in appRules {
-                LogManager.logManager.log(rule.description())
                 for endpoint in rule.endpoints {
                     if url.contains(endpoint) {
-                        if rule.action == "0" {
-                            LogManager.logManager.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint,mode: "passive mode", url: url, verdict: "block", process: path, ruleID: rule.ruleID)
+                        if rule.action == "block" {
+                            LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint,mode: Consts.modePassive, url: url, verdict: Consts.verdictBlock, process: path, ruleID: rule.ruleID)
                             return .drop()
                         } else {
-                            LogManager.logManager.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: "passive-mode", url: url, verdict: "allow", process: path, ruleID: rule.ruleID)
+                            LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: rule.ruleID)
                             return .allow()
                         }
                     }
@@ -46,7 +41,7 @@ public class FlowManager {
             }
         }
 
-        LogManager.logManager.logNewFlow(category: "connection", flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: "passive mode", url: url, verdict: "allow", process: path, ruleID: "None")
+        LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: Consts.NoneString)
         return NEFilterNewFlowVerdict.allow();
     }
     
@@ -79,7 +74,7 @@ public class FlowManager {
         return pid_t(auditToken.val.5)
     }
     
-    func pathForProcess(with pid: pid_t) -> String? {
+    func pathForProcess(with pid: pid_t) -> String {
         
         let bufferSize = Int(MAXPATHLEN)
         var buffer = [CChar](repeating: 0, count: bufferSize)
