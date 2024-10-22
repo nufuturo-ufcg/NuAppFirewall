@@ -14,7 +14,23 @@ enum RulesManagerError: Error {
 }
 
 class RulesManager {
+    
     private var rules: [String: Rule] = [:]
+    
+    init() {
+        //place-holder
+        let rule1 = Rule(
+            ruleID: "1", //mock-id
+            action: "block",
+            appLocation: "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend",
+            endpoints: ["wikipedia.org", "youtube.com"],
+            direction: "*"
+        )
+        
+        do {
+            try addRule(rule1)
+        } catch {}
+    }
     
     func addRule(_ rule: Rule?) throws {
         guard let rule = rule else {
@@ -38,5 +54,8 @@ class RulesManager {
     func getRule(byID ruleID: String) -> Rule? {
         return rules[ruleID]
     }
+    
+    func getRules(byApp applicationPath: String) -> [Rule] {
+        return rules.values.filter { $0.appLocation == applicationPath }
+    }
 }
-

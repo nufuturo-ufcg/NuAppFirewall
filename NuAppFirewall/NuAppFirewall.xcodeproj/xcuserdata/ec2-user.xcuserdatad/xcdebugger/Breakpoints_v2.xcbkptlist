@@ -23,16 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "264CB58D-EBF5-42B7-9490-6367C090CCC0"
-            shouldBeEnabled = "No"
+            uuid = "B66BA810-450A-40F9-9F5B-9585DBCF503C"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NuAppFirewall/Src/Logic/RulesManager.swift"
+            filePath = "NuAppFirewall/Src/Controller/FlowManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "addRule(_:)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "handleNewFlow(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
