@@ -13,6 +13,10 @@ public class FlowManager {
     
     let rulesManager = RulesManager();
     
+    init(){
+        rulesManager.loadRules()
+    }
+    
     func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
         
         LogManager.logManager.log("handling new flow in FlowManager", level: .debug, functionName: #function)
@@ -23,25 +27,27 @@ public class FlowManager {
         
         let path: String = pathForProcess(with: pid)
         
+        LogManager.logManager.log("New flow URL: \(url)")
+        LogManager.logManager.log("New flow path: \(path)")
+        
         if path != "unknown" {
-            let appRules = rulesManager.getRules(byApp: path);
+            let appRules = rulesManager.getRulesByApp(appPath: path);
             
             for rule in appRules {
-                for endpoint in rule.endpoints {
-                    if url.contains(endpoint) {
-                        if rule.action == "block" {
-                            LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint,mode: Consts.modePassive, url: url, verdict: Consts.verdictBlock, process: path, ruleID: rule.ruleID)
-                            return .drop()
-                        } else {
-                            LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: rule.ruleID)
-                            return .allow()
-                        }
+                LogManager.logManager.log(rule.description())
+                if url.contains(rule.domain) {
+                    if rule.action == "block" {
+                        LogManager.logManager.log("blocking flow: \(url)")
+                        return .drop()
+                    } else {
+                        LogManager.logManager.log("allowing flow: \(url)")
+                        return .allow()
                     }
                 }
             }
         }
-
-        LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: Consts.NoneString)
+        
+        LogManager.logManager.log("passive allowing flow: \(url)")
         return NEFilterNewFlowVerdict.allow();
     }
     

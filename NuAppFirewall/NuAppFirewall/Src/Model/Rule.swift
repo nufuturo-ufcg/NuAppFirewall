@@ -13,19 +13,19 @@ class Rule: Equatable {
     var ruleID: String
     var action: String
     var appLocation: String
-    var endpoints: Set<String>
-    var direction: String
+    var endpoint: String
+    var domain: String
 
-    init?(ruleID: String, action: String, appLocation: String, endpoints: Set<String>, direction: String) {
-        guard !endpoints.isEmpty else {
+    init?(ruleID: String, action: String, appLocation: String, endpoint: String, domain: String) {
+        guard !endpoint.isEmpty else {
             return nil
         }
 
         self.ruleID = ruleID
         self.action = action
         self.appLocation = appLocation
-        self.endpoints = endpoints
-        self.direction = direction
+        self.endpoint = endpoint
+        self.domain = domain
     }
 
     func description() -> String {
@@ -33,8 +33,8 @@ class Rule: Equatable {
         ruleID: \(ruleID)
         Action: \(action)
         Application Location: \(appLocation)
-        Destinations: \(endpoints.sorted().joined(separator: ", "))
-        Direction: \(direction)
+        Endpoint: \(endpoint)
+        Domain: \(domain)
         """
     }
 
@@ -43,7 +43,7 @@ class Rule: Equatable {
         return lhs.ruleID == rhs.ruleID &&
                lhs.action == rhs.action &&
                lhs.appLocation == rhs.appLocation &&
-               lhs.endpoints == rhs.endpoints &&
-               lhs.direction == rhs.direction
+               lhs.endpoint == rhs.endpoint &&
+               lhs.domain == rhs.domain
     }
 }
