@@ -15,29 +15,51 @@ enum FileType {
 }
 
 class DataConverter {
-    func readData(from fileName: String, ofType type: FileType) -> [String: Any]? {
+    func readData(from fileName: String, ofType type: FileType) -> [String: Any]?
+    {
         
-        guard let path = Bundle(for: DataConverter.self).path(forResource: fileName, ofType: type == .plist ? "plist" : "json") else {
-                    return nil
-        }
+        let fileManager = FileManager.default
         
-        guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
+        guard let containerURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: "27XB45N6Y5.com.nufuturo.nuappfirewall") else{
+            LogManager.logManager.log("Unable to find container URL")
             return nil
         }
         
-        do {
-            switch type {
+        let filePath: URL
+        switch type {
+        case .plist:
+            filePath = containerURL.appendingPathComponent("\(fileName).plist")
+        case .json:
+            filePath = containerURL.appendingPathComponent("\(fileName).json")
+        }
+        
+        LogManager.logManager.log("Accessing file from path: \(filePath.path)")
+        
+        guard fileManager.fileExists(atPath: filePath.path) else {
+            LogManager.logManager.log("File does not exist at path: \(filePath.path)")
+            return nil
+        }
+        
+        guard let data = try? Data(contentsOf: filePath) else {
+            LogManager.logManager.log("Error reading data from file: \(filePath.path)")
+            return nil
+        }
+        
+        do{
+            switch type{
             case .plist:
-                if let dictionary = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any] {
+                if let dictionary = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any]{
+                    LogManager.logManager.log("Data loaded from PLIST: \(dictionary)")
                     return dictionary
                 }
             case .json:
-                if let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                if let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]{
+                    LogManager.logManager.log("Data loaded from JSON: \(dictionary)")
                     return dictionary
                 }
             }
         } catch {
-            print("Error reading \(type == .plist ? "plist" : "JSON"): \(error)")
+            LogManager.logManager.log("Error reading file: \(error)")
         }
         
         return nil
