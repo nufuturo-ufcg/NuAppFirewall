@@ -37,17 +37,17 @@ public class FlowManager {
                 LogManager.logManager.log(rule.description())
                 if url.contains(rule.domain) {
                     if rule.action == "block" {
-                        LogManager.logManager.log("blocking flow: \(url)")
+                        LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint,mode: Consts.modePassive, url: url, verdict: Consts.verdictBlock, process: path, ruleID: rule.ruleID)
                         return .drop()
                     } else {
-                        LogManager.logManager.log("allowing flow: \(url)")
+                        LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: rule.ruleID)
                         return .allow()
                     }
                 }
             }
         }
         
-        LogManager.logManager.log("passive allowing flow: \(url)")
+        LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: Consts.NoneString)
         return NEFilterNewFlowVerdict.allow();
     }
     
