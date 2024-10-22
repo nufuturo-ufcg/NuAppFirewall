@@ -10,8 +10,6 @@
 		5705508F2CB4733A008252E2 /* RulesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7402C9278B000DE8FEE /* RulesManager.swift */; };
 		570550902CB4734C008252E2 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CE22C938947000B09F1 /* Rule.swift */; };
 		570550912CB47352008252E2 /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570550422CB47199008252E2 /* DataConverter.swift */; };
-		570550942CB4739F008252E2 /* NuAppFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570550922CB4739F008252E2 /* NuAppFacade.swift */; };
-		570550972CB47407008252E2 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570550962CB47407008252E2 /* FlowManager.swift */; };
 		570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CD4562C98BCA1001257CC /* AppDelegate.swift */; };
 		570F09D02CB7FB55002B7996 /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CEF2C938AC9000B09F1 /* SampleData.plist */; };
 		570F09D12CB7FBF0002B7996 /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 57875CE62C93898A000B09F1 /* SampleData.json */; };
@@ -26,10 +24,14 @@
 		57875CEE2C9389EB000B09F1 /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57875CED2C9389EB000B09F1 /* RuleTests.swift */; };
 		57875CF02C938AC9000B09F1 /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CEF2C938AC9000B09F1 /* SampleData.plist */; };
 		57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */; };
+		57C3AE932CC69D3500502DD7 /* NuAppFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C3AE922CC69D3500502DD7 /* NuAppFacade.swift */; };
+		57C3AE942CC69D3500502DD7 /* NuAppFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C3AE922CC69D3500502DD7 /* NuAppFacade.swift */; };
+		57C3AE9F2CC69DD400502DD7 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C3AE9D2CC69DD400502DD7 /* FlowManager.swift */; };
+		57C3AEA02CC69DD400502DD7 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C3AE9D2CC69DD400502DD7 /* FlowManager.swift */; };
+		57C3AEA52CC7D7BF00502DD7 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C3AEA42CC7D7BF00502DD7 /* Consts.swift */; };
+		57C3AEA62CC7D7BF00502DD7 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C3AEA42CC7D7BF00502DD7 /* Consts.swift */; };
 		57CB584E2CA32D4E004D4D8D /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584D2CA32D4E004D4D8D /* LogManager.swift */; };
-		57CB58502CA33634004D4D8D /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584F2CA33634004D4D8D /* LogEntry.swift */; };
 		57CB58512CA33DD5004D4D8D /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584D2CA32D4E004D4D8D /* LogManager.swift */; };
-		57CB58522CA359D8004D4D8D /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584F2CA33634004D4D8D /* LogEntry.swift */; };
 		57E812F42C93395000FF61DE /* FilterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E812F32C93395000FF61DE /* FilterDataProvider.swift */; };
 		57E812F62C93395000FF61DE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E812F52C93395000FF61DE /* main.swift */; };
 		57E812FB2C93395100FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 57E812F02C93395000FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -115,8 +117,6 @@
 
 /* Begin PBXFileReference section */
 		570550422CB47199008252E2 /* DataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverter.swift; sourceTree = "<group>"; };
-		570550922CB4739F008252E2 /* NuAppFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuAppFacade.swift; sourceTree = "<group>"; };
-		570550962CB47407008252E2 /* FlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManager.swift; sourceTree = "<group>"; };
 		5709B35E2C928F0500931F26 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		570CD4562C98BCA1001257CC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Controller/AppDelegate.swift; sourceTree = "<group>"; };
 		57484BC72C927E4300A6689D /* NuAppFirewallDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewallDebug.entitlements; sourceTree = "<group>"; };
@@ -132,8 +132,10 @@
 		57AFE7162C92752100DE8FEE /* NuAppFirewallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NuAppFirewallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AFE7402C9278B000DE8FEE /* RulesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesManager.swift; sourceTree = "<group>"; };
 		57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesManagerTests.swift; sourceTree = "<group>"; };
+		57C3AE922CC69D3500502DD7 /* NuAppFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NuAppFacade.swift; path = Controller/NuAppFacade.swift; sourceTree = "<group>"; };
+		57C3AE9D2CC69DD400502DD7 /* FlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlowManager.swift; path = Controller/FlowManager.swift; sourceTree = "<group>"; };
+		57C3AEA42CC7D7BF00502DD7 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		57CB584D2CA32D4E004D4D8D /* LogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
-		57CB584F2CA33634004D4D8D /* LogEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEntry.swift; sourceTree = "<group>"; };
 		57E812F02C93395000FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension */ = {isa = PBXFileReference; explicitFileType = "wrapper.system-extension"; includeInIndex = 0; path = com.nufuturo.nuappfirewall.extension.systemextension; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E812F32C93395000FF61DE /* FilterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDataProvider.swift; sourceTree = "<group>"; };
 		57E812F52C93395000FF61DE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -239,8 +241,7 @@
 		57AFE7392C92780F00DE8FEE /* Src */ = {
 			isa = PBXGroup;
 			children = (
-				570550962CB47407008252E2 /* FlowManager.swift */,
-				570550922CB4739F008252E2 /* NuAppFacade.swift */,
+				57C3AEA32CC7D79D00502DD7 /* Consts */,
 				57CB584C2CA32B38004D4D8D /* Logging */,
 				570550432CB47199008252E2 /* Utils */,
 				57AFE73C2C92783D00DE8FEE /* Model */,
@@ -255,6 +256,8 @@
 			children = (
 				570CD4562C98BCA1001257CC /* AppDelegate.swift */,
 				57875CE42C938966000B09F1 /* ExtensionManager.swift */,
+				57C3AE922CC69D3500502DD7 /* NuAppFacade.swift */,
+				57C3AE9D2CC69DD400502DD7 /* FlowManager.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -299,11 +302,18 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		57C3AEA32CC7D79D00502DD7 /* Consts */ = {
+			isa = PBXGroup;
+			children = (
+				57C3AEA42CC7D7BF00502DD7 /* Consts.swift */,
+			);
+			path = Consts;
+			sourceTree = "<group>";
+		};
 		57CB584C2CA32B38004D4D8D /* Logging */ = {
 			isa = PBXGroup;
 			children = (
 				57CB584D2CA32D4E004D4D8D /* LogManager.swift */,
-				57CB584F2CA33634004D4D8D /* LogEntry.swift */,
 			);
 			path = Logging;
 			sourceTree = "<group>";
@@ -460,7 +470,6 @@
 			files = (
 				57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */,
 				57CB584E2CA32D4E004D4D8D /* LogManager.swift in Sources */,
-				57CB58502CA33634004D4D8D /* LogEntry.swift in Sources */,
 				570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +484,9 @@
 				57875CEC2C9389DE000B09F1 /* DataConverterTests.swift in Sources */,
 				57875CEE2C9389EB000B09F1 /* RuleTests.swift in Sources */,
 				57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */,
+				57C3AE942CC69D3500502DD7 /* NuAppFacade.swift in Sources */,
+				57C3AEA52CC7D7BF00502DD7 /* Consts.swift in Sources */,
+				57C3AE9F2CC69DD400502DD7 /* FlowManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,12 +497,12 @@
 				57CB58512CA33DD5004D4D8D /* LogManager.swift in Sources */,
 				570550912CB47352008252E2 /* DataConverter.swift in Sources */,
 				5705508F2CB4733A008252E2 /* RulesManager.swift in Sources */,
-				57CB58522CA359D8004D4D8D /* LogEntry.swift in Sources */,
-				570550942CB4739F008252E2 /* NuAppFacade.swift in Sources */,
 				570550902CB4734C008252E2 /* Rule.swift in Sources */,
+				57C3AE932CC69D3500502DD7 /* NuAppFacade.swift in Sources */,
 				57E812F62C93395000FF61DE /* main.swift in Sources */,
-				570550972CB47407008252E2 /* FlowManager.swift in Sources */,
 				57E812F42C93395000FF61DE /* FilterDataProvider.swift in Sources */,
+				57C3AEA62CC7D7BF00502DD7 /* Consts.swift in Sources */,
+				57C3AEA02CC69DD400502DD7 /* FlowManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
