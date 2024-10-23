@@ -8,8 +8,6 @@
 		<array>
 			<string>content-filter-provider</string>
 		</array>
-		<key>com.apple.security.app-sandbox</key>
-		<true/>
 		<key>com.apple.security.application-groups</key>
 		<array>
 			<string>$(TeamIdentifierPrefix)com.nufuturo.nuappfirewall</string>
