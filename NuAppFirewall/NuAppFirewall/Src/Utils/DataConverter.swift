@@ -18,14 +18,13 @@ class DataConverter {
     func readData(from fileName: String, ofType type: FileType) -> [String: Any]?
     {
         
-        let fileManager = FileManager.default
-        
-        guard let containerURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: "27XB45N6Y5.com.nufuturo.nuappfirewall") else{
+        guard let containerURL = Consts.filePath else {
             LogManager.logManager.log("Unable to find container URL")
             return nil
         }
+
+        var filePath: URL
         
-        let filePath: URL
         switch type {
         case .plist:
             filePath = containerURL.appendingPathComponent("\(fileName).plist")
@@ -34,12 +33,7 @@ class DataConverter {
         }
         
         LogManager.logManager.log("Accessing file from path: \(filePath.path)")
-        
-        guard fileManager.fileExists(atPath: filePath.path) else {
-            LogManager.logManager.log("File does not exist at path: \(filePath.path)")
-            return nil
-        }
-        
+
         guard let data = try? Data(contentsOf: filePath) else {
             LogManager.logManager.log("Error reading data from file: \(filePath.path)")
             return nil
