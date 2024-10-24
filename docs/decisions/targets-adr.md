@@ -6,6 +6,7 @@ O NuAppFirewall está dividido em dois diretórios principais: Extension e NuApp
 ## Decisão
 Os arquivos não necessariamente pertencem ao target de mesmo nome do diretório principal em que se encontram. Mais especificamente, apenas os arquivos AppDelegate.swift e ExtensionManager.swift são pertencentes ao target NuAppFirewall, e funcionam como o inicializador da aplicação, enquanto que todos os outros arquivos pertencem ao target Extension, e são responsáveis pelo fluxo da aplicação propriamente dita.
 A estrutura do código atualmente é:
+
 ![arvore de diretórios](../images/directory_tree.png)
 
 
