@@ -9,6 +9,9 @@ A estrutura do código atualmente é:
 ![arvore de diretórios](../images/directory_tree.png)
 
 
+Na figura acima, os arquivos em azul pertencem ao target NuAppFirewall, e os que estão em preto pertencem ao target Extension.
+
+
 ## Alternativas consideradas
 Foi considerado a geração de um terceiro target, de forma que todos os novos arquivos dentro do diretório NuAppFirewall pertenceriam a ele.  
 Entretanto, isso ocasionaria em mais complexidade e na necessidade de criar mais um perfil com os entitlements adequados no Apple Developer, quando os existentes já solucionariam o problema.
