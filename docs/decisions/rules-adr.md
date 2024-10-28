@@ -1,12 +1,12 @@
 # Definição da Estrutura de uma Regra
 
 ## Contexto
-O NuAppFirewall como um content filter, naturalmente, necessita de uma forma padronizada para determinar o que bloquear e o que permitir, para isso há uma estrutura de dados criada no projeto denominada Rule, sendo uma abstração atômica que define critérios para essas ações supracitadas. 
+O NuAppFirewall como um content filter, naturalmente, necessita de uma forma padronizada para determinar o que bloquear e o que permitir. Este documento descreve nossas decisões em relação à estrutura de uma regra dentro do contexto da nossa aplicação.
 
-Assim, essas regras combinadas permitem uma decisão em tempo real sobre o tráfego de rede na máquina local, possibilitando segurança e flexibilidade para definição de políticas específicas sobre o fluxo de informação com a Internet de um computador usuario dessa extensão.
+Importante destacar que essa decisão está em constante revisão porque nossa ideia é partir de uma regra simples e ir aumentando a complexidade aos poucos. Essa decisão foi tomada para acelerar o processo de implantação de um MVP. 
 
 ## Decisão
-A decisão foi de definir uma regra com a seguinte estrutura: 
+Uma regra (entidade `Rule` no código) tem a seguinte estrutura: 
 
 * ID da regra 
 * O path da aplicação referida
@@ -15,6 +15,7 @@ A decisão foi de definir uma regra com a seguinte estrutura:
 * O domínio do endpoint respectivo definido na regra
 
 Também foi definido o ID da regra seguindo uma estrutura específica que por si só contém boa parte das informações acerca da regra, tendo sua estrutura sintática da seguinte forma:
+
 **aplicação-ação-domínio**
 
 Sendo cada uma dessas informações também presente na estrutura de dado da regra como um atributo, assim, só com o ID da regra é possível obter todas as informações acerca da regra e como ela deve ser implementada na lógica do filtro de conteúdo.
