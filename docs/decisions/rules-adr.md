@@ -35,6 +35,5 @@ Sendo cada uma dessas informações também presente na estrutura de dado da reg
 
 ### Negativas
 
-* O número de regras aumenta já que o sistema antigo havia apenas uma regra dado o conjunto de uma aplicação e ação aplicada nessa aplicação.
 * Há um aumento de informação repetitiva dentre as regras em que, por exemplo, normalmente há uma multiplicidade de regras allow de uma mesma aplicação.
 
