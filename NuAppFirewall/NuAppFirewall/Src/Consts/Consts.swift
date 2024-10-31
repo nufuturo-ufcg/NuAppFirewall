@@ -22,7 +22,9 @@ struct Consts {
             return nil
         }
         
-        return containerURL
+        let appSupportURL = containerURL.appendingPathComponent("Library/Application Support")
+            
+        return appSupportURL
     }()
 }
 

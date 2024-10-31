@@ -142,6 +142,7 @@
 		57E812FF2C93396100FF61DE /* ExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExtensionDebug.entitlements; sourceTree = "<group>"; };
 		57E813002C933A1B00FF61DE /* extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = extension.entitlements; sourceTree = "<group>"; };
 		57E813032C933B2600FF61DE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5FEC8B52CD3B4A6003DDBE2 /* NuAppFirewall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewall.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +211,7 @@
 		57AFE7062C92751F00DE8FEE /* NuAppFirewall */ = {
 			isa = PBXGroup;
 			children = (
+				E5FEC8B52CD3B4A6003DDBE2 /* NuAppFirewall.entitlements */,
 				57484BC72C927E4300A6689D /* NuAppFirewallDebug.entitlements */,
 				57AFE7392C92780F00DE8FEE /* Src */,
 				57AFE7332C92764900DE8FEE /* Resources */,
@@ -685,6 +687,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NuAppFirewall/NuAppFirewall.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NuAppFirewall/Preview Content\"";
