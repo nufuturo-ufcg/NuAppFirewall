@@ -33,7 +33,12 @@ class DataConverter {
         }
         
         LogManager.logManager.log("Accessing file from path: \(filePath.path)")
-
+        
+        guard FileManager.default.isReadableFile(atPath: filePath.path) else {
+            LogManager.logManager.log("File not accessible or does not exist: \(filePath.path)")
+            return nil
+        }
+        
         guard let data = try? Data(contentsOf: filePath) else {
             LogManager.logManager.log("Error reading data from file: \(filePath.path)")
             return nil
