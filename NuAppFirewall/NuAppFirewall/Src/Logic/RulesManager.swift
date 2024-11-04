@@ -14,8 +14,7 @@ enum RulesManagerError: Error {
 }
 
 class RulesManager {
-    private var rules: [String: Rule] = [:]
-    var rulesByApp: [String: [Rule]] = [:]
+    private var rules: [String: [String: Rule]] = [:]
     
     let dataConverter = DataConverter()
     
@@ -27,9 +26,8 @@ class RulesManager {
         
         LogManager.logManager.log("Read JSON data: \(dictionary)")
         
-        // limpa os dicionarios para evitar duplicacao
+        // limpa o dicionario para evitar duplicacao
         rules.removeAll()
-        rulesByApp.removeAll()
         
         for (appLocation, rulesArray) in dictionary {
             
@@ -65,37 +63,11 @@ class RulesManager {
             throw RulesManagerError.invalidRule
         }
         
-        if rules[rule.ruleID] == nil {
-            // adiciona ao dicionario principal
-            rules[rule.ruleID] = rule
-            
-            // adiciona ao dicionario por app path
-            rulesByApp[rule.appLocation, default: []].append(rule)
-        }
+        rules[rule.appLocation, default: [:]][rule.endpoint] = rule
     }
     
-    func removeRule(byID ruleID: String) -> Rule? {
-        guard let rule = rules.removeValue(forKey: ruleID) else {
-            return nil
-        }
-        
-        if var appRules = rulesByApp[rule.appLocation] {
-            appRules.removeAll { $0.ruleID == ruleID }
-            if appRules.isEmpty {
-                rulesByApp.removeValue(forKey: rule.appLocation)
-            } else {
-                rulesByApp[rule.appLocation] = appRules
-            }
-        }
-        
-        return rule
+    func getRule(appPath: String, endpoint: String) -> Rule? {
+        return rules[appPath]?[endpoint]
     }
     
-    func getRule(byID ruleID: String) -> Rule? {
-        return rules[ruleID]
-    }
-    
-    func getRulesByApp(appPath: String) -> [Rule] {
-        return rulesByApp[appPath] ?? []
-    }
 }

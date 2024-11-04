@@ -2,15 +2,21 @@
 APP_NAME = NuAppFirewall
 APP_DIR = /Applications
 PROJECT_DIR = ./NuAppFirewall
-BUILD_DIR = /Users/ec2-user/Library/Developer/Xcode/DerivedData/$(APP_NAME)-*/Build/Products/Debug
+BUILD_DIR = ~/Library/Developer/Xcode/DerivedData/$(APP_NAME)-*/Build/Products/Debug
 SYSTEM_TEST_DIR = ./NuAppFirewall/NuAppFirewallTests/SystemTests
 SYSTEM_TEST_FILE = SystemTest.swift
 TEST_RULES_FILE = controlled-rules.json
 
-.PHONY: all clean build install removeApp run help test systemTests
+.PHONY: all clean build install removeApp run help test systemTests setup-xcode
 
 # Define a regra padrão
 all: run
+
+# Faz a configuração inicial do xcode
+setup-xcode:
+	@sudo xcode-select --switch /Applications/Xcode.app
+	@sudo xcodebuild -license
+	@xcodebuild -runFirstLaunch
 
 # Roda os testes do sistema
 systemTest:
@@ -47,6 +53,7 @@ run: removeApp clean build install activate
 help:
 	@echo "Available commands:"
 	@echo "  all          - Cleans, builds, installs, and activates the app (default)"
+	@echo "  setup-xcode  - Configures Xcode environment, displays license, and runs initial setup"
 	@echo "  test         - Runs project tests"
 	@echo "  systemTest   - Runs system tests using SystemTest.swift with the rules from controlled-rules.json"
 	@echo "  clean        - Cleans the project build"
