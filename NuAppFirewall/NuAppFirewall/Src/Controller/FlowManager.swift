@@ -21,37 +21,33 @@ public class FlowManager {
         
         LogManager.logManager.log("handling new flow in FlowManager", level: .debug, functionName: #function)
         
-        let (flowID, endpoint, url, auditToken) = extractFlowInfo(from: flow)
+        let (flowID, endpoint, url, subdomain, auditToken) = extractFlowInfo(from: flow)
         
         let pid = pidFromAuditToken(auditToken)
         
-        let path: String = pathForProcess(with: pid)
+        let path = pathForProcess(with: pid)
         
+        LogManager.logManager.log("New flow SUBDOMAIN: \(subdomain)")
         LogManager.logManager.log("New flow URL: \(url)")
-        LogManager.logManager.log("New flow path: \(path)")
+        LogManager.logManager.log("New flow PATH: \(path)")
         
-        if path != "unknown" {
-            let appRules = rulesManager.getRulesByApp(appPath: path);
+        if let rule = rulesManager.getRule(appPath: path, endpoint: subdomain) {
+            LogManager.logManager.log(rule.description())
             
-            for rule in appRules {
-                LogManager.logManager.log(rule.description())
-                if url.contains(rule.domain) {
-                    if rule.action == "block" {
-                        LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint,mode: Consts.modePassive, url: url, verdict: Consts.verdictBlock, process: path, ruleID: rule.ruleID)
-                        return .drop()
-                    } else {
-                        LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: rule.ruleID)
-                        return .allow()
-                    }
-                }
-            }
+            let verdict: NEFilterNewFlowVerdict = rule.action == "block" ? .drop() : .allow()
+            
+            let actionVerdict = rule.action == "block" ? Consts.verdictBlock : Consts.verdictAllow
+            
+            LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint,mode: Consts.modePassive, url: url, verdict: actionVerdict, process: path, ruleID: rule.ruleID)
+            
+            return verdict
+        } else {
+            LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: Consts.NoneString)
+            return NEFilterNewFlowVerdict.allow();
         }
-        
-        LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: Consts.NoneString)
-        return NEFilterNewFlowVerdict.allow();
     }
     
-    private func extractFlowInfo(from flow: NEFilterFlow) -> (UUID, String, String, audit_token_t) {
+    private func extractFlowInfo(from flow: NEFilterFlow) -> (UUID, String, String, String, audit_token_t) {
         LogManager.logManager.log("extracting log info", level: .debug, functionName: #function)
         
         let flowID = flow.identifier
@@ -72,8 +68,9 @@ public class FlowManager {
         }
         
         let url = flow.url?.absoluteString ?? "unknown"
+        let subdomain = flow.url?.host(percentEncoded: true) ?? "unknown"
         
-        return (flowID, endpoint, url, auditToken)
+        return (flowID, endpoint, url, subdomain, auditToken)
     }
     
     func pidFromAuditToken(_ auditToken: audit_token_t) -> pid_t {
