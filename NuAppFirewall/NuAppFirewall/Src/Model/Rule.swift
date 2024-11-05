@@ -14,9 +14,10 @@ class Rule: Equatable {
     var action: String
     var appLocation: String
     var endpoint: String
-    var domain: String
+    var port: String
+    var destination: String
 
-    init?(ruleID: String, action: String, appLocation: String, endpoint: String, domain: String) {
+    init?(ruleID: String, action: String, appLocation: String, endpoint: String, port: String) {
         guard !endpoint.isEmpty else {
             return nil
         }
@@ -25,7 +26,8 @@ class Rule: Equatable {
         self.action = action
         self.appLocation = appLocation
         self.endpoint = endpoint
-        self.domain = domain
+        self.port = port
+        self.destination = "\(endpoint):\(port)"
     }
 
     func description() -> String {
@@ -34,7 +36,8 @@ class Rule: Equatable {
         Action: \(action)
         Application Location: \(appLocation)
         Endpoint: \(endpoint)
-        Domain: \(domain)
+        Destination: \(destination)
+        Port: \(port)
         """
     }
 
@@ -44,6 +47,7 @@ class Rule: Equatable {
                lhs.action == rhs.action &&
                lhs.appLocation == rhs.appLocation &&
                lhs.endpoint == rhs.endpoint &&
-               lhs.domain == rhs.domain
+               lhs.destination == rhs.destination &&
+               lhs.port == rhs.port
     }
 }
