@@ -37,21 +37,21 @@ class RulesManager {
             
             for ruleData in rulesArray {
                 guard let action = ruleData["action"] as? String,
-                      let endpoints = ruleData["endpoints"] as? [String],
-                      let domains = ruleData["domains"] as? [String] else {
+                      let endpoint = ruleData["endpoint"] as? String,
+                      let path = ruleData["path"] as? String,
+                      let port = ruleData["port"] as? String else {
                     continue
                 }
                 
-                for (index, endpoint) in endpoints.enumerated() {
-                    let domain = index < domains.count ? domains[index] : domains.last!
-                    let ruleID = "\(appLocation)-\(endpoint)-\(domain)"
-                    if let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: endpoint, domain: domain) {
-                        do {
-                            try addRule(rule)
-                            LogManager.logManager.log("Added rule with ID: \(ruleID)")
-                        } catch {
-                            LogManager.logManager.log("Failed to add rule with ID: \(ruleID)")
-                        }
+                let destination = "\(endpoint):\(port)"
+                let ruleID = "\(path)-\(destination)"
+                
+                if let rule = Rule(ruleID: ruleID, action: action, appLocation: path, endpoint: endpoint, port: port) {
+                    do {
+                        try addRule(rule)
+                        LogManager.logManager.log("Added rule with ID: \(ruleID)")
+                    } catch {
+                        LogManager.logManager.log("Failed to add rule with ID: \(ruleID)")
                     }
                 }
             }
@@ -63,11 +63,25 @@ class RulesManager {
             throw RulesManagerError.invalidRule
         }
         
-        rules[rule.appLocation, default: [:]][rule.endpoint] = rule
+        let destination = "\(rule.endpoint):\(rule.port)"
+        rules[rule.appLocation, default: [:]][destination] = rule
     }
     
-    func getRule(appPath: String, endpoint: String) -> Rule? {
-        return rules[appPath]?[endpoint]
+    func getRule(appPath: String, endpoint: String, port: String) -> Rule? {
+        if let generalRule = rules[appPath]?["\(Consts.any):\(Consts.any)"], generalRule.action == Consts.verdictBlock {
+            return generalRule
+        }
+        
+        let genericEndpointKey = "\(endpoint):\(Consts.any)"
+        if let genereicEndpointRule = rules[appPath]?[genericEndpointKey] {
+            return genereicEndpointRule
+        }
+        
+        let endpointKey = "\(endpoint):\(port)"
+        if let endpointRule = rules[appPath]?[endpointKey] {
+            return endpointRule
+        }
+        
+        return nil
     }
-    
 }
