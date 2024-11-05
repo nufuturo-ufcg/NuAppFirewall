@@ -30,7 +30,6 @@ class RulesManager {
         rules.removeAll()
         
         for (appLocation, rulesArray) in dictionary {
-            
             guard let rulesArray = rulesArray as? [[String: Any]] else {
                 continue
             }
@@ -67,20 +66,46 @@ class RulesManager {
         rules[rule.appLocation, default: [:]][destination] = rule
     }
     
-    func getRule(appPath: String, endpoint: String, port: String) -> Rule? {
+    func getRule(appPath: String, url: String, host: String, ip: String, port: String) -> Rule? {
         if let generalRule = rules[appPath]?["\(Consts.any):\(Consts.any)"], generalRule.action == Consts.verdictBlock {
             return generalRule
         }
         
-        let genericEndpointKey = "\(endpoint):\(Consts.any)"
-        if let genereicEndpointRule = rules[appPath]?[genericEndpointKey] {
-            return genereicEndpointRule
-        }
+        if let rule = getRuleByIp(appPath, ip, port) { return rule}
         
-        let endpointKey = "\(endpoint):\(port)"
-        if let endpointRule = rules[appPath]?[endpointKey] {
-            return endpointRule
-        }
+        if let rule = getRuleByUrl(appPath, url, port) { return rule}
+        
+        if let rule = getRuleByHost(appPath, host, port) { return rule}
+        
+        return nil
+    }
+    
+    private func getRuleByUrl(_ appPath: String, _ url: String, _ port: String) -> Rule? {
+        let genericUrlKey = "\(url):\(Consts.any)"
+        if let genericUrlRule = rules[appPath]?[genericUrlKey] { return genericUrlRule}
+        
+        let especificUrlKey = "\(url):\(port)"
+        if let especificUrlRule = rules[appPath]?[especificUrlKey] { return especificUrlRule}
+        
+        return nil
+    }
+    
+    private func getRuleByHost(_ appPath: String, _ host: String, _ port: String) -> Rule? {
+        let genericHostKey = "\(host):\(Consts.any)"
+        if let genericHostRule = rules[appPath]?[genericHostKey] { return genericHostRule}
+        
+        let especificHostKey = "\(host):\(port)"
+        if let especificHostRule = rules[appPath]?[especificHostKey] { return especificHostRule}
+        
+        return nil
+    }
+    
+    private func getRuleByIp(_ appPath: String, _ ip: String, _ port: String) -> Rule? {
+        let genericIpKey = "\(ip):\(Consts.any)"
+        if let genericIpRule = rules[appPath]?[genericIpKey] { return genericIpRule}
+        
+        let especificIpKey = "\(ip):\(port)"
+        if let especificIpRule = rules[appPath]?[especificIpKey] { return especificIpRule}
         
         return nil
     }
