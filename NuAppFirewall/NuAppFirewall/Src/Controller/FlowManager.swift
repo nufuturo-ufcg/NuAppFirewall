@@ -14,7 +14,7 @@ public class FlowManager {
     let rulesManager = RulesManager();
     
     init(){
-        rulesManager.loadRules(fileName: "test-rules", fileType: .json)
+        rulesManager.loadRules(fileName: "rules", fileType: .json)
     }
     
     func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {

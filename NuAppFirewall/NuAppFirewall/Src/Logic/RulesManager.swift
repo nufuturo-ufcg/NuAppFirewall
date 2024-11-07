@@ -29,32 +29,52 @@ class RulesManager {
         // limpa o dicionario para evitar duplicacao
         rules.removeAll()
         
-        for (appLocation, rulesArray) in dictionary {
+        for (path, rulesArray) in dictionary {
             guard let rulesArray = rulesArray as? [[String: Any]] else {
                 continue
             }
             
             for ruleData in rulesArray {
                 guard let action = ruleData["action"] as? String,
-                      let endpoint = ruleData["endpoint"] as? String,
-                      let path = ruleData["path"] as? String,
-                      let port = ruleData["port"] as? String else {
+                      let destinations = ruleData["destinations"] as? [[String]] else {
                     continue
                 }
                 
-                let destination = "\(endpoint):\(port)"
-                let ruleID = "\(path)-\(destination)"
-                
-                if let rule = Rule(ruleID: ruleID, action: action, appLocation: path, endpoint: endpoint, port: port) {
-                    do {
-                        try addRule(rule)
-                        LogManager.logManager.log("Added rule with ID: \(ruleID)")
-                    } catch {
-                        LogManager.logManager.log("Failed to add rule with ID: \(ruleID)")
+                for destination in destinations {
+                    let endpoint = destination[0]
+                    let port = destination[1]
+                    let destination = "\(endpoint):\(port)"
+                    let ruleID = "\(path)-\(action)-\(destination)"
+                    
+                    if let rule = Rule(ruleID: ruleID, action: action, appLocation: path, endpoint: endpoint, port: port) {
+                        do {
+                            try addRule(rule)
+                            LogManager.logManager.log("Added rule with ID: \(ruleID)")
+                        } catch {
+                            LogManager.logManager.log("Failed to add rule with ID: \(ruleID)")
+                        }
                     }
                 }
             }
         }
+    }
+    
+    func removeRule(appPath: String, destination: String) -> Rule? {
+        guard var appRules = rules[appPath] else {
+            return nil
+        }
+
+        guard let removedRule = appRules.removeValue(forKey: destination) else {
+            return nil
+        }
+
+        if appRules.isEmpty {
+            rules.removeValue(forKey: appPath)
+        } else {
+            rules[appPath] = appRules
+        }
+
+        return removedRule
     }
     
     func addRule(_ rule: Rule?) throws {
