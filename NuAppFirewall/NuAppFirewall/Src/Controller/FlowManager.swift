@@ -77,7 +77,6 @@ public class FlowManager {
     }
     
     func pathForProcess(with pid: pid_t) -> String {
-        
         let bufferSize = Int(MAXPATHLEN)
         var buffer = [CChar](repeating: 0, count: bufferSize)
         let result = proc_pidpath(pid, &buffer, UInt32(bufferSize))
