@@ -1,25 +1,25 @@
-# Remoção do Sandbox da Aplicação
+# Utilização de Sandbox
 
 ## Contexto
-O NuAppFirewall requer o carregamento de regras de um arquivo JSON, armazenado localmente na máquina, para realizar a filtragem de tráfego de rede. Inicialmente, a aplicação estava configurada com o Sandbox habilitado para maior segurança e isolamento. No entanto, devido às restrições do Sandbox, houve dificuldades em acessar acessar o arquivo de regras. Para viabilizar o load das regras em nível de prova de conceito, foi necessário remover o Sandbox da aplicação.
+O NuAppFirewall é uma aplicação de segurança projetada para filtrar o fluxo de rede, atuando como um firewall. Devido ao caráter sensível de sua função, é importante que a aplicação opere com um alto nível de segurança. Por isso, decidimos isolar a aplicação em um ambiente Sandbox.
 
 ## Decisão
-A decisão foi remover o recurso de Sandbox da aplicação para permitir o acesso ao arquivo JSON, que contém as regras necessárias para a filtragem do fluxo de rede. Com essa mudança, a aplicação agora pode ler diretamente os arquivos armazenados fora dos diretórios restritos do Sandbox, o que permite a simplificação do processo de acesso das regras. 
+Foi decidido utilizar o Sandbox para que o NuAppFirewall execute seu código em um ambiente isolado e controlado. Esse isolamento protege o sistema operacional contra potenciais falhas ou vulnerabilidades do código, uma vez que, mesmo com práticas de codificação segura, aplicações ainda podem apresentar riscos à segurança dos usuários. O uso do Sandbox visa oferecer uma camada extra de proteção para os usuários.
 
-Essa decisão foi tomada com base na necessidade imediata de acesso ao arquivo de regras, para viabilizar o load das regras pelo Rules Manager. No futuro, precisamos rever essa decisão para reintroduzir o isolamento sem impactar o acesso aos arquivos de regras. Isso será considerado para melhorar a segurança.
+O NuAppFirewall necessita carregar regras a partir de um arquivo JSON armazenado localmente para realizar a filtragem do fluxo de rede. Para manter o isolamento da aplicação e, ao mesmo tempo, permitir o acesso ao arquivo de regras pelo *Network Extension*, o arquivo foi alocado em um diretório **Group Containers**. Esse espaço de armazenamento compartilhado permite que o app principal e suas extensões acessem dados armazenados localmente de forma segura e controlada, mesmo com o Sandbox habilitado. O path escolhido para o arquivo de regras foi:
+
+> /private/var/root/Library/Group Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application Support/arquivo-de-regras
 
 ## Alternativas consideradas
-* **Utilizar App Groups para compartilhar o arquivo de regras entre a aplicação e a extensão:** Essa alternativa não resolveu o problema de acesso ao arquivo de regras, por isso foi descartada. Mesmo com a configuração correta do App Group, o acesso ao arquivo foi negado pelo kernel.
-
-* **Migração do arquivo de regras para o container de Sandbox da aplicação:** Essa opção foi descartada porque a migração não estava funcionando corretamente e o kernel continuava negando o acesso ao arquivo.
+* **Não utilizar o Sandbox** Essa opção foi descartada, pois a ausência do Sandbox pode comprometer a segurança da aplicação e expor o usuário à vulnerabilidades.
 
 ## Consequências
 
 ### Positivas
 
-* Maior velocidade no desenvolvimento
-* Maior Flexibilidade e facilidade de acesso ao arquivo de regras
+* Aumento da segurança e do isolamento da aplicação
+* Conformidade com práticas de desenvolvimento seguro
 
 ### Negativas
 
-* Redução no nível de Segurança da aplicação
+* Aumento da complexidade no processo de desenvolvimento, devido ao isolamento do Sandbox
