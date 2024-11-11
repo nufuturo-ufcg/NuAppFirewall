@@ -24,17 +24,11 @@ public class FlowManager {
         let pid = pidFromAuditToken(auditToken)
         let path = pathForProcess(with: pid)
         
-        LogManager.logManager.log("New flow URL: \(url)")
-        LogManager.logManager.log("New flow HOST: \(host)")
-        LogManager.logManager.log("New flow PATH: \(path)")
-        LogManager.logManager.log("New flow PORT: \(port)")
-        
         if let rule = rulesManager.getRule(appPath: path, url: url, host: host, ip: endpoint, port: port) {
             let verdict: NEFilterNewFlowVerdict = rule.action == Consts.verdictBlock ? .drop() : .allow()
-            let actionVerdict = rule.action == Consts.verdictBlock ? Consts.verdictBlock : Consts.verdictAllow
             
             LogManager.logManager.log(rule.description())
-            LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, port: port, mode: Consts.modePassive, url: url, verdict: actionVerdict, process: path, ruleID: rule.ruleID)
+            LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, port: port, mode: Consts.modePassive, url: url, verdict: rule.action, process: path, ruleID: rule.ruleID)
             
             return verdict
         } else {
