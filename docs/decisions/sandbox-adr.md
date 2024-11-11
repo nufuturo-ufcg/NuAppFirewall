@@ -11,7 +11,7 @@ O NuAppFirewall necessita carregar regras a partir de um arquivo JSON armazenado
 > /private/var/root/Library/Group Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application Support/arquivo-de-regras
 
 ## Alternativas consideradas
-* **Não utilizar o Sandbox** Essa opção foi descartada, pois a ausência do Sandbox pode comprometer a segurança da aplicação e expor o usuário à vulnerabilidades.
+* **Não utilizar o Sandbox:** Essa opção foi descartada, pois a ausência do Sandbox pode comprometer a segurança da aplicação e expor o usuário à vulnerabilidades.
 
 ## Consequências
 
