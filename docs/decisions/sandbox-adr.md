@@ -22,4 +22,4 @@ O NuAppFirewall necessita carregar regras a partir de um arquivo JSON armazenado
 
 ### Negativas
 
-* Aumento da complexidade no processo de desenvolvimento, devido ao isolamento do Sandbox
+* Aumento da complexidade no processo de desenvolvimento, devido ao isolamento do Sandbox: Por exemplo, para que o NuAppFirewall possa ler o arquivo JSON de regras, é necessário movê-lo para um diretório do tipo *Group Containers*, pois o isolamento do Sandbox impede a leitura de arquivos em locais comuns do sistema. Isso gera uma complexidade adicional, que não estaria presente em um ambiente sem esse isolamento.
