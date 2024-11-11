@@ -14,54 +14,43 @@ public class FlowManager {
     let rulesManager = RulesManager();
     
     init(){
-        rulesManager.loadRules(fileName: "test-rules", fileType: .json)
+        rulesManager.loadRules(fileName: "rules", fileType: .json)
     }
     
     func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
-        
         LogManager.logManager.log("handling new flow in FlowManager", level: .debug, functionName: #function)
         
-        let (flowID, endpoint, url, auditToken) = extractFlowInfo(from: flow)
-        
+        let (flowID, endpoint, url, host, port, auditToken) = extractFlowInfo(from: flow)
         let pid = pidFromAuditToken(auditToken)
+        let path = pathForProcess(with: pid)
         
-        let path: String = pathForProcess(with: pid)
-        
-        LogManager.logManager.log("New flow URL: \(url)")
-        LogManager.logManager.log("New flow path: \(path)")
-        
-        if path != "unknown" {
-            let appRules = rulesManager.getRulesByApp(appPath: path);
+        if let rule = rulesManager.getRule(appPath: path, url: url, host: host, ip: endpoint, port: port) {
+            let verdict: NEFilterNewFlowVerdict = rule.action == Consts.verdictBlock ? .drop() : .allow()
             
-            for rule in appRules {
-                LogManager.logManager.log(rule.description())
-                if url.contains(rule.domain) {
-                    if rule.action == "block" {
-                        LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint,mode: Consts.modePassive, url: url, verdict: Consts.verdictBlock, process: path, ruleID: rule.ruleID)
-                        return .drop()
-                    } else {
-                        LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: rule.ruleID)
-                        return .allow()
-                    }
-                }
-            }
+            LogManager.logManager.log(rule.description())
+            LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, port: port, mode: Consts.modePassive, url: url, verdict: rule.action, process: path, ruleID: rule.ruleID)
+            
+            return verdict
+        } else {
+            LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, port: port, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: Consts.NoneString)
+            
+            return NEFilterNewFlowVerdict.allow();
         }
-        
-        LogManager.logManager.logNewFlow(category: Consts.categoryConnection, flowID: flowID, auditToken: auditToken, endpoint: endpoint, mode: Consts.modePassive, url: url, verdict: Consts.verdictAllow, process: path, ruleID: Consts.NoneString)
-        return NEFilterNewFlowVerdict.allow();
     }
     
-    private func extractFlowInfo(from flow: NEFilterFlow) -> (UUID, String, String, audit_token_t) {
+    private func extractFlowInfo(from flow: NEFilterFlow) -> (UUID, String, String, String, String, audit_token_t) {
         LogManager.logManager.log("extracting log info", level: .debug, functionName: #function)
         
         let flowID = flow.identifier
         
-        var endpoint = "unknown"
+        var endpoint = Consts.unknown
+        var port = Consts.unknown
         var auditToken = audit_token_t()
         
         if let socketFlow = flow as? NEFilterSocketFlow {
             if let remoteEndpoint = socketFlow.remoteEndpoint as? NWHostEndpoint {
                 endpoint = remoteEndpoint.hostname
+                port = remoteEndpoint.port
                 
                 if let data = socketFlow.sourceAppAuditToken {
                     auditToken = data.withUnsafeBytes { ptr -> audit_token_t in
@@ -71,9 +60,10 @@ public class FlowManager {
             }
         }
         
-        let url = flow.url?.absoluteString ?? "unknown"
+        let url = flow.url?.absoluteString ?? Consts.unknown
+        let host = flow.url?.host(percentEncoded: true) ?? Consts.unknown
         
-        return (flowID, endpoint, url, auditToken)
+        return (flowID, endpoint, url, host, port, auditToken)
     }
     
     func pidFromAuditToken(_ auditToken: audit_token_t) -> pid_t {
@@ -81,7 +71,6 @@ public class FlowManager {
     }
     
     func pathForProcess(with pid: pid_t) -> String {
-        
         let bufferSize = Int(MAXPATHLEN)
         var buffer = [CChar](repeating: 0, count: bufferSize)
         let result = proc_pidpath(pid, &buffer, UInt32(bufferSize))
@@ -89,7 +78,7 @@ public class FlowManager {
         if result > 0 {
             return String(cString: buffer)
         } else {
-            return "unknown"
+            return Consts.unknown
         }
     }
 }

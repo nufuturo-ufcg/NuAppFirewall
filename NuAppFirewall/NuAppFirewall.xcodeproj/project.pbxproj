@@ -36,6 +36,11 @@
 		57E812F62C93395000FF61DE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E812F52C93395000FF61DE /* main.swift */; };
 		57E812FB2C93395100FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 57E812F02C93395000FF61DE /* com.nufuturo.nuappfirewall.extension.systemextension */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		57E813042C933B2600FF61DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57E813032C933B2600FF61DE /* Info.plist */; };
+		CD00C1E22CDCD9C900CD974C /* FlowManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD00C1E12CDCD9BE00CD974C /* FlowManagerMock.swift */; };
+		CD04D5D62CDB8B4600D24A1D /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584D2CA32D4E004D4D8D /* LogManager.swift */; };
+		CD04D5D92CDBA28A00D24A1D /* FlowManagerMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04D5D82CDBA27E00D24A1D /* FlowManagerMockTests.swift */; };
+		CD04D5DB2CDBA33600D24A1D /* FlowMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04D5DA2CDBA31F00D24A1D /* FlowMock.swift */; };
+		CD857B462CDE38BE0045E1FD /* FlowMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD857B452CDE38B40045E1FD /* FlowMockTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -142,6 +147,10 @@
 		57E812FF2C93396100FF61DE /* ExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExtensionDebug.entitlements; sourceTree = "<group>"; };
 		57E813002C933A1B00FF61DE /* extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = extension.entitlements; sourceTree = "<group>"; };
 		57E813032C933B2600FF61DE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD00C1E12CDCD9BE00CD974C /* FlowManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManagerMock.swift; sourceTree = "<group>"; };
+		CD04D5D82CDBA27E00D24A1D /* FlowManagerMockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManagerMockTests.swift; sourceTree = "<group>"; };
+		CD04D5DA2CDBA31F00D24A1D /* FlowMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowMock.swift; sourceTree = "<group>"; };
+		CD857B452CDE38B40045E1FD /* FlowMockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowMockTests.swift; sourceTree = "<group>"; };
 		E5FEC8B52CD3B4A6003DDBE2 /* NuAppFirewall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewall.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +231,7 @@
 		57AFE7192C92752100DE8FEE /* NuAppFirewallTests */ = {
 			isa = PBXGroup;
 			children = (
+				CD04D5D72CDBA26700D24A1D /* Controller */,
 				57AFE74C2C927A6B00DE8FEE /* Utils */,
 				57AFE7492C927A3D00DE8FEE /* Model */,
 				57AFE7462C92793D00DE8FEE /* Logic */,
@@ -330,6 +340,17 @@
 				57E813002C933A1B00FF61DE /* extension.entitlements */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		CD04D5D72CDBA26700D24A1D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CD857B452CDE38B40045E1FD /* FlowMockTests.swift */,
+				CD00C1E12CDCD9BE00CD974C /* FlowManagerMock.swift */,
+				CD04D5DA2CDBA31F00D24A1D /* FlowMock.swift */,
+				CD04D5D82CDBA27E00D24A1D /* FlowManagerMockTests.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,9 +507,14 @@
 				57875CEC2C9389DE000B09F1 /* DataConverterTests.swift in Sources */,
 				57875CEE2C9389EB000B09F1 /* RuleTests.swift in Sources */,
 				57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */,
+				CD04D5D62CDB8B4600D24A1D /* LogManager.swift in Sources */,
+				CD00C1E22CDCD9C900CD974C /* FlowManagerMock.swift in Sources */,
+				CD04D5DB2CDBA33600D24A1D /* FlowMock.swift in Sources */,
 				57C3AE942CC69D3500502DD7 /* NuAppFacade.swift in Sources */,
 				57C3AEA52CC7D7BF00502DD7 /* Consts.swift in Sources */,
+				CD04D5D92CDBA28A00D24A1D /* FlowManagerMockTests.swift in Sources */,
 				57C3AE9F2CC69DD400502DD7 /* FlowManager.swift in Sources */,
+				CD857B462CDE38BE0045E1FD /* FlowMockTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +714,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NuAppFirewall/NuAppFirewall.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NuAppFirewall/Preview Content\"";
