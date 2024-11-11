@@ -13,6 +13,8 @@ struct Consts {
     static let verdictAllow = "allow"
     static let verdictBlock = "block"
     static let NoneString = "None"
+    static let any = "any"
+    static let unknown = "unknown"
     
     static let filePath: URL? = {
         let fileManager = FileManager.default

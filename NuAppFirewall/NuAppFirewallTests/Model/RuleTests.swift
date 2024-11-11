@@ -12,6 +12,12 @@ import XCTest
 
 class RuleTests: XCTestCase {
     
+    let ruleID = "AppPath/Test"
+    let action = Consts.verdictAllow
+    let appLocation = "/Applications/MyApp"
+    let endpoint = "www.teste.com"
+    let port = Consts.any
+    
     override func setUpWithError() throws {
         super.setUp()
     }
@@ -20,86 +26,39 @@ class RuleTests: XCTestCase {
         super.tearDown()
     }
     
-    // Tests the initialization of a Rule object with valid data
-    func testRuleInitialization() throws {
-        let ruleID = "/Applications/SampleApp.app"
-        let action = "allow"
-        let appLocation = "/Applications/SampleApp.app"
-        let endpoints: Set<String> = ["192.168.1.1", "192.168.1.2"]
-        let direction = "outgoing"
-        
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
-        
-        XCTAssertNotNil(rule)
-        XCTAssertEqual(rule?.ruleID, ruleID)
-        XCTAssertEqual(rule?.action, action)
-        XCTAssertEqual(rule?.appLocation, appLocation)
-        XCTAssertEqual(rule?.endpoints, endpoints)
-        XCTAssertEqual(rule?.direction, direction)
+    // Test case: initializes a rule
+    func testRuleInitialization() {
+        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: endpoint, port: port)
+
+        XCTAssertNotNil(rule, "The rule must be created")
+        XCTAssertEqual(rule?.ruleID, ruleID, "The ruleID must be initialized correctly.")
+        XCTAssertEqual(rule?.action, action, "The action must be initialized correctly.")
+        XCTAssertEqual(rule?.appLocation, appLocation, "The application location must be initialized correctly.")
+        XCTAssertEqual(rule?.endpoint, endpoint, "Endpoint must be initialized correctly.")
+        XCTAssertEqual(rule?.port, port, "The port must be initialized correctly.")
+        XCTAssertEqual(rule?.destination, "\(endpoint):\(port)", "The destination must be initialized correctly.")
     }
     
-    // Tests the description method to ensure the output is formatted correctly
+    // Test case: Verify description method to ensure the output is formatted correctly
     func testRuleDescription() throws {
-        let ruleID = "/Applications/BlockedApp.app"
-        let action = "allow"
-        let appLocation = "/Applications/BlockedApp.app"
-        let endpoints: Set<String> = ["10.0.0.0", "10.0.0.1"]
-        let direction = "outgoing"
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
-        
+        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: endpoint, port: port)
         let description = rule?.description()
-        
         let expectedDescription = """
-        ruleID: /Applications/BlockedApp.app
-        Action: allow
-        Application Location: /Applications/BlockedApp.app
-        Destinations: 10.0.0.0, 10.0.0.1
-        Direction: outgoing
+        ruleID: \(ruleID)
+        Action: \(action)
+        Application Location: \(appLocation)
+        Endpoint: \(endpoint)
+        Destination: \(endpoint):\(port)
+        Port: \(port)
         """
-        XCTAssertEqual(description, expectedDescription)
-    }
-    
-    // Tests the creation of a Rule with an empty destinations set
-    func testRuleWithEmptyDestinations() throws {
-        let ruleID = "/Applications/SampleApp.app"
-        let action = "allow"
-        let appLocation = "/Applications/SampleApp.app"
-        let endpoints: Set<String> = []
-        let direction = "outgoing"
-        
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
-        
-        XCTAssertNil(rule)
-    }
-    
-    // Tests the creation of a Rule with non-empty destinations
-    func testRuleWithNonEmptyDestinations() throws {
-        let ruleID = "67890"
-        let action = "allow"
-        let appLocation = "/Applications/AnotherApp.app"
-        let endpoints: Set<String> = ["8.8.8.8"]
-        let direction = "outgoing"
-        
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
-        
-        XCTAssertNotNil(rule)
-        XCTAssertEqual(rule?.endpoints, endpoints)
+        XCTAssertEqual(description, expectedDescription, "The descriptions should match")
     }
     
     // Test the equals method (Equatable implementation)
     func testRuleEquality() throws {
-        // First rule instance
-        let ruleID = "/Applications/TestApp.app"
-        let action = "allow"
-        let appLocation = "/Applications/TestApp.app"
-        let endpoints: Set<String> = ["192.168.1.1"]
-        let direction = "outgoing"
-        
-        let rule1 = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
-        
-        let rule2 = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoints: endpoints, direction: direction)
-        
-        let rule3 = Rule(ruleID: "/Applications/DifferentApp.app", action: action, appLocation: "/Applications/DifferentApp.app", endpoints: ["10.0.0.1"], direction: direction)
+        let rule1 = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: endpoint, port: port)
+        let rule2 = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: endpoint, port: port)
+        let rule3 = Rule(ruleID: "/Applications/DifferentApp.app", action: action, appLocation: "/Applications/DifferentApp.app", endpoint: "10.0.0.1", port: "443")
         
         // Ensure rule1 and rule2 are equal
         XCTAssertEqual(rule1, rule2, "Rules with the same properties should be considered equal")

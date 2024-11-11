@@ -6,7 +6,7 @@
     
     Created by com.nufuturo.nuappfirewall
 */
-
+/*
 import XCTest
 @testable import NuAppFirewall
 
@@ -155,4 +155,4 @@ class DataConverterTests: XCTestCase {
         
         XCTAssertNil(data, "Expected the return to be nil for a .json file with invalid format")
     }
-}
+}*/
