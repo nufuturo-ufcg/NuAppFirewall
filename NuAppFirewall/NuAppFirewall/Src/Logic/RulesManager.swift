@@ -25,7 +25,6 @@ class RulesManager {
             return
         }
         
-        LogManager.logManager.log("Read JSON data: \(dictionary)")
         rules.removeAll()
         
         for (path, rulesArray) in dictionary {
@@ -44,9 +43,9 @@ class RulesManager {
                     if let rule = Rule(ruleID: ruleID, action: action, appLocation: path, endpoint: endpoint, port: port) {
                         do {
                             try addRule(rule)
-                            LogManager.logManager.log("Added rule with ID: \(ruleID)")
+                            LogManager.logManager.log("Added rule with ID: \(ruleID)", level: .debug)
                         } catch {
-                            LogManager.logManager.log("Failed to add rule with ID: \(ruleID): \(error)")
+                            LogManager.logManager.log("Failed to add rule with ID: \(ruleID): \(error)", level: .debug)
                         }
                     }
                 }
