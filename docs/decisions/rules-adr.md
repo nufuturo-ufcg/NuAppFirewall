@@ -15,7 +15,7 @@ Cada regra possui os seguintes atributos:
 - **appLocation**: Caminho da aplicação no sistema, indicando para qual aplicação a regra é válida.
 - **endpoint**: URL, host ou endereço IP ao qual a regra se aplica.
 - **port**: Porta associada ao endpoint para a qual a regra será avaliada.
-- **destination**: Destino da conexão, sendo endpoint:port.
+- **destination**: Destino da conexão, sendo composto pelo par "endpoint:port".
 
 > **Aviso**: Atualmente, o `appLocation` (caminho completo da aplicação) é utilizado como parte da chave de busca para as regras. No entanto, isso traz uma vulnerabilidade, pois caminhos de aplicação podem variar ou mudar. No futuro, esse método será revisado para adotar identificadores mais consistentes e menos dependentes do caminho completo, assegurando maior robustez na aplicação das regras.
 
