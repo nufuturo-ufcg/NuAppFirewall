@@ -89,13 +89,42 @@ class RulesManager {
     }
     
     private func getGeneralRule(_ appPath: String, preferBlock: Bool = false) -> Rule? {
+        // deixamos por questao de eficiencia, ja que o acesso eh feito em O(1)
         if let generalRule = rules[appPath]?["\(Consts.any):\(Consts.any)"], (!preferBlock || generalRule.action == Consts.verdictBlock) {
             return generalRule
         }
         
-        if let generalRule = rules[appPath]?["\(Consts.any):\(Consts.any)"] { return generalRule }
+        var ruleBySubstring = getRuleBySubstring(appPath, "\(Consts.any):\(Consts.any)")
+        
+        if ruleBySubstring != nil{
+            return ruleBySubstring
+        }
         
         return nil
+        
+        // if let generalRule = rules[appPath]?["\(Consts.any):\(Consts.any)"] { return generalRule }
+    }
+    
+    private func getRuleBySubstring(_ appPath: String, _ appDestination: String) -> Rule? {
+        var allowRule: Rule? = nil;
+        var blockRule: Rule? = nil;
+        
+        for (path, destinations) in rules {
+            if appPath.range(of: path) != nil {
+                for (destination, rule) in destinations {
+                    if appDestination == destination {
+                        if rule.action == Consts.verdictAllow && allowRule == nil {
+                            allowRule = rule
+                        }
+                        else if rule.action == Consts.verdictBlock {
+                            blockRule = rule
+                            return blockRule
+                        }
+                    }
+                }
+            }
+        }
+        return allowRule
     }
 
     private func getRuleByUrl(_ appPath: String, _ url: String, _ port: String, preferBlock: Bool = false) -> Rule? {
