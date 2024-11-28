@@ -286,8 +286,8 @@ class RulesManagerTests: XCTestCase {
         XCTAssertNotEqual(fetchedRule, rule2, "The fetched rule should not match with rule2")
     }
     
-    // Test case: Test handleNewFlow to prioritize block all rule over "allow"
-    func testPreferenceBlockAll() {
+    // Test case: Test handleNewFlow to prioritize block all rule with a full path over "allow"
+    func testPreferenceBlockAllFullPath() {
         let destination = "\(Consts.any):\(Consts.any)"
         let ruleID1 = "\(appLocation)-\(Consts.verdictBlock)-\(destination)"
         let rule1 = Rule(ruleID: ruleID1, action: Consts.verdictBlock, appLocation: appLocation, endpoint: Consts.any, port: Consts.any)
@@ -314,6 +314,47 @@ class RulesManagerTests: XCTestCase {
         XCTAssertNoThrow(try rulesManager.addRule(rule5), "Should add a specific 'allow' rule for URL without error")
         
         let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: ip, port: port)
+        XCTAssertNotNil(fetchedRule, "Should fetch a rule with an existing ID")
+        XCTAssertEqual(fetchedRule, rule1, "Fetched rule should match the general 'block all' rule")
+        XCTAssertNotEqual(fetchedRule, rule2, "Fetched rule should not match the specific 'allow' rule")
+        XCTAssertNotEqual(fetchedRule, rule3, "Fetched rule should not match the specific 'allow' rule")
+        XCTAssertNotEqual(fetchedRule, rule4, "Fetched rule should not match the specific 'allow' rule")
+        XCTAssertNotEqual(fetchedRule, rule5, "Fetched rule should not match the specific 'allow' rule")
+    }
+    
+    // Test case: Test handleNewFlow to prioritize block all rule with only a subpath over "allow"
+    func testPreferenceBlockAllSubPath() {
+        // Arrange
+        // With every creation of a rule, there will be an assert to verify if it was really added without error to the RulesManager.
+        let destination = "\(Consts.any):\(Consts.any)"
+        let ruleID1 = "\("MyApp")-\(Consts.verdictBlock)-\(destination)"
+        let rule1 = Rule(ruleID: ruleID1, action: Consts.verdictBlock, appLocation: appLocation, endpoint: Consts.any, port: Consts.any)
+        XCTAssertNoThrow(try rulesManager.addRule(rule1), "Should add a general 'block all' rule without error")
+        
+        let destination2 = "\(Consts.any):\(Consts.any)"
+        let ruleID2 = "\(appLocation)-\(Consts.verdictBlock)-\(destination2)"
+        let rule2 = Rule(ruleID: ruleID2, action: Consts.verdictAllow, appLocation: appLocation, endpoint: Consts.any, port: Consts.any)
+        XCTAssertThrowsError(try rulesManager.addRule(rule2), "Should prevent adding a rule with duplicate appLocation, endpoint and port")
+        
+        let destination3 = "\(url):\(port)"
+        let ruleID3 = "\(appLocation)-\(Consts.verdictAllow)-\(destination3)"
+        let rule3 = Rule(ruleID: ruleID3, action: Consts.verdictAllow, appLocation: appLocation, endpoint: url, port: port)
+        XCTAssertNoThrow(try rulesManager.addRule(rule3), "Should add a specific 'allow' rule for URL without error")
+        
+        let destination4 = "\(host):\(port)"
+        let ruleID4 = "\(appLocation)-\(Consts.verdictAllow)-\(destination4)"
+        let rule4 = Rule(ruleID: ruleID4, action: Consts.verdictAllow, appLocation: appLocation, endpoint: host, port: port)
+        XCTAssertNoThrow(try rulesManager.addRule(rule4), "Should add a specific 'allow' rule for URL without error")
+        
+        let destination5 = "\(ip):\(port)"
+        let ruleID5 = "\(appLocation)-\(Consts.verdictAllow)-\(destination5)"
+        let rule5 = Rule(ruleID: ruleID5, action: Consts.verdictAllow, appLocation: appLocation, endpoint: ip, port: port)
+        XCTAssertNoThrow(try rulesManager.addRule(rule5), "Should add a specific 'allow' rule for URL without error")
+        
+        // Act
+        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: ip, port: port)
+        
+        // Assert
         XCTAssertNotNil(fetchedRule, "Should fetch a rule with an existing ID")
         XCTAssertEqual(fetchedRule, rule1, "Fetched rule should match the general 'block all' rule")
         XCTAssertNotEqual(fetchedRule, rule2, "Fetched rule should not match the specific 'allow' rule")
