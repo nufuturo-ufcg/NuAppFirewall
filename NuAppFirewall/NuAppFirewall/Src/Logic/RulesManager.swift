@@ -89,20 +89,15 @@ class RulesManager {
     }
     
     private func getGeneralRule(_ appPath: String, preferBlock: Bool = false) -> Rule? {
-        // deixamos por questao de eficiencia, ja que o acesso eh feito em O(1)
+        // Although getRuleBySubstring can retrieve a rule using the full path,
+        // this conditional is retained to prioritize efficiency.
         if let generalRule = rules[appPath]?["\(Consts.any):\(Consts.any)"], (!preferBlock || generalRule.action == Consts.verdictBlock) {
             return generalRule
         }
         
         var ruleBySubstring = getRuleBySubstring(appPath, "\(Consts.any):\(Consts.any)")
         
-        if ruleBySubstring != nil{
-            return ruleBySubstring
-        }
-        
-        return nil
-        
-        // if let generalRule = rules[appPath]?["\(Consts.any):\(Consts.any)"] { return generalRule }
+        return ruleBySubstring
     }
     
     private func getRuleBySubstring(_ appPath: String, _ appDestination: String) -> Rule? {
