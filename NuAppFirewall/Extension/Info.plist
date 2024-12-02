@@ -4,8 +4,6 @@
 <dict>
 	<key>NetworkExtension</key>
 	<dict>
-		<key>NEMachServiceName</key>
-		<string>$(TeamIdentifierPrefix)com.nufuturo.nuappfirewall</string>
 		<key>NEProviderClasses</key>
 		<dict>
 			<key>com.apple.networkextension.filter-data</key>
