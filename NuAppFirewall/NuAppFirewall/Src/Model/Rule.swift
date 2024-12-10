@@ -12,19 +12,19 @@ import Foundation
 class Rule: Equatable {
     var ruleID: String
     var action: String
-    var appLocation: String
+    var application: String
     var endpoint: String
     var port: String
     var destination: String
 
-    init?(ruleID: String, action: String, appLocation: String, endpoint: String, port: String) {
+    init?(ruleID: String, action: String, appIdentifier: String, endpoint: String, port: String) {
         guard !endpoint.isEmpty else {
             return nil
         }
 
         self.ruleID = ruleID
         self.action = action
-        self.appLocation = appLocation
+        self.application = appIdentifier
         self.endpoint = endpoint
         self.port = port
         self.destination = "\(endpoint):\(port)"
@@ -34,7 +34,7 @@ class Rule: Equatable {
         return """
         ruleID: \(ruleID)
         Action: \(action)
-        Application Location: \(appLocation)
+        Application: \(application)
         Endpoint: \(endpoint)
         Destination: \(destination)
         Port: \(port)
@@ -45,7 +45,7 @@ class Rule: Equatable {
     static func == (lhs: Rule, rhs: Rule) -> Bool {
         return lhs.ruleID == rhs.ruleID &&
                lhs.action == rhs.action &&
-               lhs.appLocation == rhs.appLocation &&
+               lhs.application == rhs.application &&
                lhs.endpoint == rhs.endpoint &&
                lhs.destination == rhs.destination &&
                lhs.port == rhs.port
