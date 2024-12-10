@@ -32,15 +32,18 @@ class RulesManager {
             
             for ruleData in rulesArray {
                 guard let action = ruleData["action"] as? String,
+                      let bundleID = ruleData["identifier"] as? String,
                       let destinations = ruleData["destinations"] as? [[String]] else { continue }
+                
+                let application = bundleID != "unknown" ? bundleID : path
                 
                 for destination in destinations {
                     let endpoint = destination[0]
                     let port = destination[1]
                     let destination = "\(endpoint):\(port)"
-                    let ruleID = "\(path)-\(action)-\(destination)"
+                    let ruleID = "\(application)-\(action)-\(destination)"
                     
-                    if let rule = Rule(ruleID: ruleID, action: action, appLocation: path, endpoint: endpoint, port: port) {
+                    if let rule = Rule(ruleID: ruleID, action: action, appIdentifier: application, endpoint: endpoint, port: port) {
                         do {
                             try addRule(rule)
                             LogManager.logManager.log("Added rule with ID: \(ruleID)", level: .debug)
@@ -53,13 +56,13 @@ class RulesManager {
         }
     }
     
-    func removeRule(appPath: String, destination: String) -> Rule? {
-        guard var appRules = rules[appPath], let removedRule = appRules.removeValue(forKey: destination) else {
+    func removeRule(application: String, destination: String) -> Rule? {
+        guard var appRules = rules[application], let removedRule = appRules.removeValue(forKey: destination) else {
             return nil
         }
         
-        if appRules.isEmpty { rules.removeValue(forKey: appPath) }
-        else { rules[appPath] = appRules }
+        if appRules.isEmpty { rules.removeValue(forKey: application) }
+        else { rules[application] = appRules }
         return removedRule
     }
     
@@ -67,35 +70,39 @@ class RulesManager {
         guard let rule = rule else { throw RulesManagerError.invalidRule }
         let destination = "\(rule.endpoint):\(rule.port)"
         
-        if rules[rule.appLocation]?[destination] != nil {
+        if rules[rule.application]?[destination] != nil {
             throw RulesManagerError.ruleAlreadyExists
         }
         
-        rules[rule.appLocation, default: [:]][destination] = rule
+        rules[rule.application, default: [:]][destination] = rule
     }
     
-    func getRule(appPath: String, url: String, host: String, ip: String, port: String) -> Rule? {
-        if let rule = getGeneralRule(appPath, preferBlock: true) { return rule }
-        if let rule = getRuleByUrl(appPath, url, port, preferBlock: true) { return rule }
-        if let rule = getRuleByHost(appPath, host, port, preferBlock: true) { return rule }
-        if let rule = getRuleByIp(appPath, ip, port, preferBlock: true) { return rule }
+    func getRule(appPath: String, bundleID: String, url: String, host: String, ip: String, port: String) -> Rule? {
+        if let rule = getGeneralRule(appPath, bundleID, preferBlock: true) { return rule }
+        if let rule = getRuleByUrl(appPath, bundleID, url, port, preferBlock: true) { return rule }
+        if let rule = getRuleByHost(appPath, bundleID, host, port, preferBlock: true) { return rule }
+        if let rule = getRuleByIp(appPath, bundleID, ip, port, preferBlock: true) { return rule }
         
-        if let rule = getGeneralRule(appPath) { return rule }
-        if let rule = getRuleByUrl(appPath, url, port) { return rule }
-        if let rule = getRuleByHost(appPath, host, port) { return rule }
-        if let rule = getRuleByIp(appPath, ip, port) { return rule }
+        if let rule = getGeneralRule(appPath, bundleID) { return rule }
+        if let rule = getRuleByUrl(appPath, bundleID, url, port) { return rule }
+        if let rule = getRuleByHost(appPath, bundleID, host, port) { return rule }
+        if let rule = getRuleByIp(appPath, bundleID, ip, port) { return rule }
         
         return nil
     }
     
-    private func getGeneralRule(_ appPath: String, preferBlock: Bool = false) -> Rule? {
+    private func getGeneralRule(_ appPath: String, _ bundleID: String, preferBlock: Bool = false) -> Rule? {
         // Although getRuleBySubstring can retrieve a rule using the full path,
         // this conditional is retained to prioritize efficiency.
-        if let generalRule = rules[appPath]?["\(Consts.any):\(Consts.any)"], (!preferBlock || generalRule.action == Consts.verdictBlock) {
-            return generalRule
+        if let generalRuleByBundleID = rules[bundleID]?["\(Consts.any):\(Consts.any)"], (!preferBlock || generalRuleByBundleID.action == Consts.verdictBlock) {
+            return generalRuleByBundleID
         }
         
-        var ruleBySubstring = getRuleBySubstring(appPath, "\(Consts.any):\(Consts.any)")
+        if let generalRuleByPath = rules[appPath]?["\(Consts.any):\(Consts.any)"], (!preferBlock || generalRuleByPath.action == Consts.verdictBlock) {
+            return generalRuleByPath
+        }
+        
+        let ruleBySubstring = getRuleBySubstring(appPath, "\(Consts.any):\(Consts.any)")
         
         return ruleBySubstring
     }
@@ -122,43 +129,64 @@ class RulesManager {
         return allowRule
     }
 
-    private func getRuleByUrl(_ appPath: String, _ url: String, _ port: String, preferBlock: Bool = false) -> Rule? {
+    private func getRuleByUrl(_ appPath: String, _ bundleID: String, _ url: String, _ port: String, preferBlock: Bool = false) -> Rule? {
         let genericUrlKey = "\(url):\(Consts.any)"
-        if let genericUrlRule = rules[appPath]?[genericUrlKey], (!preferBlock || genericUrlRule.action == Consts.verdictBlock) {
-            return genericUrlRule
-        }
-        
         let specificUrlKey = "\(url):\(port)"
-        if let specificUrlRule = rules[appPath]?[specificUrlKey], (!preferBlock || specificUrlRule.action == Consts.verdictBlock) {
-            return specificUrlRule
+        
+        if let genericUrlRuleByBundleID = rules[bundleID]?[genericUrlKey], (!preferBlock || genericUrlRuleByBundleID.action == Consts.verdictBlock) {
+            return genericUrlRuleByBundleID
+        }
+        if let specificUrlRuleByBundleID = rules[bundleID]?[specificUrlKey], (!preferBlock || specificUrlRuleByBundleID.action == Consts.verdictBlock) {
+            return specificUrlRuleByBundleID
+        }
+        
+        if let genericUrlRuleByPath = rules[appPath]?[genericUrlKey], (!preferBlock || genericUrlRuleByPath.action == Consts.verdictBlock) {
+            return genericUrlRuleByPath
+        }
+        if let specificUrlRuleByPath = rules[appPath]?[specificUrlKey], (!preferBlock || specificUrlRuleByPath.action == Consts.verdictBlock) {
+            return specificUrlRuleByPath
         }
         
         return nil
     }
 
-    private func getRuleByHost(_ appPath: String, _ host: String, _ port: String, preferBlock: Bool = false) -> Rule? {
+    private func getRuleByHost(_ appPath: String, _ bundleID: String, _ host: String, _ port: String, preferBlock: Bool = false) -> Rule? {
         let genericHostKey = "\(host):\(Consts.any)"
-        if let genericHostRule = rules[appPath]?[genericHostKey], (!preferBlock || genericHostRule.action == Consts.verdictBlock) {
-            return genericHostRule
+        let specificHostKey = "\(host):\(port)"
+        
+        if let genericHostRuleByBundleID = rules[bundleID]?[genericHostKey], (!preferBlock || genericHostRuleByBundleID.action == Consts.verdictBlock) {
+            return genericHostRuleByBundleID
+        }
+        if let specificHostRuleByBundleID = rules[bundleID]?[specificHostKey], (!preferBlock || specificHostRuleByBundleID.action == Consts.verdictBlock) {
+            return specificHostRuleByBundleID
         }
         
-        let specificHostKey = "\(host):\(port)"
-        if let specificHostRule = rules[appPath]?[specificHostKey], (!preferBlock || specificHostRule.action == Consts.verdictBlock) {
-            return specificHostRule
+        if let genericHostRuleByPath = rules[appPath]?[genericHostKey], (!preferBlock || genericHostRuleByPath.action == Consts.verdictBlock) {
+            return genericHostRuleByPath
+        }
+        if let specificHostRuleByPath = rules[appPath]?[specificHostKey], (!preferBlock || specificHostRuleByPath.action == Consts.verdictBlock) {
+            return specificHostRuleByPath
         }
         
         return nil
     }
 
-    private func getRuleByIp(_ appPath: String, _ ip: String, _ port: String, preferBlock: Bool = false) -> Rule? {
+    private func getRuleByIp(_ appPath: String, _ bundleID: String, _ ip: String, _ port: String, preferBlock: Bool = false) -> Rule? {
         let genericIpKey = "\(ip):\(Consts.any)"
-        if let genericIpRule = rules[appPath]?[genericIpKey], (!preferBlock || genericIpRule.action == Consts.verdictBlock) {
-            return genericIpRule
+        let specificIpKey = "\(ip):\(port)"
+        
+        if let genericIpRuleByBundleID = rules[bundleID]?[genericIpKey], (!preferBlock || genericIpRuleByBundleID.action == Consts.verdictBlock) {
+            return genericIpRuleByBundleID
+        }
+        if let specificIpRuleByBundleID = rules[bundleID]?[specificIpKey], (!preferBlock || specificIpRuleByBundleID.action == Consts.verdictBlock) {
+            return specificIpRuleByBundleID
         }
         
-        let specificIpKey = "\(ip):\(port)"
-        if let specificIpRule = rules[appPath]?[specificIpKey], (!preferBlock || specificIpRule.action == Consts.verdictBlock) {
-            return specificIpRule
+        if let genericIpRuleByPath = rules[appPath]?[genericIpKey], (!preferBlock || genericIpRuleByPath.action == Consts.verdictBlock) {
+            return genericIpRuleByPath
+        }
+        if let specificIpRuleByPath = rules[appPath]?[specificIpKey], (!preferBlock || specificIpRuleByPath.action == Consts.verdictBlock) {
+            return specificIpRuleByPath
         }
         
         return nil
