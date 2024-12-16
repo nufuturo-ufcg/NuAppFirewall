@@ -25,7 +25,7 @@ public class FlowManager {
         let path = pathForProcess(with: pid)
         let bundleID = getBundleID(from: path)
         
-        if let rule = rulesManager.getRule(appPath: path, bundleID: bundleID, url: url, host: host, ip: endpoint, port: port) {
+        if let rule = rulesManager.getRule(bundleID: bundleID, appPath: path, url: url, host: host, ip: endpoint, port: port) {
             let verdict: NEFilterNewFlowVerdict = rule.action == Consts.verdictBlock ? .drop() : .allow()
             
             LogManager.logManager.log(rule.description())
