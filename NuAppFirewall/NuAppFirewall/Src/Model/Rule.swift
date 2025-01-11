@@ -17,14 +17,14 @@ class Rule: Equatable {
     var port: String
     var destination: String
 
-    init?(ruleID: String, action: String, appIdentifier: String, endpoint: String, port: String) {
+    init?(ruleID: String, action: String, app: String, endpoint: String, port: String) {
         guard !endpoint.isEmpty else {
             return nil
         }
 
         self.ruleID = ruleID
         self.action = action
-        self.application = appIdentifier
+        self.application = app
         self.endpoint = endpoint
         self.port = port
         self.destination = "\(endpoint):\(port)"
