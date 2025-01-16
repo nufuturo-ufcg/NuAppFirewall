@@ -31,5 +31,9 @@
 	<true/>
 	<key>com.apple.security.network.server</key>
 	<true/>
+    <key>com.apple.security.temporary-exception.files.absolute-path.read-only</key>
+        <array>
+            <string>/Library/Managed Preferences/com.nufuturo.nuappfirewall.plist</string>
+        </array>
 </dict>
 </plist>

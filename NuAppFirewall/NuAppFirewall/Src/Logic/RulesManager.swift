@@ -19,9 +19,23 @@ class RulesManager {
     var rules: [String: [String: Rule]] = [:]
     let dataConverter = DataConverter()
     
+    func loadData(fileName: String, fileType: FileType) -> [String: Any]? {
+        guard let managedData = dataConverter.readManagedData() else {
+            LogManager.logManager.log("Failed to read managed data")
+            
+            guard let fallbackData = dataConverter.readData(from: fileName, ofType: fileType) else {
+                LogManager.logManager.log("Failed to read JSON data")
+                return nil
+            }
+            
+            return fallbackData
+        }
+        
+        return managedData
+    }
+    
     func loadRules(fileName: String, fileType: FileType) {
-        guard let dictionary = dataConverter.readData(from: fileName, ofType: fileType) else {
-            LogManager.logManager.log("Failed to read JSON data")
+        guard let dictionary = loadData(fileName: fileName, fileType: fileType) else {
             return
         }
         
