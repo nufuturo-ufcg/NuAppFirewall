@@ -18,7 +18,7 @@ class DataConverter {
     func readManagedData() -> [String: Any]? {
         
         let domain = "com.nufuturo.nuappfirewall"
-        let key = "rulesList"
+        let key = "ruleSet"
         
         guard let data = CFPreferencesCopyAppValue(key as CFString, domain as CFString) else {
             LogManager.logManager.log("No value found for key \(key) in managed preferences domain \(domain).")
