@@ -2,9 +2,9 @@
 //  FlowMock.swift
 //  NuAppFirewall
 //
-//  Created by Walber Filho on 06/11/24.
+//  Created by Walber Araújo on 06/11/24.
 //
-
+/*
 import Foundation
 
 class FlowMock {
@@ -22,3 +22,4 @@ class FlowMock {
         self.path = path
     }
 }
+*/

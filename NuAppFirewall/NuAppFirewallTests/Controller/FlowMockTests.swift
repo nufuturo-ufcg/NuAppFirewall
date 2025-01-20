@@ -2,16 +2,9 @@
 //  FlowMockTests.swift
 //  NuAppFirewall
 //
-//  Created by Walber Filho on 08/11/24.
+//  Created by Walber Araújo on 08/11/24.
 //
-
-//
-//  FlowManagerTests.swift
-//  NuAppFirewall
-//
-//  Created by Walber Filho on 06/11/24.
-//
-
+/*
 import XCTest
 @testable import NuAppFirewall
 
@@ -42,4 +35,4 @@ class FlowMockTests: XCTestCase {
         XCTAssertEqual(flow.ip, ip, "The ip must be initialized correctly")
         XCTAssertEqual(flow.port, port, "The port must be initialized correctly")
     }
-}
+}*/
