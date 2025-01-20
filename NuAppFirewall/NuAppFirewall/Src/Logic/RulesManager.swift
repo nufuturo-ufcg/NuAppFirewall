@@ -40,17 +40,14 @@ class RulesManager {
                 for destination in destinations {
                     let endpoint = destination[0]
                     let port = destination[1]
-                    let destinationKey = "\(endpoint):\(port)"
-                    let ruleIDForPath = "\(path)-\(action)-\(destinationKey)"
                     
-                    if let ruleForPath = Rule(ruleID: ruleIDForPath, action: action, app: path, endpoint: endpoint, port: port) {
-                        handleRuleAddition(ruleForPath, ruleIDForPath, path)
+                    if let ruleForPath = createRule(action: action, app: path, endpoint: endpoint, port: port) {
+                        handleRuleAddition(ruleForPath)
                     }
 
                     if identifier != "unknown" {
-                        let ruleIDForBundle = "\(identifier)-\(action)-\(destinationKey)"
-                        if let ruleForBundle = Rule(ruleID: ruleIDForBundle, action: action, app: identifier, endpoint: endpoint, port: port) {
-                            handleRuleAddition(ruleForBundle, ruleIDForBundle, identifier)
+                        if let ruleForBundle = createRule(action: action, app: identifier, endpoint: endpoint, port: port) {
+                            handleRuleAddition(ruleForBundle)
                         }
                     }
                 }
@@ -58,15 +55,22 @@ class RulesManager {
         }
     }
     
-    private func handleRuleAddition(_ rule: Rule, _ ruleID: String, _ application: String) {
+    private func createRule(action: String, app: String, endpoint: String, port: String) -> Rule? {
+        let destination = "\(endpoint):\(port)"
+        let ruleID = "\(app)-\(action)-\(destination)"
+        
+        return Rule(ruleID: ruleID, action: action, app: app, endpoint: endpoint, port: port) ?? nil
+    }
+    
+    private func handleRuleAddition(_ rule: Rule) {
         do {
             try addRule(rule)
-            applications.insert(application)
-            LogManager.logManager.log("Added new rule with ID: \(ruleID)", level: .debug)
+            applications.insert(rule.application)
+            LogManager.logManager.log("Added new rule with ID: \(rule.ruleID)", level: .debug)
         } catch RulesManagerError.ruleAlreadyExists {
-            LogManager.logManager.log("Rule already exists with ID: \(ruleID)", level: .debug)
+            LogManager.logManager.log("Rule already exists with ID: \(rule.ruleID)", level: .debug)
         } catch {
-            LogManager.logManager.log("Failed to add rule with ID: \(ruleID): \(error)", level: .debug)
+            LogManager.logManager.log("Failed to add rule with ID: \(rule.ruleID): \(error)", level: .debug)
         }
     }
     
@@ -101,8 +105,14 @@ class RulesManager {
         if let rule = findRule(app: appPath, url: url, host: host, ip: ip, port: port, preferBlock: true) {
             return rule
         }
-        
         if let rule = findRule(app: bundleID, url: url, host: host, ip: ip, port: port, preferBlock: true) {
+            return rule
+        }
+        
+        if let rule = findRule(app: appPath, url: url, host: host, ip: ip, port: port, preferBlock: false) {
+            return rule
+        }
+        if let rule = findRule(app: bundleID, url: url, host: host, ip: ip, port: port, preferBlock: false) {
             return rule
         }
         
@@ -112,7 +122,10 @@ class RulesManager {
     private func findRule(app: String, url: String, host: String, ip: String, port: String, preferBlock: Bool = false) -> Rule? {
         guard applications.contains(app) else {
             LogManager.logManager.log("Application not found, falling back to subpath search: \(app)", level: .debug)
-            return getRuleBySubstring(app, "\(Consts.any):\(Consts.any)")
+            return getRuleBySubstring(app, Consts.any, Consts.any, preferBlock: preferBlock)
+            ?? getRuleBySubstring(app, url, port, preferBlock: preferBlock)
+            ?? getRuleBySubstring(app, host, port, preferBlock: preferBlock)
+            ?? getRuleBySubstring(app, ip, port, preferBlock: preferBlock)
         }
         
         return getGeneralRule(app, preferBlock: preferBlock)
@@ -121,27 +134,23 @@ class RulesManager {
             ?? getRuleByIp(app, ip, port, preferBlock: preferBlock)
     }
     
-    private func getRuleBySubstring(_ appPath: String, _ appDestination: String) -> Rule? {
-        var allowRule: Rule? = nil
-
+    private func getRuleBySubstring(_ appPath: String, _ keyBase: String, _ port: String, preferBlock: Bool = false) -> Rule? {
         for (path, destinations) in rules {
             guard appPath.range(of: path) != nil else { continue }
 
             for (destination, rule) in destinations {
-                guard appDestination == destination else { continue }
-
-                if rule.action == Consts.verdictAllow && allowRule == nil {
-                    allowRule = rule
-                } else if rule.action == Consts.verdictBlock {
-                    let ruleID = "\(appPath)-\(rule.action)-\(destination)"
-                    let newRule = Rule(ruleID: ruleID, action: rule.action, app: appPath, endpoint: rule.endpoint, port: rule.port)
-                    handleRuleAddition(newRule!, ruleID, path)
-                    return rule
-                }
+                let specificDestination = "\(keyBase):\(port)"
+                let genericDestination = "\(keyBase):\(Consts.any)"
+                guard (destination == specificDestination || destination == genericDestination) else { continue }
+                
+                let newRule = createRule(action: rule.action, app: appPath, endpoint: rule.endpoint, port: rule.port)
+                handleRuleAddition(newRule!)
+                
+                return rule
             }
         }
 
-        return allowRule
+        return nil
     }
     
     private func getGeneralRule(_ app: String, preferBlock: Bool = false) -> Rule? {
