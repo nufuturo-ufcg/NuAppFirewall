@@ -15,6 +15,25 @@ enum FileType {
 }
 
 class DataConverter {
+    func readManagedData() -> [String: Any]? {
+        
+        let domain = "com.nufuturo.nuappfirewall"
+        let key = "ruleSet"
+        
+        guard let data = CFPreferencesCopyAppValue(key as CFString, domain as CFString) else {
+            LogManager.logManager.log("No value found for key \(key) in managed preferences domain \(domain).")
+            return nil
+        }
+        
+        if let dictionary = data as? [String: Any] {
+            LogManager.logManager.log("Data loaded from managed preferences domain \(domain).")
+            return dictionary
+        } else {
+            LogManager.logManager.log("The value found for key \(key) is not a dictionary.")
+            return nil
+        }
+    }
+    
     func readData(from fileName: String, ofType type: FileType) -> [String: Any]?
     {
         
