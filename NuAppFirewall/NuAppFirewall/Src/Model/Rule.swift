@@ -9,7 +9,7 @@
 
 import Foundation
 
-class Rule: Equatable {
+class Rule: Equatable, Hashable {
     var ruleID: String
     var action: String
     var application: String
@@ -49,5 +49,14 @@ class Rule: Equatable {
                lhs.endpoint == rhs.endpoint &&
                lhs.destination == rhs.destination &&
                lhs.port == rhs.port
+    }
+    
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(ruleID)
+            hasher.combine(action)
+            hasher.combine(application)
+            hasher.combine(endpoint)
+            hasher.combine(port)
+            hasher.combine(destination)
     }
 }
