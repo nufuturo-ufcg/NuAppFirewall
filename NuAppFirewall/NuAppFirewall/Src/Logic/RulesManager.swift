@@ -118,10 +118,17 @@ class RulesManager {
     
     func getRule(bundleID: String, appPath: String, url: String, host: String, ip: String, port: String) -> Rule? {
         var matchedRules: Set<Rule> = []
-        matchedRules.formUnion(findRules(app: appPath, url: url, host: host, ip: ip, port: port))
-        matchedRules.formUnion(findRules(app: bundleID, url: url, host: host, ip: ip, port: port))
         
-        return selectRule(from: matchedRules, url, host, ip, port, preferBlock: true)
+        matchedRules.formUnion(findRules(app: bundleID, url: url, host: host, ip: ip, port: port))
+        let bundleRule = selectRule(from: matchedRules, url, host, ip, port, preferBlock: true)
+        guard bundleRule == nil else {
+            return bundleRule
+        }
+        
+        matchedRules.formUnion(findRules(app: appPath, url: url, host: host, ip: ip, port: port))
+        let pathRule = selectRule(from: matchedRules, url, host, ip, port, preferBlock: true)
+        
+        return pathRule
     }
     
     private func findRules(app: String, url: String, host: String, ip: String, port: String) -> Set<Rule> {
