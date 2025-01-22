@@ -56,13 +56,13 @@ class RulesManager {
                     let endpoint = destination[0]
                     let port = destination[1]
                     
-                    if let ruleForPath = createRule(action: action, app: path, endpoint: endpoint, port: port) {
-                        handleRuleAddition(ruleForPath)
-                    }
-
                     if identifier != "unknown" {
                         if let ruleForBundle = createRule(action: action, app: identifier, endpoint: endpoint, port: port) {
                             handleRuleAddition(ruleForBundle)
+                        }
+                    } else {
+                        if let ruleForPath = createRule(action: action, app: path, endpoint: endpoint, port: port) {
+                            handleRuleAddition(ruleForPath)
                         }
                     }
                 }
@@ -117,21 +117,21 @@ class RulesManager {
     }
     
     func getRule(bundleID: String, appPath: String, url: String, host: String, ip: String, port: String) -> Rule? {
-        var matchedRules: Set<Rule> = []
+        var matchedRules: [Rule] = []
         
-        matchedRules.formUnion(findRules(app: bundleID, url: url, host: host, ip: ip, port: port))
+        matchedRules.append(contentsOf: findRules(app: bundleID, url: url, host: host, ip: ip, port: port))
         let bundleRule = selectRule(from: matchedRules, url, host, ip, port, preferBlock: true)
         guard bundleRule == nil else {
             return bundleRule
         }
         
-        matchedRules.formUnion(findRules(app: appPath, url: url, host: host, ip: ip, port: port))
+        matchedRules.append(contentsOf: findRules(app: appPath, url: url, host: host, ip: ip, port: port))
         let pathRule = selectRule(from: matchedRules, url, host, ip, port, preferBlock: true)
         
         return pathRule
     }
     
-    private func findRules(app: String, url: String, host: String, ip: String, port: String) -> Set<Rule> {
+    private func findRules(app: String, url: String, host: String, ip: String, port: String) -> [Rule] {
         guard applications.contains(app) else {
             LogManager.logManager.log("Application not found, falling back to subpath search: \(app)", level: .debug)
             let subpathRules = getRulesBySubpath(app)
@@ -144,91 +144,100 @@ class RulesManager {
             return subpathRules
         }
         
-        var specificRules: Set<Rule> = []
-        specificRules.formUnion(getGeneralRule(app))
-        specificRules.formUnion(getRulesByUrl(app, url, port))
-        specificRules.formUnion(getRulesByHost(app, host, port))
-        specificRules.formUnion(getRulesByIp(app, ip, port))
+        var specificRules: [Rule] = []
+        
+        if let generalRule = getGeneralRule(app) {
+            specificRules.append(generalRule)
+        }
+        
+        specificRules.append(contentsOf: getRulesByUrl(app, url, port))
+        specificRules.append(contentsOf: getRulesByHost(app, host, port))
+        specificRules.append(contentsOf: getRulesByIp(app, ip, port))
 
         return specificRules
     }
     
-    private func selectRule(from rules: Set<Rule>, _ url: String, _ host: String, _ ip: String, _ port: String, preferBlock: Bool = false) -> Rule? {
-        var allowRules: Set<Rule> = []
-        var blockRules: Set<Rule> = []
-
-        for rule in rules {
-            if rule.action == Consts.verdictBlock {
-                blockRules.insert(rule)
-            } else {
-                allowRules.insert(rule)
-            }
-        }
-        
-        let destinations = ["\(url):\(port)", "\(url):\(Consts.any)", "\(host):\(port)", "\(host):\(Consts.any)", "\(ip):\(port)", "\(ip):\(Consts.any)", "\(Consts.any):\(Consts.any)"]
-
-        if preferBlock {
-            for rule in blockRules {
-                if destinations.contains(rule.destination) { return rule }
-            }
-            
-            for rule in allowRules {
-                if destinations.contains(rule.destination) { return rule }
-            }
-        }
+    private func selectRule(from rules: [Rule], _ url: String, _ host: String, _ ip: String, _ port: String, preferBlock: Bool = true) -> Rule? {
+        var rulesByDestination: [String: [Rule]] = [:]
         
         for rule in rules {
-            if destinations.contains(rule.destination) { return rule }
+            rulesByDestination[rule.destination, default: []].append(rule)
         }
         
+        let destinations = [
+            "\(Consts.any):\(Consts.any)",
+            "\(url):\(Consts.any)",
+            "\(url):\(port)",
+            "\(host):\(Consts.any)",
+            "\(host):\(port)",
+            "\(ip):\(Consts.any)",
+            "\(ip):\(port)"
+        ]
+        
+        for destination in destinations {
+            if let rules = rulesByDestination[destination] {
+                if preferBlock {
+                    if let blockRule = rules.first(where: { $0.action == Consts.verdictBlock }) {
+                        return blockRule
+                    }
+                }
+            }
+        }
+
+        for destination in destinations {
+            if let rules = rulesByDestination[destination] {
+                return rules.first
+            }
+        }
+
         return nil
     }
     
-    private func getRulesBySubpath(_ appPath: String) -> Set<Rule> {
-        var matchedRules: Set<Rule> = []
+    private func getRulesBySubpath(_ appPath: String) -> [Rule] {
+        var matchedRules: [Rule] = []
 
         for (path, destinations) in rules {
             guard appPath.range(of: path) != nil else { continue }
 
             for (_, rule) in destinations {
-                matchedRules.insert(rule)
+                matchedRules.append(rule)
             }
         }
 
         return matchedRules
     }
     
-    private func getGeneralRule(_ app: String) -> Set<Rule> {
+    private func getGeneralRule(_ app: String) -> Rule? {
         if let generalRule = rules[app]?["\(Consts.any):\(Consts.any)"] {
-            return [generalRule]
+            return generalRule
         }
         
-        return []
+        return nil
     }
     
-    private func getRulesByUrl(_ app: String, _ url: String, _ port: String) -> Set<Rule> {
-        return getSpecificOrGenericRule(app, keyBase: url, port: port)
+    private func getRulesByUrl(_ app: String, _ url: String, _ port: String) -> [Rule] {
+        return getSpecificOrGenericRule(app, url, port)
     }
 
-    private func getRulesByHost(_ app: String, _ host: String, _ port: String) -> Set<Rule> {
-        return getSpecificOrGenericRule(app, keyBase: host, port: port)
+    private func getRulesByHost(_ app: String, _ host: String, _ port: String) -> [Rule] {
+        return getSpecificOrGenericRule(app, host, port)
     }
 
-    private func getRulesByIp(_ app: String, _ ip: String, _ port: String) -> Set<Rule> {
-        return getSpecificOrGenericRule(app, keyBase: ip, port: port)
+    private func getRulesByIp(_ app: String, _ ip: String, _ port: String) -> [Rule] {
+        return getSpecificOrGenericRule(app, ip, port)
     }
     
-    private func getSpecificOrGenericRule(_ app: String, keyBase: String, port: String) -> Set<Rule> {
-        var matchedRules: Set<Rule> = []
+    private func getSpecificOrGenericRule(_ app: String, _ keyBase: String, _ port: String) -> [Rule] {
+        var matchedRules: [Rule] = []
         
         let genericKey = "\(keyBase):\(Consts.any)"
         if let genericRule = rules[app]?[genericKey] {
-            matchedRules.insert(genericRule)
+            matchedRules.append(genericRule)
         }
         
         let specificKey = "\(keyBase):\(port)"
         if let specificRule = rules[app]?[specificKey] {
-            matchedRules.insert(specificRule)
+            matchedRules.append(specificRule)
         }
         
         return matchedRules

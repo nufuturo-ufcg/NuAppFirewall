@@ -104,7 +104,7 @@ public class FlowManager {
     func findBundlePath(in path: String) -> String? {
         let components = path.split(separator: "/")
         
-        for i in (0..<components.count).reversed() {
+        for i in (0..<components.count) {
             let subPath = "/" + components.prefix(i + 1).joined(separator: "/")
             
             if (subPath.hasSuffix(".app") || subPath.hasSuffix(".xpc")),
