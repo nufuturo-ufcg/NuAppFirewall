@@ -42,6 +42,7 @@
 		CD04D5D92CDBA28A00D24A1D /* FlowManagerMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04D5D82CDBA27E00D24A1D /* FlowManagerMockTests.swift */; };
 		CD04D5DB2CDBA33600D24A1D /* FlowMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04D5DA2CDBA31F00D24A1D /* FlowMock.swift */; };
 		CD857B462CDE38BE0045E1FD /* FlowMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD857B452CDE38B40045E1FD /* FlowMockTests.swift */; };
+		EFF848EC2D3E703E00505C26 /* PopoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF848E92D3E703000505C26 /* PopoverWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -154,6 +155,7 @@
 		CD04D5DA2CDBA31F00D24A1D /* FlowMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowMock.swift; sourceTree = "<group>"; };
 		CD857B452CDE38B40045E1FD /* FlowMockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowMockTests.swift; sourceTree = "<group>"; };
 		E5FEC8B52CD3B4A6003DDBE2 /* NuAppFirewall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewall.entitlements; sourceTree = "<group>"; };
+		EFF848E92D3E703000505C26 /* PopoverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 		57AFE7392C92780F00DE8FEE /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				EFF848E82D3E701700505C26 /* View */,
 				57C3AEA32CC7D79D00502DD7 /* Consts */,
 				57CB584C2CA32B38004D4D8D /* Logging */,
 				570550432CB47199008252E2 /* Utils */,
@@ -354,6 +357,14 @@
 				CD04D5D82CDBA27E00D24A1D /* FlowManagerMockTests.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		EFF848E82D3E701700505C26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EFF848E92D3E703000505C26 /* PopoverWindow.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFF848EC2D3E703E00505C26 /* PopoverWindow.swift in Sources */,
 				57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */,
 				57CB584E2CA32D4E004D4D8D /* LogManager.swift in Sources */,
 				570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */,
