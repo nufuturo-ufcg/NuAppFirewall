@@ -13,13 +13,6 @@ import XCTest
 class RulesManagerTests: XCTestCase {
 
     var rulesManager: RulesManager!
-    
-    let action = "allow"
-    let appLocation = "/Applications/MyApp"
-    let url = "www.teste.com"
-    let host = "teste.com"
-    let ip = "123.123.123"
-    let port = "443"
 
     override func setUp() {
         super.setUp()
@@ -30,417 +23,207 @@ class RulesManagerTests: XCTestCase {
         rulesManager = nil
         super.tearDown()
     }
+    
+    private func createRule(action: String, app: String, endpoint: String, port: String) -> Rule? {
+        let destination = "\(endpoint):\(port)"
+        let ruleID = "\(app)-\(action)-\(destination)"
+        
+        return Rule(ruleID: ruleID, action: action, app: app, endpoint: endpoint, port: port) ?? nil
+    }
+    
+    private func generateRuleData(
+        apps: [String] = [TestConstants.appPath, TestConstants.appSubpath, TestConstants.bundleID],
+        endpoints: [String] = [Consts.any, TestConstants.url, TestConstants.host, TestConstants.ip],
+        actions: [String] = [Consts.verdictAllow, Consts.verdictBlock],
+        ports: [String] = [Consts.any, TestConstants.port]
+    ) -> [RuleData] {
+        var ruleData: [RuleData] = []
+        
+        for app in apps {
+            for endpoint in endpoints {
+                for portValue in ports {
+                    if endpoint == Consts.any && portValue != Consts.any {
+                        continue
+                    }
+                    
+                    for action in actions {
+                        ruleData.append(RuleData(action: action, app: app, endpoint: endpoint, port: portValue))
+                    }
+                }
+            }
+        }
+        
+        return ruleData
+    }
 
-    // Test case: Rule Initialization
+    // Test case: Validate that all possible combinations of rules are correctly initialized with accurate properties.
     func testRuleInitialization() {
-        let destination = "\(url):\(port)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: url, port: port)
-
-        XCTAssertNotNil(rule, "The rule must be created")
-        XCTAssertEqual(rule?.ruleID, ruleID, "The ruleID must be initialized correctly.")
-        XCTAssertEqual(rule?.action, action, "The action must be initialized correctly.")
-        XCTAssertEqual(rule?.appLocation, appLocation, "The application location must be initialized correctly.")
-        XCTAssertEqual(rule?.endpoint, url, "The endpoint must be initialized correctly.")
-        XCTAssertEqual(rule?.port, port, "The port must be initialized correctly.")
-        XCTAssertEqual(rule?.destination, destination, "The destination must be initialized correctly.")
+        let ruleDataArray = generateRuleData()
+        XCTAssertEqual(ruleDataArray.count, 42, "The number of all possible combinations must be 42.")
+            
+        for ruleData in ruleDataArray {
+            let testInfo = "RuleID: \(ruleData.ruleID)"
+            
+            guard let rule = createRule(action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port) else {
+                XCTFail("Failed to create rule for \(testInfo)")
+                continue
+            }
+            
+            XCTAssertEqual(rule.ruleID, ruleData.ruleID, "Mismatch in ruleID for \(testInfo).")
+            XCTAssertEqual(rule.action, ruleData.action, "Mismatch in action for \(testInfo).")
+            XCTAssertEqual(rule.application, ruleData.app, "Mismatch in application for \(testInfo).")
+            XCTAssertEqual(rule.endpoint, ruleData.endpoint, "Mismatch in endpoint for \(testInfo).")
+            XCTAssertEqual(rule.port, ruleData.port, "Mismatch in port for \(testInfo).")
+            XCTAssertEqual(rule.destination, ruleData.destination, "Mismatch in destination for \(testInfo).")
+        }
     }
     
-    // Test case: Add a rule
+    // Test case: Ensure all possible rule combinations can be added successfully and validate their addition.
     func testAddRule() {
-        let destination = "\(url):\(port)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: Consts.verdictAllow, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
+        let ruleDataArray = generateRuleData()
+        XCTAssertEqual(ruleDataArray.count, 42, "The number of all possible combinations must be 42.")
         
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: ip, port: port)
-        XCTAssertNotNil(fetchedRule, "Rule should be retrieved.")
-        XCTAssertEqual(fetchedRule, rule, "The rule should match.")
-    }
-
-    // Test case: Add another rule with different attributes
-    func testAddAnotherRule() {
-        let destination1 = "\(url):\(port)"
-        let ruleID1 = "\(appLocation)-\(action)-\(destination1)"
-        let rule1 = Rule(ruleID: ruleID1, action: action, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule1), "Should add the rule1 without error")
-        
-        let appPath = "/Applications/MyApp2"
-        let endpoint = "www.teste2.com"
-        let port = "any"
-        let action = Consts.verdictBlock
-        let destination2 = "\(endpoint):\(port)"
-        let ruleID2 = "\(appPath)-\(action)-\(destination2)"
-        let rule2 = Rule(ruleID: ruleID2, action: action, appLocation: appPath, endpoint: endpoint, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule2), "Should add the rule2 without error")
-        
-        let fetchedRule = rulesManager.getRule(appPath: appPath, url: endpoint, host: "teste2.com", ip: "321.321.321.321", port: port)
-        XCTAssertNotNil(fetchedRule, "Rule should be retrieved")
-        XCTAssertEqual(fetchedRule, rule2, "The rule should match")
+        for ruleData in ruleDataArray {
+            rulesManager = RulesManager()
+            
+            let testInfo = "RuleID: \(ruleData.ruleID)"
+            
+            guard let rule = createRule(action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port) else {
+                XCTFail("Failed to create rule for \(testInfo)")
+                continue
+            }
+            
+            XCTAssertNoThrow(try rulesManager.addRule(rule), "Failed to add rule for \(testInfo).")
+            
+            let fetchedRule = rulesManager.getRule(bundleID: TestConstants.bundleID, appPath: TestConstants.appPath, url: TestConstants.url, host: TestConstants.host, ip: TestConstants.ip, port: TestConstants.port)
+            XCTAssertNotNil(fetchedRule, "Rule was not retrieved for \(testInfo).")
+            XCTAssertEqual(fetchedRule, rule, "Mismatch for \(testInfo). Retrieved: \(String(describing: fetchedRule)), Expected: \(String(describing: rule)).")
+        }
     }
     
-    // Test case: Add a generic rule and retrieve it by any URL, host, or IP
-    func testGenericRuleMatch() {
-        let destination = "\(Consts.any):\(Consts.any)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: Consts.any, port: Consts.any)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
+    // Test case: Ensure all possible rule combinations can be retrieved successfully after being added.
+    func testRetrievalRule() {
+        let ruleDataArray = generateRuleData()
+        XCTAssertEqual(ruleDataArray.count, 42, "The number of all possible combinations must be 42.")
         
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: ip, port: port)
-        XCTAssertNotNil(fetchedRule, "Generic rule should be retrieved for any URL, host, or IP")
-        XCTAssertEqual(fetchedRule?.action, action, "The action should match the added rule")
+        for ruleData in ruleDataArray {
+            rulesManager = RulesManager()
+            
+            let testInfo = "RuleID: \(ruleData.ruleID)"
+            
+            guard let rule = createRule(action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port) else {
+                XCTFail("Failed to create rule for \(testInfo)")
+                continue
+            }
+            
+            XCTAssertNoThrow(try rulesManager.addRule(rule), "Failed to add rule for \(testInfo).")
+            
+            let fetchedRule = rulesManager.getRule(bundleID: TestConstants.bundleID, appPath: TestConstants.appPath, url: TestConstants.url, host: TestConstants.host, ip: TestConstants.ip, port: TestConstants.port)
+            XCTAssertNotNil(fetchedRule, "Rule was not retrieved for \(testInfo).")
+            XCTAssertEqual(fetchedRule, rule, "Mismatch for \(testInfo). Retrieved: \(String(describing: fetchedRule)), Expected: \(String(describing: rule)).")
+        }
     }
     
-    // Test case: Add a rule and retrieve by URL and defined port
-    func testRuleMatchUrlAndPort() {
-        let destination = "\(url):\(port)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
+    // Test case: Ensure all possible rule combinations can be removed successfully and validate their absence post-removal.
+    func testRemoveRule() {
+        let ruleDataArray = generateRuleData()
+        XCTAssertEqual(ruleDataArray.count, 42, "The number of all possible combinations must be 42.")
         
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: Consts.unknown, ip: Consts.unknown, port: port)
-        XCTAssertNotNil(fetchedRule, "The rule should be retrieved for URL and Port")
-        XCTAssertEqual(fetchedRule?.action, action, "The action should match the added rule")
+        for ruleData in ruleDataArray {
+            rulesManager = RulesManager()
+            let testInfo = "RuleID: \(ruleData.ruleID)"
+            
+            guard let rule = createRule(action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port) else {
+                XCTFail("Failed to create rule for \(testInfo)")
+                continue
+            }
+            
+            XCTAssertNoThrow(try rulesManager.addRule(rule), "Failed to add rule for \(testInfo).")
+            
+            let removedRule = rulesManager.removeRule(app: ruleData.app, destination: ruleData.destination)
+            XCTAssertNotNil(removedRule, "Failed to remove rule for \(testInfo).")
+            
+            let fetchedRuleAfterRemoval = rulesManager.getRule(bundleID: TestConstants.bundleID, appPath: TestConstants.appPath, url: TestConstants.url, host: TestConstants.host, ip: TestConstants.ip, port: TestConstants.port)
+            XCTAssertNil(fetchedRuleAfterRemoval, "Rule still exists after removal for \(testInfo).")
+        }
     }
     
-    // Test case: Add a rule and retrieve by URL and any port
-    func testRuleMatchUrlAndAnyPort() {
-        let destination = "\(url):\(Consts.any)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: url, port: Consts.any)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
+    // Test case: Validate that block rules take precedence over allow rules when multiple rules share the same app identification (e.g., bundle ID, app path, or subpath).
+    func testAddRuleWithSameParamsDifferentActionsAndEndpoints() {
+        let ruleDataArray = generateRuleData()
+        XCTAssertEqual(ruleDataArray.count, 42, "The number of all possible combinations must be 42.")
         
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: Consts.unknown, ip: Consts.unknown, port: Consts.unknown)
-        XCTAssertNotNil(fetchedRule, "The rule should be retrieved for URL and any Port")
-        XCTAssertEqual(fetchedRule?.action, action, "The action should match the added rule")
+        for ruleData in ruleDataArray {
+            rulesManager = RulesManager()
+            let testInfo = "RuleID  \(ruleData.ruleID)"
+            
+            guard let rule1 = createRule(action: Consts.verdictAllow, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port) else {
+                XCTFail("Failed to create first rule for \(testInfo).")
+                continue
+            }
+
+            XCTAssertNoThrow(try rulesManager.addRule(rule1), "Failed to add the first rule for \(testInfo).")
+
+            guard let rule2 = createRule(action: Consts.verdictBlock, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port) else {
+                XCTFail("Failed to create second rule for \(testInfo).")
+                continue
+            }
+
+            XCTAssertThrowsError(try rulesManager.addRule(rule2), "Should not allow adding duplicate rule with different action for \(testInfo).")
+
+            let fetchedRule = rulesManager.getRule(bundleID: TestConstants.bundleID, appPath: TestConstants.appPath, url: TestConstants.url, host: TestConstants.host, ip: TestConstants.ip, port: TestConstants.port)
+            XCTAssertNotNil(fetchedRule, "Rule should be retrieved for \(testInfo).")
+            XCTAssertEqual(fetchedRule, rule1, "The fetched rule should match the first rule for \(testInfo).")
+            XCTAssertNotEqual(fetchedRule, rule2, "The fetched rule should not match the second rule with different action for \(testInfo).")
+        }
     }
     
-    // Test case: Add a rule and retrieve by Host and defined port
-    func testRuleMatchHostAndPort() {
-        let destination = "\(host):\(port)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: host, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
+    // Test case: Validate the precedence of the block rule over others allow rules with same app identification
+    func testBlockRulePrecedenceWithAllowRules() {
+        let bundleRules = generateRuleData(apps: [TestConstants.bundleID])
+        let pathRules = generateRuleData(apps: [TestConstants.appPath])
+        let subpathRules = generateRuleData(apps: [TestConstants.appSubpath])
         
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: Consts.unknown, port: port)
-        XCTAssertNotNil(fetchedRule, "The rule should be retrieved for Host and Port")
-        XCTAssertEqual(fetchedRule?.action, action, "The action should match the added rule")
-    }
-    
-    // Test case: Add a rule and retrieve by Host and any port
-    func testRuleMatchHostAndAnyPort() {
-        let destination = "\(host):\(Consts.any)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: host, port: Consts.any)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
-        
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: Consts.unknown, port: Consts.unknown)
-        XCTAssertNotNil(fetchedRule, "The rule should be retrieved for Host and any Port")
-        XCTAssertEqual(fetchedRule?.action, action, "The action should match the added rule")
-    }
-    
-    // Test case: Add a rule and retrieve by IP and defined port
-    func testRuleMatchIpAndPort() {
-        let destination = "\(ip):\(port)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: ip, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
-        
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: Consts.unknown, host: Consts.unknown, ip: ip, port: port)
-        XCTAssertNotNil(fetchedRule, "The rule should be retrieved for IP and Port")
-        XCTAssertEqual(fetchedRule?.action, action, "The action should match the added rule")
-    }
-    
-    // Test case: Adding a rule and retrieving by IP and any port
-    func testRuleMatchIpAndAnyPort() {
-        let destination = "\(ip):\(Consts.any)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: ip, port: Consts.any)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
-        
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: Consts.unknown, host: Consts.unknown, ip: ip, port: Consts.unknown)
-        XCTAssertNotNil(fetchedRule, "The rule should be retrieved for IP and any Port")
-        XCTAssertEqual(fetchedRule?.action, action, "The action should match the added rule")
+        validateBlockRulePrecedence(blockRules: bundleRules.filter { $0.action == Consts.verdictBlock },
+                                    allowRules: bundleRules.filter { $0.action == Consts.verdictAllow })
+
+        validateBlockRulePrecedence(blockRules: pathRules.filter { $0.action == Consts.verdictBlock },
+                                    allowRules: pathRules.filter { $0.action == Consts.verdictAllow })
+
+        validateBlockRulePrecedence(blockRules: subpathRules.filter { $0.action == Consts.verdictBlock },
+                                    allowRules: subpathRules.filter { $0.action == Consts.verdictAllow })
     }
 
-    // Test case: Attempt to retrieve a rule that doesn't exist
-    func testRetrieveNonExistentRule() {
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: ip, port: port)
-        XCTAssertNil(fetchedRule, "No rule should be found with a non-existent data")
+    private func validateBlockRulePrecedence(blockRules: [RuleData], allowRules: [RuleData]) {
+        for blockRuleData in blockRules {
+            rulesManager = RulesManager()
+
+            for allowRuleData in allowRules {
+                if allowRuleData.app == blockRuleData.app && allowRuleData.destination == blockRuleData.destination { continue }
+
+                guard let allowRule = createRule(action: allowRuleData.action, app: allowRuleData.app, endpoint: allowRuleData.endpoint, port: allowRuleData.port
+                ) else {
+                    XCTFail("Failed to create allow rule: \(allowRuleData.ruleID)")
+                    continue
+                }
+
+                XCTAssertNoThrow(try rulesManager.addRule(allowRule), "Failed to add allow rule: \(allowRuleData.ruleID)")
+            }
+
+            guard let blockRule = createRule(action: blockRuleData.action, app: blockRuleData.app, endpoint: blockRuleData.endpoint, port: blockRuleData.port
+            ) else {
+                XCTFail("Failed to create block rule: \(blockRuleData.ruleID)")
+                continue
+            }
+
+            XCTAssertNoThrow(try rulesManager.addRule(blockRule), "Failed to add block rule: \(blockRuleData.ruleID)")
+
+            let fetchedRule = rulesManager.getRule(bundleID: TestConstants.bundleID, appPath: TestConstants.appPath, url: TestConstants.url, host: TestConstants.host, ip: TestConstants.ip, port: TestConstants.port)
+
+            XCTAssertNotNil(fetchedRule, "Failed to fetch rule for \(blockRuleData.ruleID)")
+            XCTAssertEqual(fetchedRule, blockRule, "Block rule did not take precedence over allow rules: \(blockRuleData.ruleID)")
+        }
     }
-
-    // Test case: Remove an existing rule by url and defined port
-    func testRemoveExistingRuleByUrl() {
-        let destination = "\(url):\(port)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: Consts.verdictAllow, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
-
-        let removedRule = rulesManager.removeRule(appPath: appLocation, destination: destination)
-        XCTAssertNotNil(removedRule, "The removed rule must not be nil.")
-
-        let fetchedRuleAfterRemoval = rulesManager.getRule(appPath: appLocation, url: url, host: Consts.unknown, ip: Consts.unknown, port: port)
-        XCTAssertNil(fetchedRuleAfterRemoval, "Rule must be nil after removal.")
-    }
-    
-    // Test case: Remove an existing rule by url and any port
-    func testRemoveExistingRuleByUrlAndAnyPort() {
-        let destination = "\(url):\(Consts.any)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: Consts.verdictAllow, appLocation: appLocation, endpoint: url, port: Consts.any)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
-
-        let removedRule = rulesManager.removeRule(appPath: appLocation, destination: destination)
-        XCTAssertNotNil(removedRule, "The removed rule must not be nil")
-
-        let fetchedRuleAfterRemoval = rulesManager.getRule(appPath: appLocation, url: url, host: Consts.unknown, ip: Consts.unknown, port: Consts.unknown)
-        XCTAssertNil(fetchedRuleAfterRemoval, "Rule must be nil after removal")
-    }
-    
-    // Test case: Remove an existing rule by host and defined port
-    func testRemoveExistingRuleByHost() {
-        let destination = "\(host):\(port)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: Consts.verdictAllow, appLocation: appLocation, endpoint: host, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
-
-        let removedRule = rulesManager.removeRule(appPath: appLocation, destination: destination)
-        XCTAssertNotNil(removedRule, "The removed rule must not be nil.")
-
-        let fetchedRuleAfterRemoval = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: Consts.unknown, port: port)
-        XCTAssertNil(fetchedRuleAfterRemoval, "Rule must be nil after removal.")
-    }
-    
-    // Test case: Remove an existing rule by host and any port
-    func testRemoveExistingRuleByHostAndAnyPort() {
-        let destination = "\(host):\(Consts.any)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: Consts.verdictAllow, appLocation: appLocation, endpoint: host, port: Consts.any)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
-
-        let removedRule = rulesManager.removeRule(appPath: appLocation, destination: destination)
-        XCTAssertNotNil(removedRule, "The removed rule must not be nil")
-
-        let fetchedRuleAfterRemoval = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: Consts.unknown, port: Consts.unknown)
-        XCTAssertNil(fetchedRuleAfterRemoval, "Rule must be nil after removal")
-    }
-    
-    // Test case: Remove an existing rule by ip and defined port
-    func testRemoveExistingRuleByIp() {
-        let destination = "\(ip):\(port)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: Consts.verdictAllow, appLocation: appLocation, endpoint: ip, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
-
-        let removedRule = rulesManager.removeRule(appPath: appLocation, destination: destination)
-        XCTAssertNotNil(removedRule, "The removed rule must not be nil.")
-
-        let fetchedRuleAfterRemoval = rulesManager.getRule(appPath: appLocation, url: Consts.unknown, host: Consts.unknown, ip: ip, port: port)
-        XCTAssertNil(fetchedRuleAfterRemoval, "Rule must be nil after removal.")
-    }
-    
-    // Test case: Remove an existing rule by ip and any port
-    func testRemoveExistingRuleByIpAndAnyPort() {
-        let destination = "\(ip):\(Consts.any)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: Consts.verdictAllow, appLocation: appLocation, endpoint: ip, port: Consts.any)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
-
-        let removedRule = rulesManager.removeRule(appPath: appLocation, destination: destination)
-        XCTAssertNotNil(removedRule, "The removed rule must not be nil")
-
-        let fetchedRuleAfterRemoval = rulesManager.getRule(appPath: appLocation, url: Consts.unknown, host: Consts.unknown, ip: ip, port: Consts.unknown)
-        XCTAssertNil(fetchedRuleAfterRemoval, "Rule must be nil after removal")
-    }
-
-    // Test case: Try to remove a rule that has already been removed
-    func testRemoveAlreadyRemovedRule() {
-        let destination = "\(url):\(port)"
-        let ruleID = "\(appLocation)-\(action)-\(destination)"
-        let rule = Rule(ruleID: ruleID, action: Consts.verdictAllow, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule), "Should add the rule without error")
-
-        let firstRemoval = rulesManager.removeRule(appPath: appLocation, destination: destination)
-        XCTAssertNotNil(firstRemoval, "The first removal should return the removed rule.")
-
-        let secondRemoval = rulesManager.removeRule(appPath: appLocation, destination: destination)
-        XCTAssertNil(secondRemoval, "The second removal should return nil, as the rule has already been removed.")
-    }
-
-    // Test case: Add a rule with the same appLocation and destination and validate if first remains
-    func testAddRuleWithSameAppLocationAndDestinationFirstRemains() {
-        let verdict1 = Consts.verdictAllow
-        let destination = "\(url):\(port)"
-        let ruleID1 = "\(appLocation)-\(verdict1)-\(destination)"
-        let rule1 = Rule(ruleID: ruleID1, action: verdict1, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule1), "Should add the rule without error")
-        
-        let verdict2 = Consts.verdictBlock
-        let ruleID2 = "\(appLocation)-\(verdict2)-\(destination)"
-        let rule2 = Rule(ruleID: ruleID2, action: verdict2, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertThrowsError(try rulesManager.addRule(rule2), "Should not add the rule without error")
-        
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: Consts.unknown, ip: Consts.unknown, port: port)
-        XCTAssertNotNil(fetchedRule, "Rule should be retrieved.")
-        XCTAssertEqual(fetchedRule, rule1, "The fetched rule should match with rule1")
-        XCTAssertNotEqual(fetchedRule, rule2, "The fetched rule should not match with rule2")
-    }
-    
-    // Test case: Test handleNewFlow to prioritize block all rule with a full path over "allow"
-    func testPreferenceBlockAllFullPath() {
-        let destination = "\(Consts.any):\(Consts.any)"
-        let ruleID1 = "\(appLocation)-\(Consts.verdictBlock)-\(destination)"
-        let rule1 = Rule(ruleID: ruleID1, action: Consts.verdictBlock, appLocation: appLocation, endpoint: Consts.any, port: Consts.any)
-        XCTAssertNoThrow(try rulesManager.addRule(rule1), "Should add a general 'block all' rule without error")
-        
-        let destination2 = "\(Consts.any):\(Consts.any)"
-        let ruleID2 = "\(appLocation)-\(Consts.verdictBlock)-\(destination2)"
-        let rule2 = Rule(ruleID: ruleID2, action: Consts.verdictAllow, appLocation: appLocation, endpoint: Consts.any, port: Consts.any)
-        XCTAssertThrowsError(try rulesManager.addRule(rule2), "Should prevent adding a rule with duplicate appLocation, endpoint and port")
-        
-        let destination3 = "\(url):\(port)"
-        let ruleID3 = "\(appLocation)-\(Consts.verdictAllow)-\(destination3)"
-        let rule3 = Rule(ruleID: ruleID3, action: Consts.verdictAllow, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule3), "Should add a specific 'allow' rule for URL without error")
-        
-        let destination4 = "\(host):\(port)"
-        let ruleID4 = "\(appLocation)-\(Consts.verdictAllow)-\(destination4)"
-        let rule4 = Rule(ruleID: ruleID4, action: Consts.verdictAllow, appLocation: appLocation, endpoint: host, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule4), "Should add a specific 'allow' rule for URL without error")
-        
-        let destination5 = "\(ip):\(port)"
-        let ruleID5 = "\(appLocation)-\(Consts.verdictAllow)-\(destination5)"
-        let rule5 = Rule(ruleID: ruleID5, action: Consts.verdictAllow, appLocation: appLocation, endpoint: ip, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule5), "Should add a specific 'allow' rule for URL without error")
-        
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: ip, port: port)
-        XCTAssertNotNil(fetchedRule, "Should fetch a rule with an existing ID")
-        XCTAssertEqual(fetchedRule, rule1, "Fetched rule should match the general 'block all' rule")
-        XCTAssertNotEqual(fetchedRule, rule2, "Fetched rule should not match the specific 'allow' rule")
-        XCTAssertNotEqual(fetchedRule, rule3, "Fetched rule should not match the specific 'allow' rule")
-        XCTAssertNotEqual(fetchedRule, rule4, "Fetched rule should not match the specific 'allow' rule")
-        XCTAssertNotEqual(fetchedRule, rule5, "Fetched rule should not match the specific 'allow' rule")
-    }
-    
-    // Test case: Test handleNewFlow to prioritize block all rule with only a subpath over "allow"
-    func testPreferenceBlockAllSubPath() {
-        // Arrange
-        // With every creation of a rule, there will be an assert to verify if it was really added without error to the RulesManager.
-        let destination = "\(Consts.any):\(Consts.any)"
-        let ruleID1 = "\("MyApp")-\(Consts.verdictBlock)-\(destination)"
-        let rule1 = Rule(ruleID: ruleID1, action: Consts.verdictBlock, appLocation: appLocation, endpoint: Consts.any, port: Consts.any)
-        XCTAssertNoThrow(try rulesManager.addRule(rule1), "Should add a general 'block all' rule without error")
-        
-        let destination2 = "\(Consts.any):\(Consts.any)"
-        let ruleID2 = "\(appLocation)-\(Consts.verdictBlock)-\(destination2)"
-        let rule2 = Rule(ruleID: ruleID2, action: Consts.verdictAllow, appLocation: appLocation, endpoint: Consts.any, port: Consts.any)
-        XCTAssertThrowsError(try rulesManager.addRule(rule2), "Should prevent adding a rule with duplicate appLocation, endpoint and port")
-        
-        let destination3 = "\(url):\(port)"
-        let ruleID3 = "\(appLocation)-\(Consts.verdictAllow)-\(destination3)"
-        let rule3 = Rule(ruleID: ruleID3, action: Consts.verdictAllow, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule3), "Should add a specific 'allow' rule for URL without error")
-        
-        let destination4 = "\(host):\(port)"
-        let ruleID4 = "\(appLocation)-\(Consts.verdictAllow)-\(destination4)"
-        let rule4 = Rule(ruleID: ruleID4, action: Consts.verdictAllow, appLocation: appLocation, endpoint: host, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule4), "Should add a specific 'allow' rule for URL without error")
-        
-        let destination5 = "\(ip):\(port)"
-        let ruleID5 = "\(appLocation)-\(Consts.verdictAllow)-\(destination5)"
-        let rule5 = Rule(ruleID: ruleID5, action: Consts.verdictAllow, appLocation: appLocation, endpoint: ip, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule5), "Should add a specific 'allow' rule for URL without error")
-        
-        // Act
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: ip, port: port)
-        
-        // Assert
-        XCTAssertNotNil(fetchedRule, "Should fetch a rule with an existing ID")
-        XCTAssertEqual(fetchedRule, rule1, "Fetched rule should match the general 'block all' rule")
-        XCTAssertNotEqual(fetchedRule, rule2, "Fetched rule should not match the specific 'allow' rule")
-        XCTAssertNotEqual(fetchedRule, rule3, "Fetched rule should not match the specific 'allow' rule")
-        XCTAssertNotEqual(fetchedRule, rule4, "Fetched rule should not match the specific 'allow' rule")
-        XCTAssertNotEqual(fetchedRule, rule5, "Fetched rule should not match the specific 'allow' rule")
-    }
-
-    // Test case: Test handleNewFlow to prioritize "block" rule by URL over "allow"
-    func testHandleNewFlowBlockPreferenceByUrlOverAllow() {
-        let ruleID1 = "\(appLocation)-\(Consts.verdictBlock)-\(url):\(port)"
-        let rule1 = Rule(ruleID: ruleID1, action: Consts.verdictBlock, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule1), "Should add a specific 'block' rule for URL without error")
-        
-        let ruleID2 = "\(appLocation)-\(Consts.verdictAllow)-\(url):\(port)"
-        let rule2 = Rule(ruleID: ruleID2, action: Consts.verdictAllow, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertThrowsError(try rulesManager.addRule(rule2), "Should prevent adding a rule with duplicate appLocation, endpoint and port")
-        
-        let ruleID3 = "\(appLocation)-\(Consts.verdictAllow)-\(host):\(port)"
-        let rule3 = Rule(ruleID: ruleID3, action: Consts.verdictAllow, appLocation: appLocation, endpoint: host, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule3), "Should add a specific 'allow' rule for host without error")
-        
-        let ruleID4 = "\(appLocation)-\(Consts.verdictAllow)-\(ip):\(port)"
-        let rule4 = Rule(ruleID: ruleID4, action: Consts.verdictAllow, appLocation: appLocation, endpoint: ip, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule4), "Should add a specific 'allow' rule for IP without error")
-        
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: ip, port: port)
-        XCTAssertNotNil(fetchedRule, "Should fetch a rule with an existing ID")
-        XCTAssertEqual(fetchedRule, rule1, "Fetched rule should match the specific 'block' rule for URL")
-        XCTAssertNotEqual(fetchedRule, rule2, "Fetched rule should not match a duplicate rule")
-        XCTAssertNotEqual(fetchedRule, rule3, "Fetched rule should not match a host-specific 'allow' rule")
-        XCTAssertNotEqual(fetchedRule, rule4, "Fetched rule should not match an IP-specific 'allow' rule")
-    }
-
-    // Test case: Test getRule to prioritize "block" rule by IP over "allow"
-    func testBlockPreferenceByIpOverAllow() {
-        let ruleID1 = "\(appLocation)-\(Consts.verdictBlock)-\(ip):\(port)"
-        let rule1 = Rule(ruleID: ruleID1, action: Consts.verdictBlock, appLocation: appLocation, endpoint: ip, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule1), "Should add a specific 'block' rule for IP without error")
-        
-        let ruleID2 = "\(appLocation)-\(Consts.verdictAllow)-\(ip):\(port)"
-        let rule2 = Rule(ruleID: ruleID2, action: Consts.verdictAllow, appLocation: appLocation, endpoint: ip, port: port)
-        XCTAssertThrowsError(try rulesManager.addRule(rule2), "Should prevent adding a rule with duplicate appLocation, endpoint and port")
-        
-        let ruleID3 = "\(appLocation)-\(Consts.verdictAllow)-\(host):\(port)"
-        let rule3 = Rule(ruleID: ruleID3, action: Consts.verdictAllow, appLocation: appLocation, endpoint: host, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule3), "Should add a specific 'allow' rule for host without error")
-        
-        let ruleID4 = "\(appLocation)-\(Consts.verdictAllow)-\(url):\(port)"
-        let rule4 = Rule(ruleID: ruleID4, action: Consts.verdictAllow, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule4), "Should add a specific 'allow' rule for URL without error")
-        
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: ip, port: port)
-        XCTAssertNotNil(fetchedRule, "Should fetch a rule with an existing ID")
-        XCTAssertEqual(fetchedRule, rule1, "Fetched rule should match the specific 'block' rule for IP")
-        XCTAssertNotEqual(fetchedRule, rule2, "Fetched rule should not match a duplicate rule")
-        XCTAssertNotEqual(fetchedRule, rule3, "Fetched rule should not match a host-specific 'allow' rule")
-        XCTAssertNotEqual(fetchedRule, rule4, "Fetched rule should not match a URL-specific 'allow' rule")
-    }
-
-    // Test case: Test getRule to prioritize "block" rule by Host over "allow"
-    func testBlockPreferenceByHostOverAllow() {
-        let ruleID1 = "\(appLocation)-\(Consts.verdictBlock)-\(host):\(port)"
-        let rule1 = Rule(ruleID: ruleID1, action: Consts.verdictBlock, appLocation: appLocation, endpoint: host, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule1), "Should add a specific 'block' rule for Host without error")
-        
-        let ruleID2 = "\(appLocation)-\(Consts.verdictAllow)-\(host):\(port)"
-        let rule2 = Rule(ruleID: ruleID2, action: Consts.verdictAllow, appLocation: appLocation, endpoint: host, port: port)
-        XCTAssertThrowsError(try rulesManager.addRule(rule2), "Should prevent adding a rule with duplicate appLocation, endpoint and port")
-        
-        let ruleID3 = "\(appLocation)-\(Consts.verdictAllow)-\(url):\(port)"
-        let rule3 = Rule(ruleID: ruleID3, action: Consts.verdictAllow, appLocation: appLocation, endpoint: url, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule3), "Should add a specific 'allow' rule for URL without error")
-        
-        let ruleID4 = "\(appLocation)-\(Consts.verdictAllow)-\(ip):\(port)"
-        let rule4 = Rule(ruleID: ruleID4, action: Consts.verdictAllow, appLocation: appLocation, endpoint: ip, port: port)
-        XCTAssertNoThrow(try rulesManager.addRule(rule4), "Should add a specific 'allow' rule for IP without error")
-        
-        let fetchedRule = rulesManager.getRule(appPath: appLocation, url: url, host: host, ip: ip, port: port)
-        XCTAssertNotNil(fetchedRule, "Should fetch a rule with an existing ID")
-        XCTAssertEqual(fetchedRule, rule1, "Fetched rule should match the specific 'block' rule for Host")
-        XCTAssertNotEqual(fetchedRule, rule2, "Fetched rule should not match a duplicate rule")
-        XCTAssertNotEqual(fetchedRule, rule3, "Fetched rule should not match a URL-specific 'allow' rule")
-        XCTAssertNotEqual(fetchedRule, rule4, "Fetched rule should not match an IP-specific 'allow' rule")
-    }
-
     
     // Test case: Attempt to add a rule with nil value or invalid rule
     func testAddInvalidRule() {

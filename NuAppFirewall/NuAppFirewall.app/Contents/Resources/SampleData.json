@@ -1,0 +1,115 @@
+{
+    "/System/Volumes/Preboot/Cryptexes/Incoming/OS/System/Library/PrivateFrameworks/SafariShared.framework/Versions/A/XPCServices/com.apple.Safari.SearchHelper.xpc/Contents/MacOS/com.apple.Safari.SearchHelper": [
+        {
+            "key": "/System/Volumes/Preboot/Cryptexes/Incoming/OS/System/Library/PrivateFrameworks/SafariShared.framework/Versions/A/XPCServices/com.apple.Safari.SearchHelper.xpc/Contents/MacOS/com.apple.Safari.SearchHelper",
+            "uuid": "0d161440-dbcb-4f4b-afad-757844512f25",
+            "path": "/System/Volumes/Preboot/Cryptexes/Incoming/OS/System/Library/PrivateFrameworks/SafariShared.framework/Versions/A/XPCServices/com.apple.Safari.SearchHelper.xpc/Contents/MacOS/com.apple.Safari.SearchHelper",
+            "name": "com.apple.Safari.SearchHelper",
+            "endpointAddr": "200.155.60.10",
+            "endpointPort": "53.0",
+            "isEndpointAddrRegex": "0",
+            "type": "1",
+            "scope": "0",
+            "action": "1",
+            "csInfo": {
+                "signatureIdentifier": ""
+            }
+        },
+        {
+            "key": "/System/Volumes/Preboot/Cryptexes/Incoming/OS/System/Library/PrivateFrameworks/SafariShared.framework/Versions/A/XPCServices/com.apple.Safari.SearchHelper.xpc/Contents/MacOS/com.apple.Safari.SearchHelper",
+            "uuid": "96a50af2-8a89-47e7-8c0f-0c0bac012484",
+            "path": "/System/Volumes/Preboot/Cryptexes/Incoming/OS/System/Library/PrivateFrameworks/SafariShared.framework/Versions/A/XPCServices/com.apple.Safari.SearchHelper.xpc/Contents/MacOS/com.apple.Safari.SearchHelper",
+            "name": "com.apple.Safari.SearchHelper",
+            "endpointAddr": "142.250.218.3",
+            "endpointPort": "443.0",
+            "isEndpointAddrRegex": "0",
+            "type": "1",
+            "scope": "0",
+            "action": "1",
+            "csInfo": {
+                "signatureIdentifier": ""
+            }
+        }
+    ],
+    "/System/Library/PrivateFrameworks/SafariSafeBrowsing.framework/Versions/A/com.apple.Safari.SafeBrowsing.Service": [
+        {
+            "key": "/System/Library/PrivateFrameworks/SafariSafeBrowsing.framework/Versions/A/com.apple.Safari.SafeBrowsing.Service",
+            "uuid": "f800ad03-d161-4903-a308-5cd73df1ca38",
+            "path": "/System/Library/PrivateFrameworks/SafariSafeBrowsing.framework/Versions/A/com.apple.Safari.SafeBrowsing.Service",
+            "name": "com.apple.Safari.SafeBrowsing.Service",
+            "endpointAddr": "10.101.231.53",
+            "endpointPort": "53.0",
+            "isEndpointAddrRegex": "0",
+            "type": "1",
+            "scope": "0",
+            "action": "1",
+            "csInfo": {
+                "signatureIdentifier": ""
+            }
+        },
+        {
+            "key": "/System/Library/PrivateFrameworks/SafariSafeBrowsing.framework/Versions/A/com.apple.Safari.SafeBrowsing.Service",
+            "uuid": "6bd991f5-2cf3-4963-b175-8bc3462bbfd7",
+            "path": "/System/Library/PrivateFrameworks/SafariSafeBrowsing.framework/Versions/A/com.apple.Safari.SafeBrowsing.Service",
+            "name": "com.apple.Safari.SafeBrowsing.Service",
+            "endpointAddr": "10.101.231.53",
+            "endpointPort": "53.0",
+            "isEndpointAddrRegex": "0",
+            "type": "1",
+            "scope": "0",
+            "action": "1",
+            "csInfo": {
+                "signatureIdentifier": ""
+            }
+        }
+    ],
+    "/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder": [
+        {
+            "key": "/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+            "uuid": "8ffe44df-530e-4c8a-97fc-07dc27a48ef6",
+            "path": "/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+            "name": "Finder",
+            "endpointAddr": "192.168.1.1",
+            "endpointPort": "53",
+            "isEndpointAddrRegex": "0",
+            "type": "1",
+            "scope": "0",
+            "action": "1",
+            "csInfo": {
+                "signatureIdentifier": ""
+            }
+        },
+        {
+            "key": "/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+            "uuid": "33ccec1e-4de7-49c2-9394-ae15cda6a62b",
+            "path": "/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+            "name": "Finder",
+            "endpointAddr": "172.16.27.30",
+            "endpointPort": "53",
+            "isEndpointAddrRegex": "0",
+            "type": "1",
+            "scope": "0",
+            "action": "1",
+            "csInfo": {
+                "signatureIdentifier": ""
+            }
+        }
+    ],
+    "/System/Applications/Calendar.app/Contents/MacOS/Calendar": [
+        {
+            "key": "/System/Applications/Calendar.app/Contents/MacOS/Calendar",
+            "uuid": "8385f1ca-56d4-434c-b074-99c2b2305db4",
+            "path": "/System/Applications/Calendar.app/Contents/MacOS/Calendar",
+            "name": "Calendar",
+            "endpointAddr": "172.253.63.95",
+            "endpointPort": "443",
+            "isEndpointAddrRegex": "0",
+            "type": "1",
+            "scope": "0",
+            "action": "1",
+            "csInfo": {
+                "signatureIdentifier": ""
+            }
+        }
+    ]
+}
