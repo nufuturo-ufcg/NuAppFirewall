@@ -41,6 +41,8 @@
 		CD04D5D62CDB8B4600D24A1D /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB584D2CA32D4E004D4D8D /* LogManager.swift */; };
 		CD04D5D92CDBA28A00D24A1D /* FlowManagerMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04D5D82CDBA27E00D24A1D /* FlowManagerMockTests.swift */; };
 		CD04D5DB2CDBA33600D24A1D /* FlowMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04D5DA2CDBA31F00D24A1D /* FlowMock.swift */; };
+		CD26897D2D42601C00058502 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD26897C2D42601C00058502 /* TestConstants.swift */; };
+		CD26897F2D42616B00058502 /* RuleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD26897E2D42616B00058502 /* RuleData.swift */; };
 		CD857B462CDE38BE0045E1FD /* FlowMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD857B452CDE38B40045E1FD /* FlowMockTests.swift */; };
 		EFF848EC2D3E703E00505C26 /* PopoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF848E92D3E703000505C26 /* PopoverWindow.swift */; };
 /* End PBXBuildFile section */
@@ -153,6 +155,8 @@
 		CD00C1E12CDCD9BE00CD974C /* FlowManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManagerMock.swift; sourceTree = "<group>"; };
 		CD04D5D82CDBA27E00D24A1D /* FlowManagerMockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManagerMockTests.swift; sourceTree = "<group>"; };
 		CD04D5DA2CDBA31F00D24A1D /* FlowMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowMock.swift; sourceTree = "<group>"; };
+		CD26897C2D42601C00058502 /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
+		CD26897E2D42616B00058502 /* RuleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleData.swift; sourceTree = "<group>"; };
 		CD857B452CDE38B40045E1FD /* FlowMockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowMockTests.swift; sourceTree = "<group>"; };
 		E5FEC8B52CD3B4A6003DDBE2 /* NuAppFirewall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewall.entitlements; sourceTree = "<group>"; };
 		EFF848E92D3E703000505C26 /* PopoverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverWindow.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 		57AFE7192C92752100DE8FEE /* NuAppFirewallTests */ = {
 			isa = PBXGroup;
 			children = (
+				CD26897B2D425F9500058502 /* Consts */,
 				CD04D5D72CDBA26700D24A1D /* Controller */,
 				57AFE74C2C927A6B00DE8FEE /* Utils */,
 				57AFE7492C927A3D00DE8FEE /* Model */,
@@ -307,6 +312,7 @@
 		57AFE7492C927A3D00DE8FEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CD26897E2D42616B00058502 /* RuleData.swift */,
 				57875CED2C9389EB000B09F1 /* RuleTests.swift */,
 			);
 			name = Model;
@@ -365,6 +371,14 @@
 				EFF848E92D3E703000505C26 /* PopoverWindow.swift */,
 			);
 			path = View;
+      sourceTree = "<group>";
+    };
+		CD26897B2D425F9500058502 /* Consts */ = {
+			isa = PBXGroup;
+			children = (
+				CD26897C2D42601C00058502 /* TestConstants.swift */,
+			);
+			path = Consts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -524,9 +538,11 @@
 				57875CEE2C9389EB000B09F1 /* RuleTests.swift in Sources */,
 				57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */,
 				CD04D5D62CDB8B4600D24A1D /* LogManager.swift in Sources */,
+				CD26897D2D42601C00058502 /* TestConstants.swift in Sources */,
 				CD00C1E22CDCD9C900CD974C /* FlowManagerMock.swift in Sources */,
 				CD04D5DB2CDBA33600D24A1D /* FlowMock.swift in Sources */,
 				57C3AE942CC69D3500502DD7 /* NuAppFacade.swift in Sources */,
+				CD26897F2D42616B00058502 /* RuleData.swift in Sources */,
 				57C3AEA52CC7D7BF00502DD7 /* Consts.swift in Sources */,
 				CD04D5D92CDBA28A00D24A1D /* FlowManagerMockTests.swift in Sources */,
 				57C3AE9F2CC69DD400502DD7 /* FlowManager.swift in Sources */,

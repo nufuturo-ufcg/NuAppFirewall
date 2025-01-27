@@ -23,8 +23,9 @@ public class FlowManager {
         let (flowID, endpoint, url, host, port, auditToken) = extractFlowInfo(from: flow)
         let pid = pidFromAuditToken(auditToken)
         let path = pathForProcess(with: pid)
+        let bundleID = getBundleID(from: path)
         
-        if let rule = rulesManager.getRule(appPath: path, url: url, host: host, ip: endpoint, port: port) {
+        if let rule = rulesManager.getRule(bundleID: bundleID, appPath: path, url: url, host: host, ip: endpoint, port: port) {
             let verdict: NEFilterNewFlowVerdict = rule.action == Consts.verdictBlock ? .drop() : .allow()
             
             LogManager.logManager.log(rule.description())
@@ -80,5 +81,38 @@ public class FlowManager {
         } else {
             return Consts.unknown
         }
+    }
+    
+    func getBundleID(from applicationPath: String) -> String {
+        guard let bundlePath = findBundlePath(in: applicationPath) else {
+            return Consts.unknown
+        }
+        
+        if let bundle = Bundle(path: bundlePath) {
+            return bundle.bundleIdentifier ?? Consts.unknown
+        }
+        
+        let plistPath = "\(bundlePath)/Contents/Info.plist"
+        if let plistData = NSDictionary(contentsOfFile: plistPath),
+           let bundleID = plistData["CFBundleIdentifier"] as? String {
+            return bundleID
+        }
+        
+        return Consts.unknown
+    }
+
+    func findBundlePath(in path: String) -> String? {
+        let components = path.split(separator: "/")
+        
+        for i in (0..<components.count) {
+            let subPath = "/" + components.prefix(i + 1).joined(separator: "/")
+            
+            if (subPath.hasSuffix(".app") || subPath.hasSuffix(".xpc")),
+               FileManager.default.fileExists(atPath: subPath) {
+                return subPath
+            }
+        }
+        
+        return nil
     }
 }
