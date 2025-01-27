@@ -4,14 +4,13 @@
 <dict>
 	<key>CFBundleIconFile</key>
 	<string>AppIcon</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
 	<key>CFBundleIdentifier</key>
-	<dict>
-		<key>NSPrincipalClass</key>
-		<string>NSApplication</string>
-		<key>CFBundleIdentifier</key>
-		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-		<key>CFBundleName</key>
-		<string>$(PRODUCT_NAME)</string>
-	</dict>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>LSBackgroundOnly</key>
+	<true/>
 </dict>
 </plist>
