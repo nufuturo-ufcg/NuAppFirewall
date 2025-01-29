@@ -119,7 +119,7 @@ class RulesManager {
     func getRule(bundleID: String, appPath: String, url: String, host: String, ip: String, port: String) -> Rule? {
         var matchedRules: [Rule] = []
         
-        matchedRules.append(contentsOf: findRules(app: bundleID, url: url, host: host, ip: ip, port: port))
+        matchedRules.append(contentsOf: findRules(app: bundleID, url: url, host: host, ip: ip, port: port, fallbackToSubpath: false))
         let bundleRule = selectRule(from: matchedRules, url, host, ip, port, preferBlock: true)
         guard bundleRule == nil else {
             return bundleRule
@@ -131,17 +131,23 @@ class RulesManager {
         return pathRule
     }
     
-    private func findRules(app: String, url: String, host: String, ip: String, port: String) -> [Rule] {
+    private func findRules(app: String, url: String, host: String, ip: String, port: String, fallbackToSubpath: Bool = true) -> [Rule] {
         guard applications.contains(app) else {
-            LogManager.logManager.log("Application not found, falling back to subpath search: \(app)", level: .debug)
-            let subpathRules = getRulesBySubpath(app)
-            
-            for rule in subpathRules {
-                let newRule = createRule(action: rule.action, app: app, endpoint: rule.endpoint, port: rule.port)
-                handleRuleAddition(newRule!)
+            LogManager.logManager.log("Application not found: \(app)", level: .debug)
+                
+            if fallbackToSubpath {
+                LogManager.logManager.log("Falling back to subpath search: \(app)", level: .debug)
+                let subpathRules = getRulesBySubpath(app)
+                    
+                for rule in subpathRules {
+                    let newRule = createRule(action: rule.action, app: app, endpoint: rule.endpoint, port: rule.port)
+                    handleRuleAddition(newRule!)
+                }
+                    
+                return subpathRules
             }
-            
-            return subpathRules
+                
+            return []
         }
         
         var specificRules: [Rule] = []

@@ -6,17 +6,11 @@
 
      Created by com.nufuturo.nuappfirewall
 */
-/*
+
 import XCTest
 @testable import NuAppFirewall
 
 class RuleTests: XCTestCase {
-    
-    let ruleID = "AppPath/Test"
-    let action = Consts.verdictAllow
-    let application = "/Applications/MyApp"
-    let endpoint = "www.teste.com"
-    let port = Consts.any
     
     override func setUpWithError() throws {
         super.setUp()
@@ -26,45 +20,63 @@ class RuleTests: XCTestCase {
         super.tearDown()
     }
     
-    // Test case: initializes a rule
+    // Test case: Validate the initialization of Rule objects for all possible rule combinations.
     func testRuleInitialization() {
-        let rule = Rule(ruleID: ruleID, action: action, app: application, endpoint: endpoint, port: port)
-
-        XCTAssertNotNil(rule, "The rule must be created")
-        XCTAssertEqual(rule?.ruleID, ruleID, "The ruleID must be initialized correctly.")
-        XCTAssertEqual(rule?.action, action, "The action must be initialized correctly.")
-        XCTAssertEqual(rule?.application, application, "The application location must be initialized correctly.")
-        XCTAssertEqual(rule?.endpoint, endpoint, "Endpoint must be initialized correctly.")
-        XCTAssertEqual(rule?.port, port, "The port must be initialized correctly.")
-        XCTAssertEqual(rule?.destination, "\(endpoint):\(port)", "The destination must be initialized correctly.")
+        let ruleDataArray = TestDataFactory.generateRuleData()
+        XCTAssertEqual(ruleDataArray.count, TestConstants.ruleDataCombinationsCount, "The number of all possible combinations must be \(TestConstants.ruleDataCombinationsCount).")
+        
+        for ruleData in ruleDataArray {
+            let testInfo = "RuleData(action: \(ruleData.action), app: \(ruleData.app), endpoint: \(ruleData.endpoint), port: \(ruleData.port))"
+            
+            let rule = Rule(ruleID: ruleData.ruleID, action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port)
+            
+            XCTAssertNotNil(rule, "The rule must be created for \(testInfo).")
+            XCTAssertEqual(rule?.ruleID, ruleData.ruleID, "Mismatch in ruleID for \(testInfo).")
+        }
     }
     
-    /*
-    // Test case: Verify description method to ensure the output is formatted correctly
-    func testRuleDescription() throws {
-        let rule = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: endpoint, port: port)
-        let description = rule?.description()
-        let expectedDescription = """
-        ruleID: \(ruleID)
-        Action: \(action)
-        Application Location: \(appLocation)
-        Endpoint: \(endpoint)
-        Destination: \(endpoint):\(port)
-        Port: \(port)
-        """
-        XCTAssertEqual(description, expectedDescription, "The descriptions should match")
+    // Test case: Verify that the description method outputs the correct string format for all possible rule combinations.
+    func testRuleDescription() {
+        let ruleDataArray = TestDataFactory.generateRuleData()
+        XCTAssertEqual(ruleDataArray.count, TestConstants.ruleDataCombinationsCount, "The number of all possible combinations must be \(TestConstants.ruleDataCombinationsCount).")
+        
+        for ruleData in ruleDataArray {
+            let testInfo = "RuleData(action: \(ruleData.action), app: \(ruleData.app), endpoint: \(ruleData.endpoint), port: \(ruleData.port))"
+            
+            let rule = Rule(ruleID: ruleData.ruleID, action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port)
+            let description = rule?.description()
+            let expectedDescription = """
+            ruleID: \(ruleData.ruleID)
+            Action: \(ruleData.action)
+            Application: \(ruleData.app)
+            Endpoint: \(ruleData.endpoint)
+            Destination: \(ruleData.endpoint):\(ruleData.port)
+            Port: \(ruleData.port)
+            """
+            
+            XCTAssertEqual(description, expectedDescription, "Description mismatch for \(testInfo).")
+        }
     }
     
-    // Test the equals method (Equatable implementation)
-    func testRuleEquality() throws {
-        let rule1 = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: endpoint, port: port)
-        let rule2 = Rule(ruleID: ruleID, action: action, appLocation: appLocation, endpoint: endpoint, port: port)
-        let rule3 = Rule(ruleID: "/Applications/DifferentApp.app", action: action, appLocation: "/Applications/DifferentApp.app", endpoint: "10.0.0.1", port: "443")
+    // Test case: Validate the equality comparison for Rule objects.
+    func testRuleEquality() {
+        let ruleDataArray = TestDataFactory.generateRuleData()
+        XCTAssertEqual(ruleDataArray.count, TestConstants.ruleDataCombinationsCount, "The number of all possible combinations must be \(TestConstants.ruleDataCombinationsCount).")
         
-        // Ensure rule1 and rule2 are equal
-        XCTAssertEqual(rule1, rule2, "Rules with the same properties should be considered equal")
-        
-        // Ensure rule1 and rule3 are not equal
-        XCTAssertNotEqual(rule1, rule3, "Rules with different properties should not be considered equal")
-    }*/
-}*/
+        for ruleData in ruleDataArray {
+            let testInfo = "RuleData(action: \(ruleData.action), app: \(ruleData.app), endpoint: \(ruleData.endpoint), port: \(ruleData.port))"
+            
+            let rule1 = Rule(ruleID: ruleData.ruleID, action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port)
+            let rule2 = Rule(ruleID: ruleData.ruleID, action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port)
+            
+            // Ensure rule1 and rule2 are equal
+            XCTAssertEqual(rule1, rule2, "Rules with the same properties should be equal for \(testInfo).")
+            
+            // Create a different rule for comparison
+            let rule3 = Rule(ruleID: "/Applications/DifferentApp.app", action: TestConstants.actionBlock, app: "/Applications/DifferentApp.app", endpoint: "10.0.0.1", port: "443")
+            
+            // Ensure rule1 and rule3 are not equal
+            XCTAssertNotEqual(rule1, rule3, "Rules with different properties should not be equal for \(testInfo).")
+        }
+    }
+}

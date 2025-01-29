@@ -2,9 +2,9 @@
 //  FlowMock.swift
 //  NuAppFirewall
 //
-//  Created by Walber Araújo on 06/11/24.
+//  Created by Walber Araujo on 06/11/24.
 //
-/*
+
 import Foundation
 
 class FlowMock {
@@ -12,14 +12,13 @@ class FlowMock {
     let host: String
     let ip: String
     let port: String
-    let path: String
+    let app: String
     
-    init(url: String, host: String, ip: String, path: String, port: String) {
+    init(url: String, host: String, ip: String, app: String, port: String) {
         self.url = url
         self.host = host
         self.ip = ip
+        self.app = app
         self.port = port
-        self.path = path
     }
 }
-*/
