@@ -2,9 +2,8 @@
 //  RuleData.swift
 //  NuAppFirewall
 //
-//  Created by Walber Filho on 23/01/25.
+//  Created by Walber Araujo on 23/01/25.
 //
-
 
 struct RuleData {
     let action: String

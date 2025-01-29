@@ -44,6 +44,8 @@
 		CD26897D2D42601C00058502 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD26897C2D42601C00058502 /* TestConstants.swift */; };
 		CD26897F2D42616B00058502 /* RuleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD26897E2D42616B00058502 /* RuleData.swift */; };
 		CD857B462CDE38BE0045E1FD /* FlowMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD857B452CDE38B40045E1FD /* FlowMockTests.swift */; };
+		CD95DA052D42840200DF227F /* FlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD95DA042D4283FA00DF227F /* FlowData.swift */; };
+		CDF406C22D45621C0091F6CB /* TestDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF406C12D4562140091F6CB /* TestDataFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -155,8 +157,10 @@
 		CD04D5D82CDBA27E00D24A1D /* FlowManagerMockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManagerMockTests.swift; sourceTree = "<group>"; };
 		CD04D5DA2CDBA31F00D24A1D /* FlowMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowMock.swift; sourceTree = "<group>"; };
 		CD26897C2D42601C00058502 /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
-		CD26897E2D42616B00058502 /* RuleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleData.swift; sourceTree = "<group>"; };
+		CD26897E2D42616B00058502 /* RuleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RuleData.swift; path = Model/RuleData.swift; sourceTree = "<group>"; };
 		CD857B452CDE38B40045E1FD /* FlowMockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowMockTests.swift; sourceTree = "<group>"; };
+		CD95DA042D4283FA00DF227F /* FlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlowData.swift; path = Model/FlowData.swift; sourceTree = "<group>"; };
+		CDF406C12D4562140091F6CB /* TestDataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataFactory.swift; sourceTree = "<group>"; };
 		E5FEC8B52CD3B4A6003DDBE2 /* NuAppFirewall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewall.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -237,6 +241,7 @@
 		57AFE7192C92752100DE8FEE /* NuAppFirewallTests */ = {
 			isa = PBXGroup;
 			children = (
+				CDF406C02D4561D40091F6CB /* TestHelpers */,
 				CD26897B2D425F9500058502 /* Consts */,
 				CD04D5D72CDBA26700D24A1D /* Controller */,
 				57AFE74C2C927A6B00DE8FEE /* Utils */,
@@ -309,8 +314,9 @@
 		57AFE7492C927A3D00DE8FEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CD26897E2D42616B00058502 /* RuleData.swift */,
 				57875CED2C9389EB000B09F1 /* RuleTests.swift */,
+				CD95DA042D4283FA00DF227F /* FlowData.swift */,
+				CD26897E2D42616B00058502 /* RuleData.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -368,6 +374,14 @@
 				CD26897C2D42601C00058502 /* TestConstants.swift */,
 			);
 			path = Consts;
+			sourceTree = "<group>";
+		};
+		CDF406C02D4561D40091F6CB /* TestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				CDF406C12D4562140091F6CB /* TestDataFactory.swift */,
+			);
+			path = TestHelpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -527,11 +541,13 @@
 				57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */,
 				CD04D5D62CDB8B4600D24A1D /* LogManager.swift in Sources */,
 				CD26897D2D42601C00058502 /* TestConstants.swift in Sources */,
+				CDF406C22D45621C0091F6CB /* TestDataFactory.swift in Sources */,
 				CD00C1E22CDCD9C900CD974C /* FlowManagerMock.swift in Sources */,
 				CD04D5DB2CDBA33600D24A1D /* FlowMock.swift in Sources */,
 				57C3AE942CC69D3500502DD7 /* NuAppFacade.swift in Sources */,
 				CD26897F2D42616B00058502 /* RuleData.swift in Sources */,
 				57C3AEA52CC7D7BF00502DD7 /* Consts.swift in Sources */,
+				CD95DA052D42840200DF227F /* FlowData.swift in Sources */,
 				CD04D5D92CDBA28A00D24A1D /* FlowManagerMockTests.swift in Sources */,
 				57C3AE9F2CC69DD400502DD7 /* FlowManager.swift in Sources */,
 				CD857B462CDE38BE0045E1FD /* FlowMockTests.swift in Sources */,
