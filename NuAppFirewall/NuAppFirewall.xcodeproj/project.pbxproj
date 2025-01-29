@@ -46,6 +46,7 @@
 		CD857B462CDE38BE0045E1FD /* FlowMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD857B452CDE38B40045E1FD /* FlowMockTests.swift */; };
 		CD95DA052D42840200DF227F /* FlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD95DA042D4283FA00DF227F /* FlowData.swift */; };
 		CDF406C22D45621C0091F6CB /* TestDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF406C12D4562140091F6CB /* TestDataFactory.swift */; };
+		EFF848EC2D3E703E00505C26 /* PopoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF848E92D3E703000505C26 /* PopoverWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -162,6 +163,7 @@
 		CD95DA042D4283FA00DF227F /* FlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlowData.swift; path = Model/FlowData.swift; sourceTree = "<group>"; };
 		CDF406C12D4562140091F6CB /* TestDataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataFactory.swift; sourceTree = "<group>"; };
 		E5FEC8B52CD3B4A6003DDBE2 /* NuAppFirewall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewall.entitlements; sourceTree = "<group>"; };
+		EFF848E92D3E703000505C26 /* PopoverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +268,7 @@
 		57AFE7392C92780F00DE8FEE /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				EFF848E82D3E701700505C26 /* View */,
 				57C3AEA32CC7D79D00502DD7 /* Consts */,
 				57CB584C2CA32B38004D4D8D /* Logging */,
 				570550432CB47199008252E2 /* Utils */,
@@ -368,6 +371,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		EFF848E82D3E701700505C26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EFF848E92D3E703000505C26 /* PopoverWindow.swift */,
+			);
+			path = View;
+      sourceTree = "<group>";
+    };
 		CD26897B2D425F9500058502 /* Consts */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFF848EC2D3E703E00505C26 /* PopoverWindow.swift in Sources */,
 				57875CE52C938966000B09F1 /* ExtensionManager.swift in Sources */,
 				57CB584E2CA32D4E004D4D8D /* LogManager.swift in Sources */,
 				570CD4572C98BCA1001257CC /* AppDelegate.swift in Sources */,
@@ -638,12 +650,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				m = "";
@@ -696,11 +708,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 				m = "";
@@ -721,6 +733,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -763,6 +776,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
