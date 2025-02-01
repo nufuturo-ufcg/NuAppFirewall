@@ -1,0 +1,55 @@
+{
+  "configurations" : [
+    {
+      "id" : "5E094297-4936-41F4-8632-80EBF2C51846",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:NuAppFirewall.xcodeproj",
+          "identifier" : "57AFE7032C92751F00DE8FEE",
+          "name" : "NuAppFirewall"
+        },
+        {
+          "containerPath" : "container:NuAppFirewall.xcodeproj",
+          "identifier" : "57AFE7152C92752100DE8FEE",
+          "name" : "NuAppFirewallTests"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "skippedTests" : [
+        "FlowManagerMockTests",
+        "FlowManagerMockTests\/testHandleNewFlowWithRules()",
+        "FlowMockTests",
+        "FlowMockTests\/testFlowMockInitialization()",
+        "RulesManagerTests",
+        "RulesManagerTests\/testAddDuplicateRule()",
+        "RulesManagerTests\/testAddInvalidRule()",
+        "RulesManagerTests\/testAddRule()",
+        "RulesManagerTests\/testAddRuleWithSameParamsDifferentActions()",
+        "RulesManagerTests\/testBlockRulePrecedenceWithAllowRules()",
+        "RulesManagerTests\/testRemoveNonExistingRule()",
+        "RulesManagerTests\/testRemoveRule()",
+        "RulesManagerTests\/testRemoveRuleWithRemainingRules()",
+        "RulesManagerTests\/testRetrievalRule()",
+        "RulesManagerTests\/testRuleInitialization()"
+      ],
+      "target" : {
+        "containerPath" : "container:NuAppFirewall.xcodeproj",
+        "identifier" : "57AFE7152C92752100DE8FEE",
+        "name" : "NuAppFirewallTests"
+      }
+    }
+  ],
+  "version" : 1
+}
