@@ -27,8 +27,22 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:NuAppFirewallTests/TestPlans/NuAppFirewall.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:NuAppFirewallTests/TestPlans/RulesManager.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:NuAppFirewallTests/TestPlans/FlowManagerMock.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:NuAppFirewallTests/TestPlans/Rule.xctestplan">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
             skipped = "NO"
