@@ -25,7 +25,6 @@
 		57875CF02C938AC9000B09F1 /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57875CEF2C938AC9000B09F1 /* SampleData.plist */; };
 		57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFE7472C92795700DE8FEE /* RulesManagerTests.swift */; };
 		57C3AE932CC69D3500502DD7 /* NuAppFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C3AE922CC69D3500502DD7 /* NuAppFacade.swift */; };
-		57C3AE942CC69D3500502DD7 /* NuAppFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C3AE922CC69D3500502DD7 /* NuAppFacade.swift */; };
 		57C3AE9F2CC69DD400502DD7 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C3AE9D2CC69DD400502DD7 /* FlowManager.swift */; };
 		57C3AEA02CC69DD400502DD7 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C3AE9D2CC69DD400502DD7 /* FlowManager.swift */; };
 		57C3AEA52CC7D7BF00502DD7 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C3AEA42CC7D7BF00502DD7 /* Consts.swift */; };
@@ -46,6 +45,8 @@
 		CD857B462CDE38BE0045E1FD /* FlowMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD857B452CDE38B40045E1FD /* FlowMockTests.swift */; };
 		CD95DA052D42840200DF227F /* FlowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD95DA042D4283FA00DF227F /* FlowData.swift */; };
 		CDF406C22D45621C0091F6CB /* TestDataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF406C12D4562140091F6CB /* TestDataFactory.swift */; };
+		CDFB72532D4EAFEA00100168 /* RulesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFB72522D4EAFDA00100168 /* RulesLoader.swift */; };
+		CDFB72542D4EAFEA00100168 /* RulesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFB72522D4EAFDA00100168 /* RulesLoader.swift */; };
 		EFF848EC2D3E703E00505C26 /* PopoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF848E92D3E703000505C26 /* PopoverWindow.swift */; };
 /* End PBXBuildFile section */
 
@@ -162,6 +163,11 @@
 		CD857B452CDE38B40045E1FD /* FlowMockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowMockTests.swift; sourceTree = "<group>"; };
 		CD95DA042D4283FA00DF227F /* FlowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlowData.swift; path = Model/FlowData.swift; sourceTree = "<group>"; };
 		CDF406C12D4562140091F6CB /* TestDataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataFactory.swift; sourceTree = "<group>"; };
+		CDFB72522D4EAFDA00100168 /* RulesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesLoader.swift; sourceTree = "<group>"; };
+		CDFB72582D4EB84F00100168 /* FlowManagerMock.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FlowManagerMock.xctestplan; sourceTree = "<group>"; };
+		CDFB72592D4EB94700100168 /* NuAppFirewall.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = NuAppFirewall.xctestplan; sourceTree = "<group>"; };
+		CDFB725A2D4EB9B800100168 /* RulesManager.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = RulesManager.xctestplan; sourceTree = "<group>"; };
+		CDFB725B2D4EB9F300100168 /* Rule.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = Rule.xctestplan; path = NuAppFirewallTests/TestPlans/Rule.xctestplan; sourceTree = SOURCE_ROOT; };
 		E5FEC8B52CD3B4A6003DDBE2 /* NuAppFirewall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NuAppFirewall.entitlements; sourceTree = "<group>"; };
 		EFF848E92D3E703000505C26 /* PopoverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -243,6 +249,7 @@
 		57AFE7192C92752100DE8FEE /* NuAppFirewallTests */ = {
 			isa = PBXGroup;
 			children = (
+				CDFB724F2D4E853000100168 /* TestPlans */,
 				CDF406C02D4561D40091F6CB /* TestHelpers */,
 				CD26897B2D425F9500058502 /* Consts */,
 				CD04D5D72CDBA26700D24A1D /* Controller */,
@@ -293,6 +300,7 @@
 		57AFE73B2C92783400DE8FEE /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				CDFB72522D4EAFDA00100168 /* RulesLoader.swift */,
 				57AFE7402C9278B000DE8FEE /* RulesManager.swift */,
 			);
 			path = Logic;
@@ -371,14 +379,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		EFF848E82D3E701700505C26 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EFF848E92D3E703000505C26 /* PopoverWindow.swift */,
-			);
-			path = View;
-      sourceTree = "<group>";
-    };
 		CD26897B2D425F9500058502 /* Consts */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +393,25 @@
 				CDF406C12D4562140091F6CB /* TestDataFactory.swift */,
 			);
 			path = TestHelpers;
+			sourceTree = "<group>";
+		};
+		CDFB724F2D4E853000100168 /* TestPlans */ = {
+			isa = PBXGroup;
+			children = (
+				CDFB72582D4EB84F00100168 /* FlowManagerMock.xctestplan */,
+				CDFB72592D4EB94700100168 /* NuAppFirewall.xctestplan */,
+				CDFB725A2D4EB9B800100168 /* RulesManager.xctestplan */,
+				CDFB725B2D4EB9F300100168 /* Rule.xctestplan */,
+			);
+			path = TestPlans;
+			sourceTree = "<group>";
+		};
+		EFF848E82D3E701700505C26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EFF848E92D3E703000505C26 /* PopoverWindow.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -553,10 +572,10 @@
 				57AFE7482C92795700DE8FEE /* RulesManagerTests.swift in Sources */,
 				CD04D5D62CDB8B4600D24A1D /* LogManager.swift in Sources */,
 				CD26897D2D42601C00058502 /* TestConstants.swift in Sources */,
+				CDFB72542D4EAFEA00100168 /* RulesLoader.swift in Sources */,
 				CDF406C22D45621C0091F6CB /* TestDataFactory.swift in Sources */,
 				CD00C1E22CDCD9C900CD974C /* FlowManagerMock.swift in Sources */,
 				CD04D5DB2CDBA33600D24A1D /* FlowMock.swift in Sources */,
-				57C3AE942CC69D3500502DD7 /* NuAppFacade.swift in Sources */,
 				CD26897F2D42616B00058502 /* RuleData.swift in Sources */,
 				57C3AEA52CC7D7BF00502DD7 /* Consts.swift in Sources */,
 				CD95DA052D42840200DF227F /* FlowData.swift in Sources */,
@@ -574,6 +593,7 @@
 				570550912CB47352008252E2 /* DataConverter.swift in Sources */,
 				5705508F2CB4733A008252E2 /* RulesManager.swift in Sources */,
 				570550902CB4734C008252E2 /* Rule.swift in Sources */,
+				CDFB72532D4EAFEA00100168 /* RulesLoader.swift in Sources */,
 				57C3AE932CC69D3500502DD7 /* NuAppFacade.swift in Sources */,
 				57E812F62C93395000FF61DE /* main.swift in Sources */,
 				57E812F42C93395000FF61DE /* FilterDataProvider.swift in Sources */,

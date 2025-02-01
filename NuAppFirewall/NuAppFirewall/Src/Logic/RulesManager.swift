@@ -19,55 +19,11 @@ class RulesManager {
     var rules: [String: [String: Rule]] = [:]
     var applications: Set<String> = []
     let dataConverter = DataConverter()
-    
-    func loadData(fileName: String, fileType: FileType) -> [String: Any]? {
-        guard let managedData = dataConverter.readManagedData() else {
-            LogManager.logManager.log("Failed to read managed data")
-            
-            guard let fallbackData = dataConverter.readData(from: fileName, ofType: fileType) else {
-                LogManager.logManager.log("Failed to read JSON data")
-                return nil
-            }
-            
-            return fallbackData
-        }
-        
-        return managedData
-    }
+    let rulesLoader = RulesLoader()
     
     func loadRules(fileName: String, fileType: FileType) {
-
-        guard let dictionary = loadData(fileName: fileName, fileType: fileType) else {
-            return
-        }
-        
-        rules.removeAll()
-        applications.removeAll()
-        
-        for (path, rulesArray) in dictionary {
-            guard let rulesArray = rulesArray as? [[String: Any]] else { continue }
-            
-            for ruleData in rulesArray {
-                guard let action = ruleData["action"] as? String,
-                      let destinations = ruleData["destinations"] as? [[String]],
-                      let identifier = ruleData["identifier"] as? String else { continue }
-                
-                for destination in destinations {
-                    let endpoint = destination[0]
-                    let port = destination[1]
-                    
-                    if identifier != "unknown" {
-                        if let ruleForBundle = createRule(action: action, app: identifier, endpoint: endpoint, port: port) {
-                            handleRuleAddition(ruleForBundle)
-                        }
-                    } else {
-                        if let ruleForPath = createRule(action: action, app: path, endpoint: endpoint, port: port) {
-                            handleRuleAddition(ruleForPath)
-                        }
-                    }
-                }
-            }
-        }
+        self.rules = rulesLoader.loadRules(fileName: fileName, fileType: fileType)
+        self.applications = Set(rules.keys)
     }
     
     private func createRule(action: String, app: String, endpoint: String, port: String) -> Rule? {
