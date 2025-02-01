@@ -18,7 +18,7 @@ class Rule: Equatable, Hashable {
     var destination: String
 
     init?(ruleID: String, action: String, app: String, endpoint: String, port: String) {
-        guard !endpoint.isEmpty else {
+        guard !ruleID.isEmpty, !action.isEmpty, !app.isEmpty, !endpoint.isEmpty, !port.isEmpty else {
             return nil
         }
 

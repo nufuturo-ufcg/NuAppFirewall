@@ -64,6 +64,32 @@ class RulesManagerTests: XCTestCase {
         }
     }
     
+    // Test case: Ensure that attempting to add duplicate rules results in an error.
+    func testAddDuplicateRule() {
+        let ruleDataArray = TestDataFactory.generateRuleData()
+        XCTAssertEqual(ruleDataArray.count, TestConstants.ruleDataCombinationsCount, "The number of all possible combinations must be \(TestConstants.ruleDataCombinationsCount).")
+        
+        for ruleData in ruleDataArray {
+            rulesManager = RulesManager()
+            let testInfo = "RuleID: \(ruleData.ruleID)"
+            
+            guard let rule = TestDataFactory.createRule(action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port) else {
+                XCTFail("Failed to create rule for \(testInfo)")
+                continue
+            }
+            
+            XCTAssertNoThrow(try rulesManager.addRule(rule), "Failed to add rule for \(testInfo).")
+            
+            XCTAssertThrowsError(try rulesManager.addRule(rule), "Expected error when adding duplicate rule for \(testInfo).") { error in
+                if case RulesManagerError.ruleAlreadyExists = error {
+                    LogManager.logManager.log("Correctly identified rule duplication for \(testInfo)", level: .debug)
+                } else {
+                    XCTFail("Unexpected error for \(testInfo): \(error)")
+                }
+            }
+        }
+    }
+    
     // Test case: Ensure all possible rule combinations can be retrieved successfully after being added.
     func testRetrievalRule() {
         let ruleDataArray = TestDataFactory.generateRuleData()
@@ -186,6 +212,37 @@ class RulesManagerTests: XCTestCase {
             XCTAssertNotNil(fetchedRule, "Failed to fetch rule for \(blockRuleData.ruleID)")
             XCTAssertEqual(fetchedRule, blockRule, "Block rule did not take precedence over allow rules: \(blockRuleData.ruleID)")
         }
+    }
+    
+    // Test case: Ensure that removing a non-existing rule returns nil
+    func testRemoveNonExistingRule() {
+        let app = TestConstants.appPath
+        let destination = "NonExistingDestination"
+        
+        let removedRule = rulesManager.removeRule(app: app, destination: destination)
+        
+        XCTAssertNil(removedRule, "Removing a non-existing rule should return nil.")
+    }
+    
+    // Test case: Ensure that after removing one rule, the remaining rules are preserved
+    func testRemoveRuleWithRemainingRules() {
+        guard let rule1 = TestDataFactory.createRule(action: TestConstants.actionAllow, app: TestConstants.appPath, endpoint: TestConstants.ip, port: TestConstants.port),
+              let rule2 = TestDataFactory.createRule(action: TestConstants.actionAllow, app: TestConstants.appPath, endpoint: TestConstants.host, port: TestConstants.port) else {
+            XCTFail("Failed to create rules for the test case.")
+            return
+        }
+        
+        XCTAssertNoThrow(try rulesManager.addRule(rule1), "Failed to add rule1.")
+        XCTAssertNoThrow(try rulesManager.addRule(rule2), "Failed to add rule2.")
+        
+        let removedRule = rulesManager.removeRule(app: rule1.application, destination: rule1.destination)
+        
+        XCTAssertNotNil(removedRule, "Rule should be removed successfully.")
+        XCTAssertEqual(removedRule?.destination, rule1.destination, "The removed rule should match the expected destination.")
+        
+        let remainingRule = rulesManager.rules[TestConstants.appPath]?[rule2.destination]
+        XCTAssertNotNil(remainingRule, "The remaining rule should still exist.")
+        XCTAssertEqual(remainingRule?.destination, rule2.destination, "The remaining rule should match the expected destination.")
     }
     
     // Test case: Attempt to add a rule with nil value or invalid rule

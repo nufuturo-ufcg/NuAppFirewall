@@ -79,4 +79,47 @@ class RuleTests: XCTestCase {
             XCTAssertNotEqual(rule1, rule3, "Rules with different properties should not be equal for \(testInfo).")
         }
     }
+    
+    // Teste case: Ensure that the hash(into:) function generates consistent hashes for identical rules and different hashes for distinct rules.
+    func testRuleHashing() {
+        let ruleDataArray = TestDataFactory.generateRuleData()
+        XCTAssertEqual(ruleDataArray.count, TestConstants.ruleDataCombinationsCount, "The number of all possible combinations must be \(TestConstants.ruleDataCombinationsCount).")
+            
+        for ruleData in ruleDataArray {
+            let testInfo = "RuleData(action: \(ruleData.action), app: \(ruleData.app), endpoint: \(ruleData.endpoint), port: \(ruleData.port))"
+                
+            let rule1 = Rule(ruleID: ruleData.ruleID, action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port)
+            let rule2 = Rule(ruleID: ruleData.ruleID, action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port)
+                
+            XCTAssertEqual(rule1.hashValue, rule2.hashValue, "Hash values should be equal for identical rules: \(testInfo).")
+                
+            let rule3 = Rule(ruleID: "/Applications/DifferentApp.app", action: TestConstants.actionBlock, app: "/Applications/DifferentApp.app", endpoint: "10.0.0.1", port: "443")
+                
+            XCTAssertNotEqual(rule1.hashValue, rule3.hashValue, "Hash values should differ for distinct rules: \(testInfo).")
+        }
+    }
+    
+    // Test Case: Ensure that the Rule initializer fails when any required field is empty.
+    func testRuleInitializationFailsForEmptyValues() {
+        let ruleDataArray = TestDataFactory.generateRuleData()
+
+        XCTAssertEqual(ruleDataArray.count, TestConstants.ruleDataCombinationsCount,
+                       "The number of all possible combinations must be \(TestConstants.ruleDataCombinationsCount).")
+
+        for ruleData in ruleDataArray {
+            let testInfo = "RuleData(action: \(ruleData.action), app: \(ruleData.app), endpoint: \(ruleData.endpoint), port: \(ruleData.port))"
+
+            let invalidRules = [
+                Rule(ruleID: "", action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port),
+                Rule(ruleID: ruleData.ruleID, action: "", app: ruleData.app, endpoint: ruleData.endpoint, port: ruleData.port),
+                Rule(ruleID: ruleData.ruleID, action: ruleData.action, app: "", endpoint: ruleData.endpoint, port: ruleData.port),
+                Rule(ruleID: ruleData.ruleID, action: ruleData.action, app: ruleData.app, endpoint: "", port: ruleData.port),
+                Rule(ruleID: ruleData.ruleID, action: ruleData.action, app: ruleData.app, endpoint: ruleData.endpoint, port: "")
+            ]
+
+            for (index, rule) in invalidRules.enumerated() {
+                XCTAssertNil(rule, "Rule initialization should fail for empty value at index \(index): \(testInfo)")
+            }
+        }
+    }
 }

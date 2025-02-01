@@ -8,7 +8,7 @@
 import XCTest
 @testable import NuAppFirewall
 
-class FlowManagerTests: XCTestCase {
+class FlowManagerMockTests: XCTestCase {
     
     var rulesManager: RulesManager!
     var flowManagerMock: FlowManagerMock!
