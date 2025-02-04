@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "9F6C1368-82CE-455A-ABB2-71772A9DC3A5",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:NuAppFirewall.xcodeproj",
+          "identifier" : "57AFE7032C92751F00DE8FEE",
+          "name" : "NuAppFirewall"
+        },
+        {
+          "containerPath" : "container:NuAppFirewall.xcodeproj",
+          "identifier" : "57AFE7152C92752100DE8FEE",
+          "name" : "NuAppFirewallTests"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:NuAppFirewall.xcodeproj",
+        "identifier" : "57AFE7152C92752100DE8FEE",
+        "name" : "NuAppFirewallTests"
+      }
+    }
+  ],
+  "version" : 1
+}

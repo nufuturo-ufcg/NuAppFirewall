@@ -2,26 +2,21 @@
 //  FlowManagerMock.swift
 //  NuAppFirewall
 //
-//  Created by Walber Araújo on 07/11/24.
+//  Created by Walber Araujo on 07/11/24.
 //
-/*
+
 class FlowManagerMock {
     
-    let rulesManager: RulesManager
+    var rulesManager: RulesManager
     
     init(rulesManager: RulesManager) {
         self.rulesManager = rulesManager
     }
 
     public func handleNewFlow(flow: FlowMock) -> String {
-        let path = flow.path
-        let url = flow.url
-        let host = flow.host
-        let endpoint = flow.ip
-        let port = flow.port
         
-        if let rule = rulesManager.getRule(bundleID: "", appPath: path, url: url, host: host, ip: endpoint, port: port) {
-            let verdict = rule.action == Consts.verdictBlock ? Consts.verdictBlock : Consts.verdictAllow
+        if let rule = rulesManager.getRule(bundleID: flow.app, appPath: flow.app, url: flow.url, host: flow.host, ip: flow.ip, port: flow.port) {
+            let verdict = rule.action == TestConstants.actionBlock ? TestConstants.actionBlock : TestConstants.actionAllow
             
             return verdict
         } else {
@@ -30,4 +25,3 @@ class FlowManagerMock {
         }
     }
 }
-*/

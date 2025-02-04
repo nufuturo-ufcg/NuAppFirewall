@@ -19,55 +19,11 @@ class RulesManager {
     var rules: [String: [String: Rule]] = [:]
     var applications: Set<String> = []
     let dataConverter = DataConverter()
-    
-    func loadData(fileName: String, fileType: FileType) -> [String: Any]? {
-        guard let managedData = dataConverter.readManagedData() else {
-            LogManager.logManager.log("Failed to read managed data")
-            
-            guard let fallbackData = dataConverter.readData(from: fileName, ofType: fileType) else {
-                LogManager.logManager.log("Failed to read JSON data")
-                return nil
-            }
-            
-            return fallbackData
-        }
-        
-        return managedData
-    }
+    let rulesLoader = RulesLoader()
     
     func loadRules(fileName: String, fileType: FileType) {
-
-        guard let dictionary = loadData(fileName: fileName, fileType: fileType) else {
-            return
-        }
-        
-        rules.removeAll()
-        applications.removeAll()
-        
-        for (path, rulesArray) in dictionary {
-            guard let rulesArray = rulesArray as? [[String: Any]] else { continue }
-            
-            for ruleData in rulesArray {
-                guard let action = ruleData["action"] as? String,
-                      let destinations = ruleData["destinations"] as? [[String]],
-                      let identifier = ruleData["identifier"] as? String else { continue }
-                
-                for destination in destinations {
-                    let endpoint = destination[0]
-                    let port = destination[1]
-                    
-                    if identifier != "unknown" {
-                        if let ruleForBundle = createRule(action: action, app: identifier, endpoint: endpoint, port: port) {
-                            handleRuleAddition(ruleForBundle)
-                        }
-                    } else {
-                        if let ruleForPath = createRule(action: action, app: path, endpoint: endpoint, port: port) {
-                            handleRuleAddition(ruleForPath)
-                        }
-                    }
-                }
-            }
-        }
+        self.rules = rulesLoader.loadRules(fileName: fileName, fileType: fileType)
+        self.applications = Set(rules.keys)
     }
     
     private func createRule(action: String, app: String, endpoint: String, port: String) -> Rule? {
@@ -119,7 +75,7 @@ class RulesManager {
     func getRule(bundleID: String, appPath: String, url: String, host: String, ip: String, port: String) -> Rule? {
         var matchedRules: [Rule] = []
         
-        matchedRules.append(contentsOf: findRules(app: bundleID, url: url, host: host, ip: ip, port: port))
+        matchedRules.append(contentsOf: findRules(app: bundleID, url: url, host: host, ip: ip, port: port, fallbackToSubpath: false))
         let bundleRule = selectRule(from: matchedRules, url, host, ip, port, preferBlock: true)
         guard bundleRule == nil else {
             return bundleRule
@@ -131,17 +87,23 @@ class RulesManager {
         return pathRule
     }
     
-    private func findRules(app: String, url: String, host: String, ip: String, port: String) -> [Rule] {
+    private func findRules(app: String, url: String, host: String, ip: String, port: String, fallbackToSubpath: Bool = true) -> [Rule] {
         guard applications.contains(app) else {
-            LogManager.logManager.log("Application not found, falling back to subpath search: \(app)", level: .debug)
-            let subpathRules = getRulesBySubpath(app)
-            
-            for rule in subpathRules {
-                let newRule = createRule(action: rule.action, app: app, endpoint: rule.endpoint, port: rule.port)
-                handleRuleAddition(newRule!)
+            LogManager.logManager.log("Application not found: \(app)", level: .debug)
+                
+            if fallbackToSubpath {
+                LogManager.logManager.log("Falling back to subpath search: \(app)", level: .debug)
+                let subpathRules = getRulesBySubpath(app)
+                    
+                for rule in subpathRules {
+                    let newRule = createRule(action: rule.action, app: app, endpoint: rule.endpoint, port: rule.port)
+                    handleRuleAddition(newRule!)
+                }
+                    
+                return subpathRules
             }
-            
-            return subpathRules
+                
+            return []
         }
         
         var specificRules: [Rule] = []
