@@ -5,7 +5,6 @@
 //  Created by Walber Araujo on 23/01/25.
 //
 
-
 enum TestConstants {
     static let appPath = "/Applications/MyApp"
     static let appSubpath = "MyApp"
@@ -14,6 +13,9 @@ enum TestConstants {
     static let host = "teste.com"
     static let ip = "123.123.123"
     static let port = "443"
+    static let unknown = "unknown"
     static let actionAllow = Consts.verdictAllow
     static let actionBlock = Consts.verdictBlock
+    static let ruleDataCombinationsCount = 42
+    static let flowDataCombinationsCount = 48
 }

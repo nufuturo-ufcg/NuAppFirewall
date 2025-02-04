@@ -1,0 +1,50 @@
+{
+  "configurations" : [
+    {
+      "id" : "788CB07E-2996-49D0-8481-26CE65AB3768",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:NuAppFirewall.xcodeproj",
+          "identifier" : "57AFE7032C92751F00DE8FEE",
+          "name" : "NuAppFirewall"
+        },
+        {
+          "containerPath" : "container:NuAppFirewall.xcodeproj",
+          "identifier" : "57AFE7152C92752100DE8FEE",
+          "name" : "NuAppFirewallTests"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "skippedTests" : [
+        "FlowManagerMockTests",
+        "FlowManagerMockTests\/testHandleNewFlowWithRules()",
+        "FlowMockTests",
+        "FlowMockTests\/testFlowMockInitialization()",
+        "RuleTests",
+        "RuleTests\/testRuleDescription()",
+        "RuleTests\/testRuleEquality()",
+        "RuleTests\/testRuleHashing()",
+        "RuleTests\/testRuleInitialization()",
+        "RuleTests\/testRuleInitializationFailsForEmptyValues()"
+      ],
+      "target" : {
+        "containerPath" : "container:NuAppFirewall.xcodeproj",
+        "identifier" : "57AFE7152C92752100DE8FEE",
+        "name" : "NuAppFirewallTests"
+      }
+    }
+  ],
+  "version" : 1
+}

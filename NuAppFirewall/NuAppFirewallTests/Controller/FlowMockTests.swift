@@ -2,19 +2,13 @@
 //  FlowMockTests.swift
 //  NuAppFirewall
 //
-//  Created by Walber Araújo on 08/11/24.
+//  Created by Walber Araujo on 08/11/24.
 //
-/*
+
 import XCTest
 @testable import NuAppFirewall
 
 class FlowMockTests: XCTestCase {
-    
-    let appLocation = "appPath/Test"
-    let url = "url/Test"
-    let host = "host/Test"
-    let ip = "123"
-    let port = "443"
 
     override func setUp() {
         super.setUp()
@@ -24,15 +18,22 @@ class FlowMockTests: XCTestCase {
         super.tearDown()
     }
     
-    // Tests the initialization of a Flow object with valid data
-    func testFlowInitialization() {
-        let flow = FlowMock(url: url, host: host, ip: ip, path: appLocation, port: port)
-
-        XCTAssertNotNil(flow, "The flow must be created")
-        XCTAssertEqual(flow.url, url, "The url must be initialized correctly")
-        XCTAssertEqual(flow.host, host, "The host must be initialized correctly")
-        XCTAssertEqual(flow.path, appLocation, "The application location must be initialized correctly")
-        XCTAssertEqual(flow.ip, ip, "The ip must be initialized correctly")
-        XCTAssertEqual(flow.port, port, "The port must be initialized correctly")
+    // Test case: Validate the initialization of FlowMock objects with all possible data combinations.
+    func testFlowMockInitialization() {
+        let flowDataArray = TestDataFactory.generateFlowData()
+        XCTAssertEqual(flowDataArray.count, TestConstants.flowDataCombinationsCount, "The number of all possible combinations must be \(TestConstants.flowDataCombinationsCount).")
+        
+        for flowData in flowDataArray {
+            let testInfo = "FlowData(url: \(flowData.url), host: \(flowData.host), ip: \(flowData.ip), app: \(flowData.app), port: \(flowData.port))"
+            
+            let flowMock = FlowMock(url: flowData.url, host: flowData.host, ip: flowData.ip, app: flowData.app, port: flowData.port)
+            
+            XCTAssertNotNil(flowMock, "The FlowMock object must be created for \(testInfo).")
+            XCTAssertEqual(flowMock.url, flowData.url, "The url must be initialized correctly for \(testInfo).")
+            XCTAssertEqual(flowMock.host, flowData.host, "The host must be initialized correctly for \(testInfo).")
+            XCTAssertEqual(flowMock.ip, flowData.ip, "The ip must be initialized correctly for \(testInfo).")
+            XCTAssertEqual(flowMock.app, flowData.app, "The app must be initialized correctly for \(testInfo).")
+            XCTAssertEqual(flowMock.port, flowData.port, "The port must be initialized correctly for \(testInfo).")
+        }
     }
-}*/
+}
