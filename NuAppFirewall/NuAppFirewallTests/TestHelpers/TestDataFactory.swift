@@ -18,10 +18,6 @@ class TestDataFactory {
         for app in apps {
             for endpoint in endpoints {
                 for portValue in ports {
-                    if endpoint == Consts.any && portValue != Consts.any {
-                        continue
-                    }
-                    
                     for action in actions {
                         ruleData.append(RuleData(action: action, app: app, endpoint: endpoint, port: portValue))
                     }

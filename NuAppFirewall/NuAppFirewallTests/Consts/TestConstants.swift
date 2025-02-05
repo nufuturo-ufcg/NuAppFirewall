@@ -16,6 +16,6 @@ enum TestConstants {
     static let unknown = "unknown"
     static let actionAllow = Consts.verdictAllow
     static let actionBlock = Consts.verdictBlock
-    static let ruleDataCombinationsCount = 42
+    static let ruleDataCombinationsCount = 48
     static let flowDataCombinationsCount = 48
 }
