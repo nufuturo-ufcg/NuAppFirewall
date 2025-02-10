@@ -13,13 +13,13 @@
       "targets" : [
         {
           "containerPath" : "container:NuAppFirewall.xcodeproj",
-          "identifier" : "57AFE7032C92751F00DE8FEE",
-          "name" : "NuAppFirewall"
+          "identifier" : "57AFE7152C92752100DE8FEE",
+          "name" : "NuAppFirewallTests"
         },
         {
           "containerPath" : "container:NuAppFirewall.xcodeproj",
-          "identifier" : "57AFE7152C92752100DE8FEE",
-          "name" : "NuAppFirewallTests"
+          "identifier" : "57E812EF2C93395000FF61DE",
+          "name" : "Extension"
         }
       ]
     }
