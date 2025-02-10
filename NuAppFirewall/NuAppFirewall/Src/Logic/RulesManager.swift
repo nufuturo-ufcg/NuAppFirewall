@@ -112,6 +112,10 @@ class RulesManager {
             specificRules.append(generalRule)
         }
         
+        if let rulebyPort = getRuleByPort(app, port) {
+            specificRules.append(rulebyPort)
+        }
+        
         specificRules.append(contentsOf: getRulesByUrl(app, url, port))
         specificRules.append(contentsOf: getRulesByHost(app, host, port))
         specificRules.append(contentsOf: getRulesByIp(app, ip, port))
@@ -128,12 +132,13 @@ class RulesManager {
         
         let destinations = [
             "\(Consts.any):\(Consts.any)",
+            "\(Consts.any):\(port)",
             "\(url):\(Consts.any)",
             "\(url):\(port)",
             "\(host):\(Consts.any)",
             "\(host):\(port)",
             "\(ip):\(Consts.any)",
-            "\(ip):\(port)"
+            "\(ip):\(port)",
         ]
         
         for destination in destinations {
@@ -175,6 +180,11 @@ class RulesManager {
         }
         
         return nil
+    }
+    
+    private func getRuleByPort(_ app: String, _ port: String) -> Rule? {
+        let portOnlyKey = "\(Consts.any):\(port)"
+        return rules[app]?[portOnlyKey]
     }
     
     private func getRulesByUrl(_ app: String, _ url: String, _ port: String) -> [Rule] {
