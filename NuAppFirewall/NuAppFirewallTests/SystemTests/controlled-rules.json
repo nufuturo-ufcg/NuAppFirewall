@@ -1,85 +1,42 @@
 {
-    "/path/to/process": {
-        "key": "/path/to/process",
-        "action": "allow",
-        "path": "/path/to/process",
-        "endpoints": [
-            "linkedin.com",
-            "www-mail.icloud-sandbox.com",
-            "csxd.contentsquare.net", 
-            "track1.aniview.com",
-            "api.schemaapp.com",
-            "weather-data.apple.com",
-            "analytics.twitter.com",
-            "www.google.com",
-            "www.apple.com",
-            "e.dlx.addthis.com",
-            "pixel.rubiconproject.com",
-            "tm.jsuol.com.br",
-            "p34-buy.itunes.apple.com", 
-            "universal-activity-service.itunes.apple.com",
-            "bcbolt446c5271-a.akamaihd.net",
-            "musicstatus.itunes.apple.com",
-            "www.amazon.com",
-            "www.netflix.com",
-            "www.facebook.com",
-            "www.twitter.com",
-            "www.reddit.com",
-            "www.stackoverflow.com",
-            "www.github.com",
-            "www.microsoft.com",
-            "www.spotify.com",
-            "www.instagram.com",
-            "www.twitch.tv",
-            "www.dropbox.com",
-            "www.paypal.com",
-            "www.quora.com",
-            "www.cloudflare.com",
-            "www.airbnb.com"
-        ],
-        "domains": [
-            "linkedin.com",
-            "icloud-sandbox.com",
-            "contentsquare.net", 
-            "aniview.com",
-            "schemaapp.com",
-            "apple.com",
-            "twitter.com",
-            "google.com",
-            "addthis.com",
-            "rubiconproject.com",
-            "jsuol.com.br", 
-            "itunes.apple.com",
-            "akamaihd.net",
-            "amazon.com",
-            "netflix.com",
-            "facebook.com",
-            "reddit.com",
-            "stackoverflow.com",
-            "github.com",
-            "microsoft.com",
-            "spotify.com",
-            "instagram.com",
-            "twitch.tv",
-            "dropbox.com",
-            "paypal.com",
-            "quora.com",
-            "cloudflare.com",
-            "airbnb.com"
-        ]
-    },
-    "/path/to/another/process": {
-        "key": "/path/to/another/process",
-        "action": "block",
-        "path": "/path/to/another/process",
-        "endpoints": [
-            "www.youtube.com",
-	    "www.wikipedia.org"
-        ],
-        "domains": [
-            "youtube.com",
-	    "wikipedia.org"
-        ]
-    }
+    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend": [
+        {
+            "action": "block",
+            "identifier": "com.apple.dt.Xcode",
+            "destinations": [
+                [
+                    "www.linkedin.com",
+                    "443"
+                ], 
+                [
+                    "www.google.com",
+                    "443"
+                ],
+                [
+                    "www.dropbox.com",
+                    "443"
+                ], 
+                [
+                    "www.amazon.com",
+                    "443"
+                ],
+                [
+                    "www.netflix.com",
+                    "443"
+                ], 
+                [
+                    "www.facebook.com",
+                    "443"
+                ],
+                [
+                    "www.reddit.com",
+                    "443"
+                ], 
+                [
+                    "www.stackoverflow.com",
+                    "443"
+                ]
+            ]
+        }
+    ]
 }
-

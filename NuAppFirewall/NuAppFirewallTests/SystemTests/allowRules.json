@@ -1,0 +1,14 @@
+{
+    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend": [
+        {
+            "action": "allow",
+            "identifier": "com.apple.dt.Xcode",
+            "destinations": [
+                [
+                    "www.linkedin.com",
+                    "any"
+                ]
+            ]
+        }
+    ]
+}
