@@ -1,9 +1,10 @@
-//
-//  Network.swift
-//  NuAppFirewall
-//
-//  Created by Walber Araujo on 01/02/25.
-//
+/*
+    File: URLFetcher.swift
+    Project: NuAppFirewall (nufuturo.nuappfirewall)
+    Description: URLFetcher is a utility that performs network requests to verify URL accessibility.
+
+    Created by Walber Araujo on 01/02/2025
+*/
 
 import Foundation
 

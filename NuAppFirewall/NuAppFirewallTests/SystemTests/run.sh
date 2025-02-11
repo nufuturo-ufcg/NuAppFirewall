@@ -6,7 +6,7 @@ SYSTEM_TEST_DIR="$(dirname "$0")"
 # Lista de arquivos Swift a serem executados
 files=(
     "ANSIColor.swift"
-    "Network.swift"
+    "URLFetcher.swift"
     "SystemTestUtils.swift"
     "Loader.swift"
     "Logger.swift"

@@ -1,9 +1,12 @@
-//
-//  Logger.swift
-//  NuAppFirewall
-//
-//  Created by Walber Araujo on 01/02/25.
-//
+/*
+    File: Logger.swift
+    Project: NuAppFirewall (nufuturo.nuappfirewall)
+    Description: Logger is responsible for retrieving network verdicts from system logs. 
+        It searches for specific log entries related to URL access attempts, 
+        identifies whether connections were allowed or blocked, and handles retries to ensure accurate log retrieval.
+
+    Created by Walber Araujo on 01/02/2025
+*/
 
 import Foundation
 
