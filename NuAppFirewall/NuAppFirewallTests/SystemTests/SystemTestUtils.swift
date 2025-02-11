@@ -1,9 +1,12 @@
-//
-//  Utils.swift
-//  NuAppFirewall
-//
-//  Created by Walber Araujo on 01/02/25.
-//
+/*
+    File: SystemTestUtils.swift
+    Project: NuAppFirewall (nufuturo.nuappfirewall)
+    Description: SystemTestUtils provides utility functions for updating progress bars, printing detailed reports, 
+        and managing atomic counters for thread-safe incrementing. 
+        It helps in displaying real-time progress and generating formatted reports for URL validation results.
+
+    Created by Walber Araujo on 01/02/2025
+*/
 
 import Foundation
 

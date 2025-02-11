@@ -1,9 +1,13 @@
-//
-//  SystemTest.swift
-//  NuAppFirewall
-//
-//  Created by Walber Araujo on 01/02/25.
-//
+/*
+    File: SystemTest.swift
+    Project: NuAppFirewall (nufuturo.nuappfirewall)
+    Description: SystemTest is a module designed to process multiple URLs concurrently, 
+        verifying their accessibility and logging results. 
+        It manages network requests with controlled concurrency, tracks progress, 
+        and generates a comprehensive report of the system's network behavior.
+
+    Created by Walber Araujo on 01/02/2025
+*/
 
 import Foundation
 
