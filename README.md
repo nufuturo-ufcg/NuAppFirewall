@@ -6,249 +6,244 @@ This project follows an adaptation of Nubank's Diplomat architecture, customized
 
 **Paper Abstract**: Managing network access is essential to ensure the security of both users and corporate ecosystems. On macOS, this control is implemented through Content Filters in firewall applications. However, the state of the practice consists mainly of proprietary consumer tools, while open-source alternatives lack the modularity needed for enterprise adoption. This paper introduces NuAppFirewall, an open-source application firewall developed and deployed in production at Nubank. It includes more than 250,000 automatically generated rules for macOS applications, derived from Nubank's validated accesses, minimizing VPN usage and providing a security foundation that other organizations can leverage for their own implementations.
 
-# Estrutura do readme.md
+# README.md Structure
+This repository is organized as follows:
 
 ```
-nu-app-firewall
-    ├── LICENSE
-    ├── Makefile
-    ├── NuAppFirewall
-    │   ├── Extension
-    │   │   ├── Extension.entitlements
-    │   │   ├── ExtensionDebug.entitlements
-    │   │   ├── FilterDataProvider.swift
-    │   │   ├── Info.plist
-    │   │   └── main.swift
-    │   ├── NuAppFirewall
-    │   │   ├── Assets.xcassets
-    │   │   ├── NuAppFirewall.entitlements
-    │   │   ├── NuAppFirewallDebug.entitlements
-    │   │   ├── Preview Content
-    │   │   ├── Resources
-    │   │   └── Src
-    │   ├── NuAppFirewall.app
-    │   │   └── Contents
-    │   ├── NuAppFirewall.xcodeproj
-    │   │   ├── project.pbxproj
-    │   │   ├── project.xcworkspace
-    │   │   ├── xcshareddata
-    │   │   └── xcuserdata
-    │   └── NuAppFirewallTests
-    │       ├── Consts
-    │       ├── Controller
-    │       ├── Logic
-    │       ├── Model
-    │       ├── SystemTests
-    │       ├── TestHelpers
-    │       ├── TestPlans
-    │       └── Utils
-    ├── PerformanceData
-    │   ├── NuAppFirewall_Benchmark_PC01.csv
-    │   ├── NuAppFirewall_Benchmark_PC02.csv
-    │   ├── NuAppFirewall_Benchmark_PC03.csv
-    │   ├── NuAppFirewall_Benchmark_PC04.csv
-    │   └── NuAppFirewall_Benchmark_PC05.csv
-    ├── README.md
-    ├── default.profraw
-    ├── docs
-    │   ├── RFC
-    │   │   └── RFC AppFirewall.md
-    │   ├── decisions
-    │   │   ├── block-rules-adr.md
-    │   │   ├── rules-adr.md
-    │   │   ├── sandbox-adr.md
-    │   │   ├── targets-adr.md
-    │   │   └── template-adr.md
-    │   └── images
-    │       ├── appfirewall_componentes.png
-    │       ├── appfirewall_contexto.png
-    │       ├── appfirewall_implantacao.png
-    │       └── directory_tree.png
-    └── file.txt
+├── LICENSE
+├── Makefile
+├── NuAppFirewall
+│   ├── Extension
+│   │   ├── Extension.entitlements
+│   │   ├── ExtensionDebug.entitlements
+│   │   ├── FilterDataProvider.swift
+│   │   ├── Info.plist
+│   │   └── main.swift
+│   ├── NuAppFirewall
+│   │   ├── Assets.xcassets
+│   │   ├── NuAppFirewall.entitlements
+│   │   ├── NuAppFirewallDebug.entitlements
+│   │   ├── Preview Content
+│   │   ├── Resources
+│   │   └── Src
+│   ├── NuAppFirewall.app
+│   │   └── Contents
+│   ├── NuAppFirewall.xcodeproj
+│   │   ├── project.pbxproj
+│   │   ├── project.xcworkspace
+│   │   ├── xcshareddata
+│   │   └── xcuserdata
+│   └── NuAppFirewallTests
+│       ├── Consts
+│       ├── Controller
+│       ├── Logic
+│       ├── Model
+│       ├── SystemTests
+│       ├── TestHelpers
+│       ├── TestPlans
+│       └── Utils
+├── NuAppFirewall2.0.1.dmg
+├── README.md
+├── default.profraw
+├── docs
+│   ├── RFC
+│   │   └── RFC AppFirewall.md
+│   ├── decisions
+│   │   ├── block-rules-adr.md
+│   │   ├── rules-adr.md
+│   │   ├── sandbox-adr.md
+│   │   ├── targets-adr.md
+│   │   └── template-adr.md
+│   └── images
+│       ├── appfirewall_componentes.png
+│       ├── appfirewall_contexto.png
+│       ├── appfirewall_implantacao.png
+│       └── directory_tree.png
+└── file.txt
 ```
 
-# Selos considerados
+# Considered Badges
 
-Os selos considerados são: **Disponíveis** e **Funcionais**.
+The considered badges are: **Available** and **Functional**.
 
-# Informações básicas
-Estes são os requisitos mínimos para execução da ferramenta:
+# Basic Information  
+These are the minimum requirements to run the tool:  
 
-- macOS 12.4 ou superior
-- Xcode 12.0 ou superior
-- Swift 5.0 ou superior
+- macOS 12.4 or later  
+- Xcode 12.0 or later  
+- Swift 5.0 or later  
 
-# Dependências
+# Dependencies  
 
-Não há dependências para execução da ferramenta.
+There are no dependencies required to run the tool.  
 
-# Preocupações com segurança
+# Security Concerns
 
-Não há preocupações com segurança.
+There are no security concerns.
 
-# Instalação
+# Installation
 
-### Executar por meio do DMG
+## Run via DMG
 
-1. Baixe a imagem de disco _NuAppFirewall2.0.1.dmg_ que está disponível no repositório.
-2. Abra a imagem de disco.
-3. Arraste o aplicativo _NuAppFirewall.app_ para a pasta _Aplicativos_.
+1. Download the disk image [_NuAppFirewall2.0.1.dmg_] in this repository's root directory;
+2. Open the disk image;  
+3. Drag the _NuAppFirewall.app_ to the _Applications_ folder
 
 ![Captura de Tela 2025-02-13 às 15 28 04](https://github.com/user-attachments/assets/09d3640f-4122-4912-a140-2db79fa762a0)
 
-4. Crie o path onde as regras serão armazenadas:
+4. Create the path where the rules will be stored:  
 ```bash
 sudo mkdir -p "/private/var/root/Library/Group Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application Support/"
 ```
 
-5. Baixe o [arquivo](./Rules/rules.json) de regras presente no repositório 
+5. Download the [rules file](./Rules/rules.json) available in the repository;
 
-6. Mova o arquivo de regras para o path no qual a extensão lerá as regras
+6. Move the rules file to the path where the extension will read the rules:
 ```bash
 sudo mv path/to/rules /private/var/root/Library/Group\ Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application\ Support/
 ```
 
-7. Clique no ícone do aplicativo que aparecerá no Finder;
-8. Conceda as permissões que serão solicitadas.
+7. Click on the application icon that appears in Finder. 
+8. Grant the requested permissions. 
 
-O firewall será ativado. Para verificar os logs, use:
+The firewall will be activated. To check the logs, use: 
 ```bash
 log stream --predicate "subsystem='com.nufuturo.nuappfirewall.extension'" --info
 ```
 
-### Executar por meio da CLI (será necessário ter as assinaturas configuradas)
+## Run via CLI (signing configuration will be required)
 
-1. Clone o repositório:
+1. Clone the repository:
 ```bash
 git clone https://github.com/nufuturo-ufcg/NuAppFirewall.git
 ```
 
-2. Entre no diretório do projeto:
+2. Navigate to the project directory:
 ```bash
 cd NuAppFirewall
 ```
 
-3. Crie o path onde as regras serão armazenadas:
+3. Create the path where the rules will be stored:
 ```bash
 sudo mkdir -p "/private/var/root/Library/Group Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application Support/"
 ```
 
-4. Mova o arquivo de regras para o path no qual a extensão lerá as regras
+4. Move the rules file to the path where the extension will read the rules:
 ```bash
 sudo mv ./Rules/rules.json /private/var/root/Library/Group\ Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application\ Support/
 ```
 
-5. Compile e execute o projeto no terminal:
+5. Build and run the project in the terminal:
 ```
 make run
 ```
 
-Dê a permissão que será solicitada.
+Grant the requested permission.
 
-# Desistalação
+# Uninstallation
 
-1. Abra o Monitor de Atividade;
-2. Busque por 'com.nufuturo.nuappfirewall.extension';
-3. Clique 2x no processo que aparecerá;
-4. Clique em 'Quit' seguido de 'Force Quit';
-5. DIgite a senha do seu computador.
+1. Open Activity Monitor;
+2. Search for 'com.nufuturo.nuappfirewall.extension';
+3. Double-click the process that appears;
+4. Click 'Quit', then 'Force Quit';
+5. Enter your computer password.
 
-A extensão será desativada. Para confirmar execute o seguinte comando: 
+The extension will be deactivated. To confirm, run the following command:
 ```bash
 systemextensionsctl list
 ```
 
-# Teste mínimo
+# Minimum Test
 
-Se o processo de instalação foi realizado corretamente, é possível usar o seguinte comando para verificar no syslog a interceptação de fluxos e aplicação de regras.
+If the installation process was completed correctly, you can use the following command to check the syslog for flow interception and rule application:  
 
 ```bash
 log stream --predicate "subsystem='com.nufuturo.nuappfirewall.extension'" --info
 ```
 
-# Experimentos
+# Experiments
 
-## Consumo de CPU e memória
+## CPU and Memory Usage
 
-1. Execute a aplicação;
-2. Acesse o monitor de atividade no macOS;
-3. Faça uma busca por 'com.nufuturo.nuappfirewall.extension';
-4. As informações de CPU e memória serão encontradas em suas respectivas abas e colunas.
+1. Run the application;
+2. Open Activity Monitor on macOS;
+3. Search for 'com.nufuturo.nuappfirewall.extension';
+4. CPU and memory information can be found in their respective tabs and columns.
 
-Acesse o monitor de atividade e faça uma pesquisa por 'com.nufuturo.nuappfirewall.extension'
+Open Activity Monitor and search for 'com.nufuturo.nuappfirewall.extension'.
 
-## Como executar os testes de unidade
+## How to Run Unit Tests 
 
-Para executar os testes de unidade, siga as instruções abaixo:
+To run the unit tests, follow the instructions below: 
 
-1. Clone o repositório
+1. Clone the repository:
 ```bash
 git clone https://github.com/nufuturo-ufcg/NuAppFirewall.git
 ```
 
-2. Navegue até o diretório do projeto
+2. Navigate to the project directory:
 ```bash
 cd NuAppFirewall
 ```
     
-3. Execute o comando para rodar os testes:
+3. Run the command to execute the tests:
 ```bash
 make test
 ```
 
-## Como executar os testes de sistema
+## How to Run System Tests
 
-1. Assegure-se que o firewall está desativado.
-   1.1 Execute o seguinte comando para verificar se a extensão está desativada:
-   ```bash
-   systemextensionsctl list
-   ```
+1. Ensure that the firewall is deactivated.     
+    1.1 Run the following command to check if the extension is deactivated:  
+    ```bash
+    systemextensionsctl list
+    ```
    
-   1.2 Se não estiver desativada, siga os passos do tópico de Desistalação para desativá-la.
+   1.2 If it is not deactivated, follow the steps in the Uninstallation section to disable it.
    
-2. Clone o repositório
+2. Clone the repository:
 ```bash
 git clone https://github.com/nufuturo-ufcg/NuAppFirewall.git
 ```
 
-3. Navegue até o diretório do projeto
+3. Navigate to the project directory:
 ```bash
 cd NuAppFirewall
 ```
 
-4. Execute o comando para realizar os testes de sistema:
+4. Run the command to execute the system tests:
 ```bash
 make systemTest
 ```
 
-O arquivo de regras de teste serão implantados no diretório que a extensão fará a leitura. Após isso, a aplicação será ativada e os testes de sistema farão um exercício da aplicação correta das regras e validação por meio do syslog.
+The test rules file will be deployed in the directory where the extension will read from. After that, the application will be activated, and the system tests will perform a check of the correct application of the rules and validation through the syslog.   
 
-# LICENSE
-Este projeto está licenciado sob a [GPL-2.0 License](LICENSE), veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+# Other Makefile Commands  
 
-## Outros Comandos do Makefile
-
-Para visualizar outros comandos disponíveis no Makefile use o seguinte comando na raiz do projeto:
+To view other available commands in the Makefile, use the following command at the root of the project:  
 
 ```
 make help
 ```
 
-## Como Contribuir
+# How to Contribute
 
-- Crie uma branch para a nova funcionalidade ou correção de bug:
+- Create a branch for the new feature or bug fix:
     ```bash
-    git checkout -b feature/nova-funcionalidade
+    git checkout -b feature/new-feature
     ```
 
-- Commit suas alterações:
+- Commit your changes:
     ```bash
-    git commit -m 'Adiciona nova funcionalidade'
+    git commit -m 'Add new feature'
     ```
 
-- Push para a branch:
+- Push to the branch:
     ```bash
-    git push origin feature/nova-funcionalidade
+    git push origin feature/new-feature
     ```
 
-- Crie um Pull Request.
+- Create a Pull Request. 
+
+# LICENSE  
+This project is licensed under the [GPL-2.0 License](LICENSE), see the [LICENSE](LICENSE) file for more details. 
