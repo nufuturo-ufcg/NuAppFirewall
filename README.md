@@ -113,6 +113,8 @@ log stream --predicate "subsystem='com.nufuturo.nuappfirewall.extension'" --info
 
 ## Run via CLI (signing configuration will be required)
 
+In order to run this application on CLI, you need to have a apple developer license and re-sign this code with your team ID.
+
 1. Clone the repository:
 ```bash
 git clone https://github.com/nufuturo-ufcg/NuAppFirewall.git
