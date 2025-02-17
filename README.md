@@ -85,7 +85,7 @@ There are no security concerns.
 
 ## Run via DMG
 
-1. Download the disk image [_NuAppFirewall2.0.1.dmg_] in this repository's root directory;
+1. Download the disk image [_NuAppFirewall2.0.1.dmg_](./NuAppFirewall2.0.1.dmg) in this repository's root directory;
 2. Open the disk image;  
 3. Drag the _NuAppFirewall.app_ to the _Applications_ folder
 
