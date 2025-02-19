@@ -52,14 +52,14 @@ class FlowManagerMockTests: XCTestCase {
                 
                 let testInfo = "RuleData(action: \(ruleData.action), app: \(ruleData.app), endpoint: \(ruleData.endpoint), port: \(ruleData.port)) | FlowData(url: \(flowData.url), host: \(flowData.host), ip: \(flowData.ip), port: \(flowData.port), application: \(flowData.app))"
                 
-                let isApplicationMatch = rule.application == flowData.app || flowData.app.contains(rule.application)
+                let isApplicationMatch = rule.application == flowData.app || flowData.app.contains(rule.application) || rule.application == TestConstants.any
 
                 let isEndpointMatch = rule.endpoint == flowMock.url ||
                                       rule.endpoint == flowMock.host ||
                                       rule.endpoint == flowMock.ip ||
-                                      rule.endpoint == Consts.any
+                                      rule.endpoint == TestConstants.any
 
-                let isPortMatch = rule.port == flowData.port || rule.port == Consts.any
+                let isPortMatch = rule.port == flowData.port || rule.port == TestConstants.any
 
                 if isApplicationMatch && isEndpointMatch && isPortMatch {
                     let expectedVerdict = rule.action == TestConstants.actionBlock ? TestConstants.actionBlock : TestConstants.actionAllow
