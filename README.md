@@ -73,6 +73,8 @@ These are the minimum requirements to run the tool:
 - Xcode 12.0 or later  
 - Swift 5.0 or later  
 
+To the reviewers: We have set up a virtual machine with macOS for cases where a Mac is not available to run the application. If needed, please contact us via one of the emails provided in the article to request access.
+
 # Dependencies  
 
 There are no dependencies required to run the tool.  
