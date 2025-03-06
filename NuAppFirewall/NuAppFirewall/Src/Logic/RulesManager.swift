@@ -75,6 +75,13 @@ class RulesManager {
     func getRule(bundleID: String, appPath: String, url: String, host: String, ip: String, port: String) -> Rule? {
         var matchedRules: [Rule] = []
         
+        matchedRules.append(contentsOf: findRules(app: Consts.any, url: url, host: host, ip: ip, port: port, fallbackToSubpath: false))
+             
+        let computerRule = selectRule(from: matchedRules, url, host, ip, port, preferBlock: true)
+        guard computerRule == nil else {
+            return computerRule
+        }
+        
         matchedRules.append(contentsOf: findRules(app: bundleID, url: url, host: host, ip: ip, port: port, fallbackToSubpath: false))
         let bundleRule = selectRule(from: matchedRules, url, host, ip, port, preferBlock: true)
         guard bundleRule == nil else {

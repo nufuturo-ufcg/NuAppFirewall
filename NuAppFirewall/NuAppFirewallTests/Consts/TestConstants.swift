@@ -14,8 +14,9 @@ enum TestConstants {
     static let ip = "123.123.123"
     static let port = "443"
     static let unknown = "unknown"
+    static let any = "any"
     static let actionAllow = Consts.verdictAllow
     static let actionBlock = Consts.verdictBlock
-    static let ruleDataCombinationsCount = 48
+    static let ruleDataCombinationsCount = 64
     static let flowDataCombinationsCount = 48
 }
