@@ -8,7 +8,7 @@
 class TestDataFactory {
     
     static func generateRuleData(
-        apps: [String] = [TestConstants.appPath, TestConstants.appSubpath, TestConstants.bundleID],
+        apps: [String] = [TestConstants.appPath, TestConstants.appSubpath, TestConstants.bundleID, TestConstants.any],
         endpoints: [String] = [Consts.any, TestConstants.url, TestConstants.host, TestConstants.ip],
         actions: [String] = [Consts.verdictAllow, Consts.verdictBlock],
         ports: [String] = [Consts.any, TestConstants.port]
