@@ -1,6 +1,6 @@
 # Architecture & Data Flow
 
-This document describes the architecture of **NuAppFirewall**, highlighting its structural components and the data flow involved in intercepting network traffic, extracting flow metadata, evaluating rules, and applying verdicts.
+This document describes the architecture of **NuAppFirewall**, highlighting its structural components and the data flow involved in intercepting network traffic, extracting flow metadata, evaluating rules, and applying verdicts. It also covers the logging strategy used for observability and the test suite designed to ensure correctness and reliability.
 
 ---
 
