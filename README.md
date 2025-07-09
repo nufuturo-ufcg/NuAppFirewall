@@ -2,9 +2,11 @@
 [![Licença GPL-2.0](https://img.shields.io/badge/Licença-GPLv2-blue.svg)](LICENSE)
 
 NuAppFirewall is a firewall developed for macOS using Swift. The main goal is to implement a PoC of our content-filter, which will operate in passive-allow mode. The generated logs should use macOS's infrastructure and must comply with the requirements raised iteratively and incrementally.
-This project follows an adaptation of Nubank's Diplomat architecture, customized for a native application.
 
 **Paper Abstract**: Managing network access is essential to ensure the security of both users and corporate ecosystems. On macOS, this control is implemented through Content Filters in firewall applications. However, the state of the practice consists mainly of proprietary consumer tools, while open-source alternatives lack the modularity needed for enterprise adoption. This paper introduces NuAppFirewall, an open-source application firewall developed and deployed in production at Nubank. It includes more than 250,000 automatically generated rules for macOS applications, derived from Nubank's validated accesses, minimizing VPN usage and providing a security foundation that other organizations can leverage for their own implementations.
+
+# Video Demonstration
+There is a video demonstration of how to install, execute and uninstall NuAppFirewall [here](https://drive.google.com/file/d/1KU959bDe9e71uaQchiK5_rbPXxX80QgM/view).
 
 # README.md Structure
 This repository is organized as follows:
@@ -63,8 +65,7 @@ This repository is organized as follows:
 ```
 
 # Considered Badges
-
-The considered badges are: **Available** and **Functional**.
+The considered badges are: **Available** (SeloD), **Functional** (SeloF), **Sustainable** (SeloS) and **Reproducible** (SeloR).
 
 # Basic Information  
 These are the minimum requirements to run the tool:  
@@ -72,8 +73,6 @@ These are the minimum requirements to run the tool:
 - macOS 12.4 or later  
 - Xcode 12.0 or later  
 - Swift 5.0 or later  
-
-To the reviewers: We have set up a virtual machine with macOS for cases where a Mac is not available to run the application. If needed, please contact us via one of the emails provided in the article to request access.
 
 # Dependencies  
 
@@ -85,20 +84,22 @@ There are no security concerns.
 
 # Installation
 
+Please be advised that the installation described below will block your access to the following browsers: **Firefox** and **Arc**. This restriction can be reverted by uninstalling the application and its extension, as described in the [Uninstallation](#uninstallation) section.
+
 ## Run via DMG
 
-1. Download the disk image [_NuAppFirewall2.0.1.dmg_](./NuAppFirewall2.0.1.dmg) in this repository's root directory;
+1. Download the disk image [_NuAppFirewall.dmg_](./NuAppFirewall.dmg) in this repository's root directory;
 2. Open the disk image;  
 3. Drag the _NuAppFirewall.app_ to the _Applications_ folder
 
-![Captura de Tela 2025-02-13 às 15 28 04](https://github.com/user-attachments/assets/09d3640f-4122-4912-a140-2db79fa762a0)
+![](/docs/images/dmg.png)
 
 4. Create the path where the rules will be stored:  
 ```bash
 sudo mkdir -p "/private/var/root/Library/Group Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application Support/"
 ```
 
-5. Download the [rules file](./Rules/rules.json) available in the repository;
+5. Download the [rules file](./Rules/Demo/rules.json) available in the repository;
 
 6. Move the rules file to the path where the extension will read the rules:
 ```bash
@@ -119,7 +120,7 @@ In order to run this application on CLI, you need to have a apple developer lice
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/nufuturo-ufcg/NuAppFirewall.git
+git clone https://github.com/ArtigoSubmissao/NuAppFirewall.git
 ```
 
 2. Navigate to the project directory:
@@ -134,7 +135,7 @@ sudo mkdir -p "/private/var/root/Library/Group Containers/27XB45N6Y5.com.nufutur
 
 4. Move the rules file to the path where the extension will read the rules:
 ```bash
-sudo mv ./Rules/rules.json /private/var/root/Library/Group\ Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application\ Support/
+sudo mv ./Rules/Demo/rules.json /private/var/root/Library/Group\ Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application\ Support/
 ```
 
 5. Build and run the project in the terminal:
@@ -150,7 +151,8 @@ Grant the requested permission.
 2. Search for 'com.nufuturo.nuappfirewall.extension';
 3. Double-click the process that appears;
 4. Click 'Quit', then 'Force Quit';
-5. Enter your computer password.
+5. Enter your computer password;
+6. Search for 'com.nufuturo.nuappfirewall.app' and follow the steps 3-5.
 
 The extension will be deactivated. To confirm, run the following command:
 ```bash
@@ -182,7 +184,7 @@ To run the unit tests, follow the instructions below:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/nufuturo-ufcg/NuAppFirewall.git
+git clone https://github.com/ArtigoSubmissao/NuAppFirewall.git
 ```
 
 2. Navigate to the project directory:
@@ -207,7 +209,7 @@ make test
    
 2. Clone the repository:
 ```bash
-git clone https://github.com/nufuturo-ufcg/NuAppFirewall.git
+git clone https://github.com/ArtigoSubmissao/NuAppFirewall.git
 ```
 
 3. Navigate to the project directory:
