@@ -89,7 +89,7 @@ Please be advised that the installation described below will block your access t
 
 ## Run via DMG
 
-1. Download the disk image [_NuAppFirewall.dmg_](./NuAppFirewall.dmg) in this repository's root directory;
+1. Download the disk image [_NuAppFirewall2.0.1.dmg_](./NuAppFirewall2.0.1.dmg) in this repository's root directory;
 2. Open the disk image;  
 3. Drag the _NuAppFirewall.app_ to the _Applications_ folder
 
@@ -121,7 +121,7 @@ In order to run this application on CLI, you need to have a apple developer lice
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/ArtigoSubmissao/NuAppFirewall.git
+git clone https://github.com/nufuturo-ufcg/NuAppFirewall.git
 ```
 
 2. Navigate to the project directory:
@@ -185,7 +185,7 @@ To run the unit tests, follow the instructions below:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/ArtigoSubmissao/NuAppFirewall.git
+git clone https://github.com/nufuturo-ufcg/NuAppFirewall.git
 ```
 
 2. Navigate to the project directory:
@@ -210,7 +210,7 @@ make test
    
 2. Clone the repository:
 ```bash
-git clone https://github.com/ArtigoSubmissao/NuAppFirewall.git
+git clone https://github.com/nufuturo-ufcg/NuAppFirewall.git
 ```
 
 3. Navigate to the project directory:
