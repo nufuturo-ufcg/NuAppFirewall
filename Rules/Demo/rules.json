@@ -1,0 +1,26 @@
+{
+    "/Arc.app": [
+        {
+            "action": "block",
+            "identifier": "company.thebrowser.Browser",
+            "destinations": [
+                [
+                    "any",
+                    "any"
+                ]
+            ]
+        }
+    ],
+    "/Firefox": [
+        {
+            "action": "block",
+            "identifier": "org.mozilla.firefox",
+            "destinations": [
+                [
+                    "any",
+                    "any"
+                ]
+            ]
+        }
+    ]
+}
