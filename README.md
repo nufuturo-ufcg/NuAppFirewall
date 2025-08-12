@@ -228,14 +228,19 @@ log stream --predicate "subsystem='com.nufuturo.nuappfirewall.extension'" --info
 
 **Objective:** Evaluate the CPU and memory consumption of the `com.nufuturo.nuappfirewall.extension` in a real environment, focusing on resource usage and stability.  
 
+**Test Configuration:**  
+- Devices: 5 × MacBook Air M1 (8 GB RAM)  
+- Tested version: NuAppFirewall 2.0.0  
+- Samples collected: 308,709  
+- Usage period: continuous collection during real execution (between 3 and 7 days per machine)
+- Measurement tool: `psutil` 6.1.0 (automatic collection)
+
 **Execution Steps:**  
 
 1. Run the application;  
 2. Open Activity Monitor on macOS;  
 3. Search for `com.nufuturo.nuappfirewall.extension`;  
 4. CPU and memory information can be found in their respective tabs and columns.  
-
-**Expected execution time:** Approximately 5 minutes of continuous use.  
 
 **Expected resource usage:**  
 - CPU: average consumption of 0.72%  
@@ -251,7 +256,8 @@ log stream --predicate "subsystem='com.nufuturo.nuappfirewall.extension'" --info
 
 **Execution Steps:**  
    
-To run the unit tests, follow the instructions below: 
+> **Note:** Before running the unit tests, ensure you have completed the code signing steps described earlier in [Run via CLI (signing configuration will be required)](#run-via-cli-signing-configuration-will-be-required).  
+> You do **not** need to run `make run` (as described in the previous steps); for system tests, run only `make test`.
 
 1. Clone the repository:
 ```bash
@@ -287,7 +293,6 @@ make test
 > **Note:** Before running the system tests, ensure you have completed the code signing steps described earlier in [Run via CLI (signing configuration will be required)](#run-via-cli-signing-configuration-will-be-required).  
 > You do **not** need to run `make run` (as described in the previous steps); for system tests, run only `make systemTest`.
 > Also, if you do not apply the `Makefile` modifications indicated in the previous steps, the firewall may start with rules different from those expected by the tests, leading to discrepancies in the log search results.
-
 
 1. Ensure that the firewall is deactivated.     
     1.1 Run the following command to check if the extension is deactivated:  
