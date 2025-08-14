@@ -133,7 +133,7 @@ To run this project via CLI, it is necessary to have a paid Apple Developer Acco
 
    4.1. First, click on a target, and in the horizontal bar just above the 'Project' title, navigate to the **Signing & Capabilities** tab.
 
-   4.2. Under the **Debug** section, enable *Automatically manage signing* — Xcode, logged into your account, should generate the necessary certificate. (Note: Some signatures in NuAppFirewall, such as the sandbox, require the paid Apple Developer version.)
+   4.2. Under the **Debug** section, enable *Automatically manage signing* — Xcode, logged into your account, should generate the necessary certificate. (Note: Some signatures in NuAppFirewall, such as the network extension, require the paid Apple Developer version.)
 
    4.3. Repeat this process for all targets.
 
