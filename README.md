@@ -93,13 +93,13 @@ Please be advised that the installation described below will block your access t
 
 ![](/docs/images/dmg.png)
 
-2. At the root of the project, run the Makefile target to install the rules (this will prompt for your Developer Team ID if needed):  
+2. At the root of the project, run the Makefile target to install the rules:  
 
 ```bash
 make install-rules-user RULES=./Rules/Demo/rules.json
 ```
 
-3. Click on the application icon that appears in Finder. 
+3. Double-click on the application icon that appears in Finder.
 
 Grant the requested permissions. The firewall will be activated. To check the logs, use: 
 
