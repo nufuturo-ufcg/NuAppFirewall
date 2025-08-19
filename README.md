@@ -77,7 +77,7 @@ These are the minimum requirements to run the tool:
 
 # Dependencies  
 
-There are no dependencies required to run the tool.  
+To run the tool via CLI, you must have a paid Apple Developer account. This is required because some certificates and entitlements used by the application are only available with a paid subscription. No additional dependencies are needed.  
 
 # Security Concerns
 
@@ -89,28 +89,20 @@ Please be advised that the installation described below will block your access t
 
 ## Run via DMG
 
-1. Download the disk image [_NuAppFirewall2.0.1.dmg_](./NuAppFirewall2.0.1.dmg) in this repository's root directory;
-2. Open the disk image;  
-3. Drag the _NuAppFirewall.app_ to the _Applications_ folder
+1. Download the disk image NuAppFirewall2.0.1.dmg from the repository root, open it, and drag NuAppFirewall.app to the Applications folder;
 
 ![](/docs/images/dmg.png)
 
-4. Create the path where the rules will be stored:  
+2. At the root of the project, run the Makefile target to install the rules (this will prompt for your Developer Team ID if needed):  
+
 ```bash
-sudo mkdir -p "/private/var/root/Library/Group Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application Support/"
+make install-rules-user RULES=./Rules/Demo/rules.json
 ```
 
-5. Download the [rules file](./Rules/Demo/rules.json) available in the repository;
+3. Click on the application icon that appears in Finder. 
 
-6. Move the rules file to the path where the extension will read the rules:
-```bash
-sudo mv path/to/rules /private/var/root/Library/Group\ Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application\ Support/
-```
+Grant the requested permissions. The firewall will be activated. To check the logs, use: 
 
-7. Click on the application icon that appears in Finder. 
-8. Grant the requested permissions. 
-
-The firewall will be activated. To check the logs, use: 
 ```bash
 log stream --predicate "subsystem='com.nufuturo.nuappfirewall.extension'" --info
 ```
