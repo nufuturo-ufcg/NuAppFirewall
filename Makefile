@@ -9,7 +9,7 @@ TEST_RULES_FILE = controlled-rules.json
 RULES_FILE = rules.json
 RULES_DESTINATION = /private/var/root/Library/Group\ Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application\ Support/
 
-.PHONY: all clean build install removeApp run help test systemTest setup-xcode copyRules copyRulesFile runAndStop runSystemTests fullSystemTest
+.PHONY: all clean build install removeApp run help test systemTest setup-xcode copyRules copyRulesFile runAndStop runSystemTests fullSystemTest install-rules
 
 # Define a regra padrão
 all: run
@@ -94,6 +94,14 @@ activate:
 
 # Executar o app
 run: removeApp clean build install activate
+
+# Instala as regras chamando o script
+install-rules:
+	@if [ -z "$(RULES)" ]; then \
+		echo "Uso: make install-rules RULES=/caminho/para/rules.json"; \
+		exit 1; \
+	fi
+	@./scripts/install_rules.sh $(RULES)
 
 # Mostrar ajuda com a descrição dos comandos
 help:
