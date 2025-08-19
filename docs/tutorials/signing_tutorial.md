@@ -2,6 +2,10 @@
 
 **Note on Apple Developer:** Running via the command line **requires a paid Apple Developer account**. The DMG/GUI route often works out of the box because it ships as a prebuilt bundle. Note that the CLI flow requires you to build and sign targets using certificates/entitlements available only to paid accounts. With a free account you may do limited GUI testing, but the CLI flow usually will not work as expected.
 
+**Important:** The initial setup for running via CLI involves steps required by Apple (Xcode configuration, signing targets, etc.). These steps are only necessary the first time. After the first setup, you only need to follow the uninstall process described in the main README, run `make run`, and optionally update the rules with `make install-rules-dev`.
+
+Some of the configuration steps have been automated in scripts to make the process easier, but a few steps—like signing targets in Xcode—still need to be completed via the interface.
+
 ## Run via CLI (signing configuration will be required)
 
 To run this project via CLI, it is necessary to have a paid Apple Developer Account, as some of the certificates of Apple Developer used in this application are exclusive to the paid version.
@@ -24,70 +28,22 @@ To run this project via CLI, it is necessary to have a paid Apple Developer Acco
 
    4.3. Repeat this process for all targets.
 
-5. You will need to change the rules location to match your Apple Developer Team ID's group container.
-
-   5.1. Replace the ID in the rules path with your Developer Team ID:
-
-   ``` bash
-   sudo mkdir -p "/private/var/root/Library/Group Containers/[teamID].com.nufuturo.nuappfirewall/Library/Application Support/"
-   ```
-
-   5.2. Also replace this ID in the project's **Makefile**, located at the repository root (line 10, in `RULES_DESTINATION`).
-
-6. Move the rules file to the path where the extension will read the rules:
-
-   6.1 Navigate to the project directory:
+5. First-time setup (only once) – at the root of the project, configure Xcode and accept the license agreements
 
    ```bash
-   cd NuAppFirewall
+   make setup-xcode
    ```
+   
+6. At the root of the project, run the Makefile target to install the rules (this will prompt for your Developer Team ID if needed):
 
-   6.2 Move the rules file to the path where the extension will read the rules:
-
-    ```bash
-    sudo mv ./Rules/Demo/rules.json /private/var/root/Library/Group\ Containers/[teamID].com.nufuturo.nuappfirewall/Library/Application\ Support/
-    ```
+   ``` bash
+   make install-rules-dev RULES=./Rules/Demo/rules.json
+   ```
     
-7.  Back at the repository root in the terminal (`NuAppFirewall`), run:
+7.  After the command completes, you can run the project:
 
    ```bash
    make run
    ```
 
    Enter your password and grant the necessary permissions for the application. In the first pop-up, click **Open System Settings** and enter your password to enable the extension. In the second pop-up, allow the extension to filter your network.
-
----
-
-In order to run this application on CLI, you need to have a apple developer license and re-sign this code with your team ID.
-
-1. Clone the repository:
-```bash
-git clone https://github.com/nufuturo-ufcg/NuAppFirewall.git
-```
-
-2. Navigate to the project directory:
-```bash
-cd NuAppFirewall
-```
-
-3. Create the path where the rules will be stored:
-```bash
-sudo mkdir -p "/private/var/root/Library/Group Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application Support/"
-```
-
-4. Move the rules file to the path where the extension will read the rules:
-```bash
-sudo mv ./Rules/Demo/rules.json /private/var/root/Library/Group\ Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application\ Support/
-```
-
-5. Before running the project, run the Xcode setup target to prepare signing and other Xcode-specific configuration:
-```
-make setup-xcode
-```
-
-6. Build and run the project in the terminal:
-```
-make run
-```
-
-Grant the requested permission.
