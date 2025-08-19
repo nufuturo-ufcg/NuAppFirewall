@@ -116,11 +116,12 @@ To access the full guide, please refer to [CLI Guide](docs/tutorials/signing_tut
 # Uninstallation
 
 1. Open Activity Monitor;
-2. Search for 'com.nufuturo.nuappfirewall.extension';
-3. Double-click the process that appears;
-4. Click 'Quit', then 'Force Quit';
-5. Enter your computer password;
-6. Search for 'com.nufuturo.nuappfirewall.app' and follow the steps 3-5.
+2. In the menu bar at the top of the screen, click "View" and check the option "All Processes";
+3. Search for 'com.nufuturo.nuappfirewall.extension';
+4. Double-click the process that appears;
+5. Click 'Quit', then 'Force Quit';
+6. Enter your computer password;
+7. Search for 'com.nufuturo.nuappfirewall.app' and follow the steps 3-5.
 
 The extension will be deactivated. To confirm, run the following command:
 ```bash
@@ -151,9 +152,10 @@ log stream --predicate "subsystem='com.nufuturo.nuappfirewall.extension'" --info
 **Execution Steps:**  
 
 1. Run the application;  
-2. Open Activity Monitor on macOS;  
-3. Search for `com.nufuturo.nuappfirewall.extension`;  
-4. CPU and memory information can be found in their respective tabs and columns.  
+2. Open Activity Monitor on macOS; 
+3. In the menu bar at the top of the screen, click "View" and check the option "All Processes";
+4. Search for `com.nufuturo.nuappfirewall.extension`;  
+5. CPU and memory information can be found in their respective tabs and columns.  
 
 **Expected resource usage:**  
 - CPU: average consumption of 0.72%  
