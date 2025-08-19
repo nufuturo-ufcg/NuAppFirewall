@@ -25,16 +25,12 @@ fi
 # 3. Function to validate Team ID format
 validate_team_id() {
   local ID="$1"
-  if [[ "$ID" =~ ^[A-Z0-9]{10}$ ]]; then
-    return 0
-  else
-    return 1
-  fi
+  [[ "$ID" =~ ^[A-Z0-9]{10}$ ]]
 }
 
 # 4. Ask user to confirm or input manually
 if [ -n "$TEAM_ID" ]; then
-  echo "Found Team ID: $TEAM_ID"
+  echo "Found Team ID: $TEAM_ID" >&2
   read -p "Use this Team ID? (y/n): " CONFIRM
   if [ "$CONFIRM" != "y" ]; then
     TEAM_ID=""
@@ -46,10 +42,10 @@ while ! validate_team_id "$TEAM_ID"; do
   read -p "Enter your Apple Developer Team ID (10 characters, A-Z0-9): " USER_TEAM_ID
   TEAM_ID=$(echo "$USER_TEAM_ID" | tr '[:lower:]' '[:upper:]')
   if ! validate_team_id "$TEAM_ID"; then
-    echo "Invalid format. Must be exactly 10 letters/numbers."
+    echo "Invalid format. Must be exactly 10 letters/numbers." >&2
     TEAM_ID=""
   fi
 done
 
-# 6. Show final Team ID
-echo "Using Team ID: $TEAM_ID"
+# 6. Output only the raw Team ID (stdout)
+echo "$TEAM_ID"
