@@ -8,8 +8,9 @@ SYSTEM_TEST_FILE = SystemTest.swift
 TEST_RULES_FILE = controlled-rules.json
 RULES_FILE = rules.json
 RULES_DESTINATION = /private/var/root/Library/Group\ Containers/27XB45N6Y5.com.nufuturo.nuappfirewall/Library/Application\ Support/
+TEAM_ID = "27XB45N6Y5"
 
-.PHONY: all clean build install removeApp run help test systemTest setup-xcode copyRules copyRulesFile runAndStop runSystemTests fullSystemTest
+.PHONY: all clean build install removeApp run help test systemTest setup-xcode copyRules copyRulesFile runAndStop runSystemTests fullSystemTest install-rules-dev install-rules-user get-team-id
 
 # Define a regra padrão
 all: run
@@ -74,6 +75,7 @@ test:
 
 # Limpar o build do projeto
 clean:
+	rm -rf ~/Library/Developer/Xcode/DerivedData/NuAppFirewall-*
 	xcodebuild clean -project $(PROJECT_DIR)/$(APP_NAME).xcodeproj -scheme $(APP_NAME)
 
 # Remover a aplicação do Applications caso ela exista
@@ -95,23 +97,47 @@ activate:
 # Executar o app
 run: removeApp clean build install activate
 
+# Obtém só o Team ID (stdout)
+get-team-id:
+	@./scripts/get_team_id.sh
+
+# Dev: pega o Team ID interativamente
+install-rules-dev:
+	@if [ -z "$(RULES)" ]; then \
+		echo "Usage: make install-rules-dev RULES=/path/to/rules.json"; \
+		exit 1; \
+	fi; \
+	TEAM_ID=$$(./scripts/get_team_id.sh); \
+	./scripts/install_rules.sh $(RULES) $$TEAM_ID
+
+# Users: usam um Team ID fixo pré-definido
+install-rules-user:
+	@if [ -z "$(RULES)" ]; then \
+		echo "Usage: make install-rules-user RULES=/path/to/rules.json"; \
+		exit 1; \
+	fi; \
+	./scripts/install_rules.sh $(RULES) $(TEAM_ID)
+
 # Mostrar ajuda com a descrição dos comandos
 help:
 	@echo "Available commands:"
-	@echo "  all             - Cleans, builds, installs, and activates the app (default)"
-	@echo "  setup-xcode     - Configures Xcode environment, displays license, and runs initial setup"
-	@echo "  test            - Runs project tests"
-	@echo "  systemTest      - Checks if the process is active and runs system tests"
-	@echo "  checkProcess    - Verifies if the extension is running by checking recent logs"
-	@echo "  fullSystemTest  - Executes all steps if the process is not active"
-	@echo "  copyRules       - Copies controlled-rules.json to the appropriate directory"
-	@echo "  copyRulesFile   - Replaces controlled-rules.json as rules.json"
-	@echo "  runAndStop      - Starts the extension in a new terminal and waits for activation"
-	@echo "  runSystemTests  - Executes the system tests script"
-	@echo "  clean           - Cleans the project build"
-	@echo "  removeApp       - Removes the app from the Applications folder"
-	@echo "  build           - Builds the project"
-	@echo "  install         - Installs the app in the Applications folder"
-	@echo "  activate        - Activates the app extension"
-	@echo "  run             - Removes, cleans, builds, installs, and activates the app"
-	@echo "  help            - Displays this help message"
+	@echo "  all                 - Cleans, builds, installs, and activates the app (default)"
+	@echo "  setup-xcode         - Configures Xcode environment, displays license, and runs initial setup"
+	@echo "  get-team-id         - Retrieves the Apple Developer Team ID interactively"
+	@echo "  install-rules-dev   - Installs rules.json using an interactively selected Team ID"
+	@echo "  install-rules-user  - Installs rules.json using a predefined Team ID (TEAM_ID must be exported)"
+	@echo "  test            	 - Runs project tests"
+	@echo "  systemTest      	 - Checks if the process is active and runs system tests"
+	@echo "  checkProcess    	 - Verifies if the extension is running by checking recent logs"
+	@echo "  fullSystemTest  	 - Executes all steps if the process is not active"
+	@echo "  copyRules       	 - Copies controlled-rules.json to the appropriate directory"
+	@echo "  copyRulesFile   	 - Replaces controlled-rules.json as rules.json"
+	@echo "  runAndStop      	 - Starts the extension in a new terminal and waits for activation"
+	@echo "  runSystemTests  	 - Executes the system tests script"
+	@echo "  clean           	 - Cleans the project build"
+	@echo "  removeApp       	 - Removes the app from the Applications folder"
+	@echo "  build           	 - Builds the project"
+	@echo "  install         	 - Installs the app in the Applications folder"
+	@echo "  activate        	 - Activates the app extension"
+	@echo "  run             	 - Removes, cleans, builds, installs, and activates the app"
+	@echo "  help            	 - Displays this help message"
